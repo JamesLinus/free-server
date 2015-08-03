@@ -1,60 +1,49 @@
 #!/bin/bash
 
-utilDir=~/free-server/
-
-bashrc=~/.bashrc
-bashUrl=http://www.xiaofang.me
-bashUrlInstallDir=${bashUrl}/wp-content/uploads/ftp/free-server/
-
-echoS(){
-  echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
-  echo "##"
-  echo "## $1"
-  echo "##"
-
-  echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
-
-}
+export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
 randomString()
 {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
 }
 
-echoS "Initialing env"
+# Initialing env
+# folder should be empty
+if [ "$(ls -A ${freeServerRoot})" ]; then
+   echo "Folder ${freeServerRoot} should be empty. Exit";
+   exit
+fi
 
-mkdir -p ${utilDir}
+# prepare global functions
+rm ./global-utils.sh -y
+curl ${bashUrl}/utils/global-utils.sh | source
 
-echoS "Installing Shadowsocks"
+echoS "Init Env"
 
-wget -O- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
-sed -i.old  -E "/shadowsocks/d"   /etc/apt/sources.list
-echo "deb http://shadowsocks.org/debian wheezy main" >>   /etc/apt/sources.list
-sudo apt-get update -y
-sudo apt-get install shadowsocks-libev -y
+replaceLineInFile ${globalUtilFile} "bashUrl=" "export bashUrl=$bashUrl"
+replaceLineInFile ${bashrc} "freeServerRoot=" "export freeServerRoot=$freeServerRoot"
+sudo apt-get update -y > /dev/null
 
 echoS "Getting and processing utility package"
 
-wget ${bashUrlInstallDir}/createUserShadowsocks.sh ${utilDir}
-wget ${bashUrlInstallDir}/globals.sh ${utilDir}
-source ${utilDir}/globals.sh
+curl ${bashUrl}/setup-tools/download-files.sh | sh > /dev/null
 
-echoS "Getting shadowsocks config file template and set it to bashrc"
+echoS "Installing NodeJS and NPM"
 
-sed -i.old  -E "/config_shadowsocks/d" ${bashrc}
+${freeServerRootTmp}/install-node.sh > /dev/null
 
-source ${bashrc}
-mv ${config_shadowsocks} ${config_shadowsocks}.bak
-wget ${bashUrlInstallDir}/config.json -O ${config_shadowsocks}
+echoS "Installing and initing Shadowsocks"
 
-echoS "Cleaning up env and start up everything"
-# set executable for all shell scripts
-chmod -R +x *.sh
+${freeServerRootTmp}/install-shadowsocks.sh > /dev/null
 
-# create first shadowsocks account
-tmpPort=40000
-tmpPwd=`randomString 8`
-${utilDir}/createUserShadowsocks.sh ${tmpPort} ${tmpPwd} > /dev/null
-echoS "First Shadowsocks account placeholder created, with Port ${tmpPort} and Password ${tmpPwd}. \n \
-You should not remove the placeholder since it's used by script ${utilDir}/createUserShadowsocks.sh"
+echoS "Installing SPDY Proxy"
+
+${freeServerRootTmp}/install-spdy.sh > /dev/null
+
+echoS "Cleaning up env"
+
+rm -rf ${freeServerRootTmp}
+
+echoS "Start up Shadowsocks ss-redir"
+${freeServerRoot}/restart-shadowsocks > /dev/null
 
