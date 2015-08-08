@@ -20,6 +20,7 @@ mkdir -p ${configDir}
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp/
+mkdir -p ${freeServerRootTmp}
 
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
