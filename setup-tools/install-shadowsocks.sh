@@ -2,7 +2,7 @@
 
 source ~/global-utils.sh
 
-wget -O- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
+wget -qO- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
 
 removeLineInFile /etc/apt/sources.list shadowsocks
 
@@ -11,7 +11,7 @@ sudo apt-get update -y
 sudo apt-get install shadowsocks-libev -y
 
 # Getting shadowsocks config file template
-wget ${bashUrl}/setup-tools/config.json -O ${configShadowsocks}
+downloadFileToFolder ${bashUrl}/setup-tools/config.json ${configDir}
 
 mv ${oriConfigShadowsocks} ${oriConfigShadowsocks}$(appendDateToString).bak
 mv ${configShadowsocks} ${configShadowsocks}$(appendDateToString).bak
