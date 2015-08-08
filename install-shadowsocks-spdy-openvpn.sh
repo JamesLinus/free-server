@@ -27,7 +27,7 @@ if [ -d ${freeServerRoot} ]; then
 
     # move current config files to a save place if has
     if [ -d ${configDir} ]; then
-        mv ${configDir} ~/${configDir}$(appendDateToString)
+        mv ${configDir} ~/config-bak$(appendDateToString)
     fi
     rm -rf ${freeServerRoot}
 
@@ -54,8 +54,8 @@ ${freeServerRootTmp}/install-spdy.sh > /dev/null
 echoS "Cleaning up env"
 
 # restore backed up config files
-if [ -d ~/${configDir}$(appendDateToString) ]; then
-    mv ~/${configDir}$(appendDateToString) ${configDir}
+if [ -d ~/config-bak$(appendDateToString) ]; then
+    mv ~/config-bak$(appendDateToString) ${configDir}
 fi
 
 #rm -rf ${freeServerRootTmp}

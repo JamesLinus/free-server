@@ -175,6 +175,6 @@ export -f removeLineInFile
 #####
 function appendDateToString(){
   local now=$(date +"%m_%d_%Y")
-  echo "-$now"
+  echo "-${now}"
 }
 export -f appendDateToString
