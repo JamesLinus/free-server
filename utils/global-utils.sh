@@ -26,7 +26,8 @@ export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
 export baseUrlSetup=${baseUrl}/setup-tools
 
-export oriConfigShadowsocks="/etc/shadowsocks-libev/config.json"
+export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
+export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 export configShadowsocks="${configDir}/config.json"
 
 
