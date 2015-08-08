@@ -39,7 +39,8 @@ sudo apt-get update -y >> /dev/null
 
 echoS "Getting and processing utility package"
 
-wget --no-cache -qO- ${bashUrl}/setup-tools/download-files.sh | /bin/bash > /dev/null
+downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
+/bin/bash ${freeServerRootTmp}/download-files.sh
 
 echoS "Installing NodeJS and NPM"
 
