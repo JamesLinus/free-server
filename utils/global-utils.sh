@@ -2,14 +2,12 @@
 
 export globalUtilFile=$0
 
-export homeDir=`pwd`
-
-export bashrc=${homeDir}/.bashrc
+export bashrc=~/.bashrc
 
 export baseUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
 # the top install folder
-export freeServerRoot=$homeDir/free-server/
+export freeServerRoot=~/free-server/
 mkdir -p ${freeServerRoot}
 
 # utility folder

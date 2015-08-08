@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${freeServerRoot}/utils/global-utils.sh
+source ~/global-utils.sh
 
 wget -O- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
 

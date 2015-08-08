@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/global-utils.sh
+
 #source ${freeServerRoot}/utils/global-utils.sh
 #
 #if [ "x$1" = "x-h" -o "x$1" = "x--help" ]

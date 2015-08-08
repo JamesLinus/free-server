@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${freeServerRoot}/utils/global-utils.sh
+source ~/global-utils.sh
 
 if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
 then

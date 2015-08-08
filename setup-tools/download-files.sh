@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ~/global-utils.sh
+
 # install util
 wget ${baseUrlSetup}/install-shadowsocks.sh ${freeServerRootTmp}
 wget ${baseUrlSetup}/install-spdy.sh ${freeServerRootTmp}
