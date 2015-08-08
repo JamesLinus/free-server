@@ -50,7 +50,7 @@ export -f echoSExit
 # insert a line under the matched pattern
 #
 # @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for sed
+# @param RegExp String $2 is searching pattern for awk
 # @param String $3 is line to insert to the found pattern
 #####
 function insertLineToFile(){
@@ -72,8 +72,8 @@ function insertLineToFile(){
     exit 1
   fi
 
-  # find and remove the line matched to the pattern
-  sed -i "/$2/a" $3 $1
+  gawk -i inplace '/$2/ {print;print "$3";next}1' $1
+
 }
 export -f insertLineToFile
 
@@ -81,7 +81,7 @@ export -f insertLineToFile
 # replace a line with new line
 #
 # @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for sed
+# @param RegExp String $2 is searching pattern for awk
 # @param String $3 is line to insert to the found pattern after the matched line removed
 #####
 function replaceLineInFile(){
@@ -104,9 +104,7 @@ function replaceLineInFile(){
   fi
 
   # find and remove the line matched to the pattern
-  sed -i "/$2/a" "__INSERT_POINT__" $1
-  sed -i "/$2/d" $1
-  sed -i "/__INSERT_POINT__/c" $3 $1
+  gawk -i inplace "{gsub(/$2/, $3)}; {print}" $1
 }
 export -f replaceLineInFile
 
@@ -115,7 +113,7 @@ export -f replaceLineInFile
 # replace a line with new line
 #
 # @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for sed
+# @param RegExp String $2 is searching pattern for awk
 #####
 function removeLineInFile(){
 
@@ -137,7 +135,7 @@ function removeLineInFile(){
   fi
 
   # find and remove the line matched to the pattern
-  sed -i "/$2/d" $1
+  gawk -i inplace '!/$2/' $1
 }
 export -f removeLineInFile
 
