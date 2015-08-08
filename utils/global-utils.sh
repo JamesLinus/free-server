@@ -145,6 +145,7 @@ export -f removeLineInFile
 # Add date to String
 #
 # @param String $1 is the origin String
+# @example file$(appendDateToString).bak
 #####
 function appendDateToString(){
   local now=$(date +"%m_%d_%Y")
