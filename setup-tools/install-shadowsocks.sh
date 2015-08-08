@@ -4,7 +4,8 @@ source ~/global-utils.sh
 
 wget -O- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
 
-sed -i.old  -E "/shadowsocks/d" /etc/apt/sources.list
+removeLineInFile /etc/apt/sources.list shadowsocks
+
 echo "deb http://shadowsocks.org/debian wheezy main" >>  /etc/apt/sources.list
 sudo apt-get update -y
 sudo apt-get install shadowsocks-libev -y
