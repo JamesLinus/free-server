@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-npm install -g spdy
+sudo npm install -g spdy

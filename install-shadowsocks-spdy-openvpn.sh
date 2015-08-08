@@ -42,7 +42,7 @@ ${freeServerRootTmp}/install-spdy.sh > /dev/null
 
 echoS "Cleaning up env"
 
-rm -rf ${freeServerRootTmp}
+#rm -rf ${freeServerRootTmp}
 
 echoS "Start up Shadowsocks ss-redir"
 ${freeServerRoot}/restart-shadowsocks > /dev/null
