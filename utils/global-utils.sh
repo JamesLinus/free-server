@@ -61,13 +61,14 @@ export -f echoSExit
 # @example downloadFileToFolder http://www.xiaofang.me/some.zip ~/free-server
 #####
 function downloadFileToFolder(){
+  echoS "Prepare to download file $1 into Folder $2"
+
   if [ ! -d "$2" ]; then
-    echoSExit "Folder $2 is not existed. Exit";
+    echoSExit "Folder $2 is not existed. Exit"
   fi
   if [ -z $1 ]; then
-    echoSExit "Url must be provided";
+    echoSExit "Url must be provided"
   fi
-  echoS "Download file $1 into Folder $2"
   wget --directory-prefix=$2 "$1" > /dev/null
 }
 export -f downloadFileToFolder
