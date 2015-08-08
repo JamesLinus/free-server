@@ -33,7 +33,9 @@ if [ -d ${freeServerRoot} ]; then
 
 fi
 
-sudo apt-get update -y
+echoS "apt-get update"
+
+sudo apt-get update -y >> /dev/null
 
 echoS "Getting and processing utility package"
 
