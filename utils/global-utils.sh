@@ -72,7 +72,7 @@ function insertLineToFile(){
     exit 1
   fi
 
-  gawk -i inplace '/$2/ {print;print "$3";next}1' $1
+  gawk -i inplace "/$2/ {print;print $3;next}1" $1
 
 }
 export -f insertLineToFile
@@ -135,7 +135,7 @@ function removeLineInFile(){
   fi
 
   # find and remove the line matched to the pattern
-  gawk -i inplace '!/$2/' $1
+  gawk -i inplace "!/$2/" $1
 }
 export -f removeLineInFile
 
