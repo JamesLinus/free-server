@@ -2,11 +2,6 @@
 
 export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
-randomString()
-{
-    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
-}
-
 cd ~
 # prepare global functions
 rm ./global-utils.sh

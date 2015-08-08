@@ -28,6 +28,13 @@ export baseUrlSetup=${baseUrl}/setup-tools
 export oriConfigShadowsocks="/etc/shadowsocks-libev/config.json"
 export configShadowsocks="${configDir}/config.json"
 
+
+function randomString()
+{
+    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
+}
+export -f randomString
+
 function echoS(){
   echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
   echo "##"
@@ -45,6 +52,26 @@ function echoSExit(){
   exit
 }
 export -f echoSExit
+
+#####
+# download a file to folder
+#
+# @param String $1 is the url of file to downlaod
+# @param String $2 is the folder to store
+# @example downloadFileToFolder http://www.xiaofang.me/some.zip ~/free-server
+#####
+function downloadFileToFolder()
+{
+  if [ ! -d "$2" ]; then
+    echoSExit "Folder $2 is not existed. Exit";
+  fi
+  if [ -z $1 ]; then
+    echoSExit "Url must be provided";
+  fi
+  echoS "Download file $1 into Folder $2"
+  wget --directory-prefix=$2 "$1" > /dev/null
+}
+export -f downloadFileToFolder
 
 #####
 # insert a line under the matched pattern

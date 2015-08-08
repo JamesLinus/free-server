@@ -3,17 +3,19 @@
 source ~/global-utils.sh
 
 # install util
-wget --directory-prefix=${freeServerRootTmp} ${baseUrlSetup}/install-shadowsocks.sh
-wget --directory-prefix=${freeServerRootTmp} ${baseUrlSetup}/install-spdy.sh
-wget --directory-prefix=${freeServerRootTmp} ${baseUrlSetup}/install-node.sh
+
+downloadFileToFolder ${baseUrlSetup}/install-shadowsocks.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlSetup}/install-spdy.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
 
 # runtime util
-wget --directory-prefix=${utilDir} ${baseUrlBin}/createuser.sh
-wget --directory-prefix=${utilDir} ${baseUrlBin}/createuser-shadowsocks.sh
-wget --directory-prefix=${utilDir} ${baseUrlBin}/deleteuser-shadowsocks.sh
-wget --directory-prefix=${utilDir} ${baseUrlBin}/restart-shadowsocks.sh
-wget --directory-prefix=${utilDir} ${baseUrlBin}/restart-spdy.sh
-wget --directory-prefix=${utilDir} ${baseUrlBin}/global-utils.sh
+downloadFileToFolder ${baseUrlBin}/createuser.sh --directory-prefix=${utilDir}
+downloadFileToFolder ${baseUrlBin}/createuser-shadowsocks.sh --directory-prefix=${utilDir}
+downloadFileToFolder ${baseUrlBin}/deleteuser-shadowsocks.sh --directory-prefix=${utilDir}
+downloadFileToFolder ${baseUrlBin}/restart-shadowsocks.sh --directory-prefix=${utilDir}
+downloadFileToFolder ${baseUrlBin}/restart-spdy.sh --directory-prefix=${utilDir}
+downloadFileToFolder ${baseUrlBin}/global-utils.sh --directory-prefix=${utilDir}
 
 # set executable for all shell scripts
 cd ${utilDir}
