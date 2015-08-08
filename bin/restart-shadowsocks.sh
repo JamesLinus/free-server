@@ -10,5 +10,9 @@ fi
 
 wall -n "Restarting shadowsocks ss-redir"
 pkill ss-redir
-setsid /usr/bin/ss-redir -c ${configShadowsocks} > /dev/null 2>&1
+
+for i in $(find ${configDir} -name "*.json"); do
+    setsid /usr/bin/ss-redir -c "$i" > /dev/null 2>&1
+done
+#setsid /usr/bin/ss-redir -c ${configShadowsocks} > /dev/null 2>&1
 
