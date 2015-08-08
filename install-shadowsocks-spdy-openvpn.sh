@@ -31,6 +31,9 @@ if [ -d ${freeServerRoot} ]; then
     fi
     rm -rf ${freeServerRoot}
 
+    # recreate everything
+    source ~/global-utils.sh
+
 fi
 
 echoS "apt-get update"
