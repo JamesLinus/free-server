@@ -62,7 +62,7 @@ echoS "Cleaning up env"
 # restore backed up config files
 if [ -d ~/config-bak$(appendDateToString) ]; then
     rm -rf ${configDir}
-    mv ~/config-bak$(appendDateToString) ${configDir}
+    mv ~/config-bak$(appendDateToString) ${freeServerRoot}
 fi
 
 #rm -rf ${freeServerRootTmp}
