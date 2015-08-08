@@ -17,7 +17,7 @@ echoS "Init Env"
 
 replaceLineInFile ${globalUtilFile} "bashUrl=" "export bashUrl=$bashUrl"
 replaceLineInFile ${bashrc} "freeServerRoot=" "export freeServerRoot=$freeServerRoot"
-sudo apt-get update -y > /dev/null
+sudo apt-get update -y
 
 echoS "Getting and processing utility package"
 

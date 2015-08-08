@@ -75,7 +75,7 @@ function insertLineToFile(){
   fi
 
   # find and remove the line matched to the pattern
-  sed -i "/" + $2 + "/a" $3 $1
+  sed -i "/$2/a" $3 $1
 }
 export -f insertLineToFile
 
@@ -106,8 +106,8 @@ function replaceLineInFile(){
   fi
 
   # find and remove the line matched to the pattern
-  sed -i "/" + $2 + "/a" "__INSERT_POINT__" $1
-  sed -i "/" + $2 + "/d" $1
+  sed -i "/$2/a" "__INSERT_POINT__" $1
+  sed -i "/$2/d" $1
   sed -i "/__INSERT_POINT__/c" $3 $1
 }
 export -f replaceLineInFile
@@ -139,7 +139,7 @@ function removeLineInFile(){
   fi
 
   # find and remove the line matched to the pattern
-  sed -i "/" + $2 + "/d" $1
+  sed -i "/$2/d" $1
 }
 export -f removeLineInFile
 
