@@ -56,6 +56,12 @@ function echoSExit(){
 }
 export -f echoSExit
 
+function getIp(){
+  /sbin/ifconfig|grep 'inet addr'|cut -d':' -f2|awk '!/127/ {print $1}'
+}
+export -f getIp
+
+
 #####
 # download a file to folder
 #
