@@ -7,9 +7,10 @@ randomString()
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
 }
 
+cd ~
 # prepare global functions
-rm ./global-utils.sh -y
-curl ${bashUrl}/utils/global-utils.sh > ~/global-utils.sh
+rm ./global-utils.sh
+wget --no-cache ${bashUrl}/utils/global-utils.sh
 source ~/global-utils.sh
 
 # Initialing env
