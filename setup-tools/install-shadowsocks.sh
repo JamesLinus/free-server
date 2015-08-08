@@ -13,8 +13,6 @@ sudo apt-get install shadowsocks-libev -y
 # Getting shadowsocks config file template
 downloadFileToFolder ${bashUrl}/setup-tools/config.json ${configDir}
 
-sudo mv ${oriConfigShadowsocks} ${oriConfigShadowsocks}$(appendDateToString).bak
-
 # prepare all Shadowsocks Utils
 ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowsocks
 ln -s ${utilDir}/deleteuser-shadowsocks.sh ${freeServerRoot}/deleteuser-shadowsocks
