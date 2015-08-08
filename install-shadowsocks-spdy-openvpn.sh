@@ -11,7 +11,7 @@ source ~/global-utils.sh
 echoS "Init Env"
 
 
-if [ -d ${freeServerRoot} ]; then
+if [ -d ${configShadowsocks} ]; then
     echoS "Old free-server installation detected. Back up config files and clean up the folder in 5 seconds.\
      Press Ctrl+C to cancel"
     sleep 5
@@ -26,9 +26,9 @@ if [ -d ${freeServerRoot} ]; then
     fi
 
     # move current config files to a save place if has
-    if [ -d ${configDir} ]; then
-        mv ${configDir} ~/config-bak$(appendDateToString)
-    fi
+
+    mv ${configDir} ~/config-bak$(appendDateToString)
+
     rm -rf ${freeServerRoot}
 
     # recreate everything
@@ -61,6 +61,7 @@ echoS "Cleaning up env"
 
 # restore backed up config files
 if [ -d ~/config-bak$(appendDateToString) ]; then
+    rm -rf ${configDir}
     mv ~/config-bak$(appendDateToString) ${configDir}
 fi
 
