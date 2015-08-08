@@ -14,8 +14,7 @@ sudo apt-get install shadowsocks-libev -y
 downloadFileToFolder ${bashUrl}/setup-tools/config.json ${configDir}
 
 mv ${oriConfigShadowsocks} ${oriConfigShadowsocks}$(appendDateToString).bak
-mv ${configShadowsocks} ${configShadowsocks}$(appendDateToString).bak
-#ln -s ${oriConfigShadowsocks} ${configShadowsocks}
+ln -s ${configShadowsocks} ${oriConfigShadowsocks}
 
 # prepare all Shadowsocks Utils
 ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowsocks
