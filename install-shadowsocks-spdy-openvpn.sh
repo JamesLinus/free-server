@@ -7,6 +7,11 @@ randomString()
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
 }
 
+# prepare global functions
+rm ./global-utils.sh -y
+curl ${bashUrl}/utils/global-utils.sh | source
+
+
 # Initialing env
 # folder should be empty
 if [ "$(ls -A ${freeServerRoot})" ]; then
@@ -14,9 +19,6 @@ if [ "$(ls -A ${freeServerRoot})" ]; then
    exit
 fi
 
-# prepare global functions
-rm ./global-utils.sh -y
-curl ${bashUrl}/utils/global-utils.sh | source
 
 echoS "Init Env"
 
