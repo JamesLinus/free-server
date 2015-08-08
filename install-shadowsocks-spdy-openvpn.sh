@@ -13,14 +13,6 @@ rm ./global-utils.sh
 wget --no-cache ${bashUrl}/utils/global-utils.sh
 source ~/global-utils.sh
 
-# Initialing env
-# folder should be empty
-if [ "$(ls -A ${freeServerRoot})" ]; then
-   echo "Folder ${freeServerRoot} should be empty. Exit";
-   exit
-fi
-
-
 echoS "Init Env"
 
 replaceLineInFile ${globalUtilFile} "bashUrl=" "export bashUrl=$bashUrl"
