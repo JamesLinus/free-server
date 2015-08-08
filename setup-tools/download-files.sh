@@ -3,16 +3,17 @@
 source ~/global-utils.sh
 
 # install util
-wget ${baseUrlSetup}/install-shadowsocks.sh ${freeServerRootTmp}
-wget ${baseUrlSetup}/install-spdy.sh ${freeServerRootTmp}
+wget --directory-prefix=${freeServerRootTmp} ${baseUrlSetup}/install-shadowsocks.sh
+wget --directory-prefix=${freeServerRootTmp} ${baseUrlSetup}/install-spdy.sh
 
 # runtime util
-wget ${baseUrlBin}/createuser.sh ${utilDir}
-wget ${baseUrlBin}/createuser-shadowsocks.sh ${utilDir}
-wget ${baseUrlBin}/deleteuser-shadowsocks.sh ${utilDir}
-wget ${baseUrlBin}/restart-shadowsocks.sh ${utilDir}
-wget ${baseUrlBin}/restart-spdy.sh ${utilDir}
-wget ${baseUrlBin}/global-utils.sh ${utilDir}
+wget --directory-prefix=${utilDir} ${baseUrlBin}/createuser.sh
+wget --directory-prefix=${utilDir} ${baseUrlBin}/createuser-shadowsocks.sh
+wget --directory-prefix=${utilDir} ${baseUrlBin}/deleteuser-shadowsocks.sh
+wget --directory-prefix=${utilDir} ${baseUrlBin}/restart-shadowsocks.sh
+wget --directory-prefix=${utilDir} ${baseUrlBin}/restart-spdy.sh
+wget --directory-prefix=${utilDir} ${baseUrlBin}/global-utils.sh
 
 # set executable for all shell scripts
+cd ${freeServerRoot}
 chmod -R +x *.sh
