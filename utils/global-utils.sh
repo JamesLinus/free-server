@@ -60,8 +60,7 @@ export -f echoSExit
 # @param String $2 is the folder to store
 # @example downloadFileToFolder http://www.xiaofang.me/some.zip ~/free-server
 #####
-function downloadFileToFolder()
-{
+function downloadFileToFolder(){
   if [ ! -d "$2" ]; then
     echoSExit "Folder $2 is not existed. Exit";
   fi
