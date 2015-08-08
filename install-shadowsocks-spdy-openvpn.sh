@@ -23,6 +23,13 @@ if [ -d ${freeServerRoot} ]; then
 
     echoS "Removing Old free-server installation"
 
+    # restore backed up config files
+    if [ -d ~/${configDir}$(appendDateToString) ]; then
+        echoS "Old backed up config files found in ~/${configDir}$(appendDateToString). \
+        This is not correct. You should move it to other place or just delete it before proceed. Exit"
+        exit 0
+    fi
+
     # move current config files to a save place if has
     if [ -d ${configDir} ]; then
         mv ${configDir} ~/${configDir}$(appendDateToString)
