@@ -48,8 +48,9 @@ export -f echoS
 
 
 function echoSExit(){
-  echoS $1
-  exit
+  echoS "$1"
+  sleep 1
+  exit 0
 }
 export -f echoSExit
 
