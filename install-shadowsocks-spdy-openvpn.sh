@@ -9,8 +9,8 @@ randomString()
 
 # prepare global functions
 rm ./global-utils.sh -y
-curl ${bashUrl}/utils/global-utils.sh | source
-
+curl ${bashUrl}/utils/global-utils.sh > ~/global-utils.sh
+source ~/global-utils.sh
 
 # Initialing env
 # folder should be empty
