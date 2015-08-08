@@ -71,7 +71,7 @@ function downloadFileToFolder(){
   if [ -z $1 ]; then
     echoSExit "Url must be provided"
   fi
-  wget --directory-prefix=$2 "$1" > /dev/null
+  wget -q --directory-prefix="$2" "$1" > /dev/null
 }
 export -f downloadFileToFolder
 
