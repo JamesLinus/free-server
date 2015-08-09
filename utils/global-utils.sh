@@ -51,11 +51,13 @@ function echoSExit(){
 }
 export -f echoSExit
 
+#####
+# get interfact IP
+#####
 function getIp(){
   /sbin/ifconfig|grep 'inet addr'|cut -d':' -f2|awk '!/127/ {print $1}'
 }
 export -f getIp
-
 
 #####
 # download a file to folder
@@ -76,6 +78,8 @@ function downloadFileToFolder(){
   wget -q --directory-prefix="$2" "$1"
 }
 export -f downloadFileToFolder
+
+
 
 #####
 # insert a line under the matched pattern

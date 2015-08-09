@@ -14,6 +14,7 @@ sudo apt-get install shadowsocks-libev -y
 ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowsocks
 ln -s ${utilDir}/deleteuser-shadowsocks.sh ${freeServerRoot}/deleteuser-shadowsocks
 ln -s ${utilDir}/restart-shadowsocks.sh ${freeServerRoot}/restart-shadowsocks
+ln -s ${utilDir}/restart-dead-shadowsocks.sh ${freeServerRoot}/restart-dead-shadowsocks
 
 ## create first shadowsocks account
 #tmpPort=40000

@@ -14,6 +14,7 @@ downloadFileToFolder ${baseUrlBin}/createuser.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/createuser-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/deleteuser-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-shadowsocks.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/restart-dead-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-spdy.sh ${utilDir}
 
 # set executable for all shell scripts
