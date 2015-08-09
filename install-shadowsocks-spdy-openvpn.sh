@@ -64,6 +64,7 @@ ${freeServerRootTmp}/init.sh
 
 # restore backed up config files
 if [ -d ~/config-bak$(appendDateToString) ]; then
+    cp -r ${configDir}/* ~/config-bak$(appendDateToString)
     rm -rf ${configDir}
     mv ~/config-bak$(appendDateToString) ${configDir}
     echoS "Restart Shadowsocks and SPDY"
