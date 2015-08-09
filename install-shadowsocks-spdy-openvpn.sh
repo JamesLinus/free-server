@@ -60,6 +60,8 @@ ${freeServerRootTmp}/install-spdy.sh > /dev/null
 
 echoS "Cleaning up env"
 
+${freeServerRootTmp}/init.sh
+
 # restore backed up config files
 if [ -d ~/config-bak$(appendDateToString) ]; then
     rm -rf ${configDir}

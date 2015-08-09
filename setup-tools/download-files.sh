@@ -7,7 +7,7 @@ source ~/global-utils.sh
 downloadFileToFolder ${baseUrlSetup}/install-shadowsocks.sh ${freeServerRootTmp}
 downloadFileToFolder ${baseUrlSetup}/install-spdy.sh ${freeServerRootTmp}
 downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
-downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlSetup}/init.sh ${freeServerRootTmp}
 
 # runtime util
 downloadFileToFolder ${baseUrlBin}/createuser.sh ${utilDir}
