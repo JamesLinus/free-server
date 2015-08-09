@@ -8,12 +8,12 @@ then
   exit 0
 fi
 
-wall -n "Restarting shadowsocks ss-redir"
+wall -n "Restarting all shadowsocks ss-server instances"
 pkill ss-redir
 
-for i in $(find ${configDir} -name "*.json"); do
-    setsid /usr/bin/ss-server -c "$i" > /dev/null 2>&1
+for i in $(find ${configDir} -name "ss-*.json"); do
+  echo "Process $i"
+  /usr/bin/ss-server -c "$i" > /dev/null 2>&1 &
 done
-#setsid /usr/bin/ss-server -c ${configShadowsocks} > /dev/null 2>&1
-#setsid /usr/bin/ss-server -c /root/free-server/config/config-swlsf.json > /dev/null 2>&1
+
 

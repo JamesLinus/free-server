@@ -68,6 +68,9 @@ fi
 
 #rm -rf ${freeServerRootTmp}
 
-echoS "Start up Shadowsocks ss-redir"
-${freeServerRoot}/restart-shadowsocks > /dev/null
+echoS "All done. Create user example: \n\n\
+Shadowsocks: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
+SPDY: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
+"
+
 
