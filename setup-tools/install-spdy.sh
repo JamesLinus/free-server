@@ -20,10 +20,6 @@ while [ ${maxTryKey} -gt 0 ]; do
 done
 
 
-if [[ ! -f ${key} ]]; then
-  echoS "The SSL Key file ${key} is not existed. Exit"
-  exit 0
-fi
 
 
 echoS "Please input the file (with path) of your SSL Cert file  (*.crt) : \n\n"
@@ -43,15 +39,12 @@ while [ ${maxTryCert} -gt 0 ]; do
   ((maxTryCert--))
 done
 
-
-if [[ ! -f ${cert} ]]; then
-  echoS "The SSL cert file ${cert} is not existed. Exit"
-  exit 0
+if [[  -f ${key} ||  -f ${cert} ]]; then
+  echoS "Copy Key ${key} and Cert ${cert} to ${configDir}"
+  cp ${key} ${SPDYSSLKeyFile}
+  cp ${cert} ${SPDYSSLCertFile}
 fi
 
-echoS "Copy Key ${key} and Cert ${cert} to ${configDir}"
-cp ${key} ${SPDYSSLKeyFile}
-cp ${cert} ${SPDYSSLCertFile}
 
 sudo npm install -g spdyproxy
 
