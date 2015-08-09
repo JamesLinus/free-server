@@ -10,9 +10,6 @@ echo "deb http://shadowsocks.org/debian wheezy main" >>  /etc/apt/sources.list
 sudo apt-get update -y
 sudo apt-get install shadowsocks-libev -y
 
-# Getting shadowsocks config file template
-downloadFileToFolder ${bashUrl}/setup-tools/config.json ${configDir}
-
 # prepare all Shadowsocks Utils
 ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowsocks
 ln -s ${utilDir}/deleteuser-shadowsocks.sh ${freeServerRoot}/deleteuser-shadowsocks
