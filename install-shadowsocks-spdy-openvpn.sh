@@ -56,7 +56,7 @@ ${freeServerRootTmp}/install-shadowsocks.sh > /dev/null
 
 echoS "Installing SPDY Proxy"
 
-${freeServerRootTmp}/install-spdy.sh > /dev/null
+${freeServerRootTmp}/install-spdy.sh
 
 echoS "Cleaning up env"
 

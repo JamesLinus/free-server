@@ -8,6 +8,17 @@ then
   exit 0
 fi
 
+if [[ ! -f ${SPDYSSLKeyFile} ]]; then
+  echoS "The SSL Key file ${key} is not existed. Exit"
+  exit 0
+fi
+
+
+if [[ ! -f ${SPDYSSLCertFile} ]]; then
+  echoS "The SSL cert file ${cert} is not existed. Exit"
+  exit 0
+fi
+
 username=$1
 password=$2
 port=$3

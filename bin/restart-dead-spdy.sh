@@ -9,18 +9,6 @@ then
 fi
 
 
-for i in $(find ${configDir} -name "ss-*.json"); do
-  if [[ -z $(ps aux | grep "$i") ]]; then
-    wall -n "Restart ss-server with $i"
-    /usr/bin/ss-server -c "$i" > /dev/null 2>&1 &
-  else
-    echo "Skipped $i since it is already stated."
-  fi
-
-done
-
-
-
 if [ ! -f $1 ];then
         echo "Usage: ./start.sh config.txt"
         exit
