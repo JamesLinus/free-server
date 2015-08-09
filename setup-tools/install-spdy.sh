@@ -39,7 +39,7 @@ while [ ${maxTryCert} -gt 0 ]; do
   ((maxTryCert--))
 done
 
-if [[  -f ${key} ||  -f ${cert} ]]; then
+if [[  -f ${key} &&  -f ${cert} ]]; then
   echoS "Copy Key ${key} and Cert ${cert} to ${configDir}"
   cp ${key} ${SPDYSSLKeyFile}
   cp ${cert} ${SPDYSSLCertFile}
