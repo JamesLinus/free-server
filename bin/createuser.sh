@@ -19,6 +19,6 @@ SPDYPort=$4
  && echoSExit "You should invoke me via \`$0 Username Pass ShadowsocksPort SPDYPort\`. All arguments could not be omitted."
 
 ${freeServerRoot}/createuser-shadowsocks "${shadowsocksPort}" "${pass}"
-${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${shadowsocksPort}"
+${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
 
 echoS "All done. Shadowsocks and SPDY account has been created for user $user"
