@@ -5,9 +5,20 @@ source ~/global-utils.sh
 echoS "Please input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
-read -p "Input *.key File Path (e.g. /root/mydomain.com.key):  " key
+maxTryKey=3
+while [ ${maxTryKey} -gt 0 ]; do
+  read -p "Input *.key File Path (e.g. /root/mydomain.com.key):  " key
+  key=$(removeWhiteSpace "${key}")
 
-key=$(removeWhiteSpace "${key}")
+  if [[ ! -f ${key} ]]; then
+    echoS "The SSL Key file ${key} is not existed. Retry."
+  else
+    break
+  fi
+  ((maxTryKey--))
+
+done
+
 
 if [[ ! -f ${key} ]]; then
   echoS "The SSL Key file ${key} is not existed. Exit"
@@ -17,9 +28,20 @@ fi
 
 echoS "Please input the file (with path) of your SSL Cert file  (*.crt) : \n\n"
 
-read -p "Input *.crt File Path (e.g. /root/mydomain.com.crt): " cert
 
-cert=$(removeWhiteSpace "${cert}")
+maxTryCert=3
+while [ ${maxTryCert} -gt 0 ]; do
+  read -p "Input *.crt File Path (e.g. /root/mydomain.com.crt): " cert
+
+  cert=$(removeWhiteSpace "${cert}")
+
+  if [[ ! -f ${cert} ]]; then
+    echoS "The SSL cert file ${cert} is not existed. Retry"
+  else
+    break
+  fi
+  ((maxTryCert--))
+done
 
 
 if [[ ! -f ${cert} ]]; then
