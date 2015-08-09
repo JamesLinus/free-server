@@ -53,6 +53,11 @@ function echoSExit(){
 }
 export -f echoSExit
 
+function removeWhiteSpace(){
+  echo $(echo "$1" | gawk '{gsub(/ /, "", $0); print}')
+}
+export -f removeWhiteSpace
+
 #####
 # get interfact IP
 #####
