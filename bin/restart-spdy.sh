@@ -31,7 +31,7 @@ if [[ ! -f ${SPDYSSLCertFile} ]]; then
   exit 0
 fi
 
-pkill spdyproxy
+killProcessesByPattern spdyproxy
 
 for i in $(cat "${SPDYConfig}"); do
 

@@ -55,6 +55,11 @@ function echoSExit(){
 }
 export -f echoSExit
 
+function killProcessesByPattern(){
+  ps aux | gawk '/'$1'/ {print $2}' | xargs kill -9
+}
+export -f killProcessesByPattern
+
 function removeWhiteSpace(){
   echo $(echo "$1" | gawk '{gsub(/ /, "", $0); print}')
 }
