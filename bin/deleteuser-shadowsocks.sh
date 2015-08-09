@@ -14,6 +14,6 @@ port=$1
 
 [[ -z "${port}" ]] && echoSExit "you should invoke me via \`$0 PORT \`. PORT could be omitted."
 
-removeLineInFile ${configShadowsocks} "/\"$port\"/d"
+#removeLineInFile ${configShadowsocks} "/\"$port\"/d"
 
 echoS "Port $port is removed from Shadowsocks config files. You should manual restart shadowsocks to apply"

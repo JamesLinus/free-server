@@ -24,7 +24,6 @@ export baseUrlSetup=${baseUrl}/setup-tools
 
 export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
-export configShadowsocks="${configDir}/config.json"
 
 
 function randomString()
