@@ -5,8 +5,7 @@ source ~/global-utils.sh
 echoS "Please input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
-echo "*.key File Path (e.g. /root/mydomain.com.key): "
-read key
+read -p "Input *.key File Path (e.g. /root/mydomain.com.key):  " key
 
 key=$(removeWhiteSpace "${key}")
 
@@ -16,11 +15,9 @@ if [[ ! -f ${key} ]]; then
 fi
 
 
-echoS "Please input the file (with path) of your SSL Cert file  (*.crt) : \n\n(You could not use self-signed SSL cert. You could get \
-a free copy from https://www.startssl.com/)\n"
+echoS "Please input the file (with path) of your SSL Cert file  (*.crt) : \n\n"
 
-echo "*.crt File Path (e.g. /root/mydomain.com.crt): "
-read cert
+read -p "Input *.crt File Path (e.g. /root/mydomain.com.crt): " cert
 
 cert=$(removeWhiteSpace "${cert}")
 
