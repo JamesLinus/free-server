@@ -76,5 +76,7 @@ Shadowsocks+SPDY: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPor
 Shadowsocks: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
 SPDY: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
 "
+# remove self
+rm -- "$0"
 
 
