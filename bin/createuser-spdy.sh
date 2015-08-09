@@ -8,6 +8,12 @@ then
   exit 0
 fi
 
+
+if [[ ! -f ${SPDYConfig} ]]; then
+  touch ${SPDYConfig}
+fi
+
+
 if [[ ! -f ${SPDYSSLKeyFile} ]]; then
   echoS "The SSL Key file ${key} is not existed. Exit"
   exit 0
