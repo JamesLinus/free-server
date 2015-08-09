@@ -9,7 +9,7 @@ then
 fi
 
 wall -n "Restarting all shadowsocks ss-server instances"
-pkill ss-redir
+pkill ss-server
 
 for i in $(find ${configDir} -name "ss-*.json"); do
   echo "Process $i"
