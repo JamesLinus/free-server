@@ -46,7 +46,7 @@ if [[  -f ${key} &&  -f ${cert} ]]; then
 fi
 
 
-sudo npm install -g spdyproxy
+sudo npm install -g spdyproxy > /dev/null 2>&1
 
 ln -s ${utilDir}/createuser-spdy.sh ${freeServerRoot}/createuser-spdy
 ln -s ${utilDir}/deleteuser-spdy.sh ${freeServerRoot}/deleteuser-spdy
