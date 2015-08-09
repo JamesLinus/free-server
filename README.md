@@ -9,6 +9,7 @@ Still in progress, not done yet.
 Run me within Linode Ubuntu and all set.
 
 ```bash
+rm install-shadowsocks-spdy-openvpn.sh
 wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy-openvpn.sh
 bash install-shadowsocks-spdy-openvpn.sh
 ```
