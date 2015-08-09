@@ -5,6 +5,7 @@ source ~/global-utils.sh
 echoS "Please input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
+echo "File Path (Ctrl+C to cancel): "
 read key
 
 if [[ ! -f ${key} ]]; then
@@ -16,8 +17,8 @@ fi
 echoS "Please input the file (with path) of your SSL Cert file  (*.crt) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
+echo "File Path (Ctrl+C to cancel): "
 read cert
-
 
 if [[ ! -f ${cert} ]]; then
   echoS "The SSL cert file ${cert} is not existed. Exit"
