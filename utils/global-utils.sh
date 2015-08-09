@@ -26,6 +26,8 @@ export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 
 export SPDYConfig="${configDir}/SPDY.conf"
+export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
+export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
 
 
 function randomString()

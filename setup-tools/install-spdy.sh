@@ -49,13 +49,9 @@ if [[ ! -f ${cert} ]]; then
   exit 0
 fi
 
-removeLineInFile ~/global-utils.sh "SPDYSSLKeyFile="
-insertLineToFile ~/global-utils.sh "SPDYConfig=" "SPDYSSLKeyFile=${key}"
-
-removeLineInFile ~/global-utils.sh "SPDYSSLCertFile="
-insertLineToFile ~/global-utils.sh "SPDYConfig=" "SPDYSSLCertFile=${cert}"
-
-source ~/global-utils.sh
+echoS "Copy Key ${key} and Cert ${cert} to ${configDir}"
+cp ${key} ${SPDYSSLKeyFile}
+cp ${cert} ${SPDYSSLCertFile}
 
 sudo npm install -g spdy
 
