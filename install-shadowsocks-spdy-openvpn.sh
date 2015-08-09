@@ -66,6 +66,9 @@ ${freeServerRootTmp}/init.sh
 if [ -d ~/config-bak$(appendDateToString) ]; then
     rm -rf ${configDir}
     mv ~/config-bak$(appendDateToString) ${configDir}
+    echoS "Restart Shadowsocks and SPDY"
+    ${freeServerRoot}/restart-shadowsocks
+    ${freeServerRoot}/restart-spdy
 fi
 
 #rm -rf ${freeServerRootTmp}
