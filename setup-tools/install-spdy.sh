@@ -53,7 +53,7 @@ echoS "Copy Key ${key} and Cert ${cert} to ${configDir}"
 cp ${key} ${SPDYSSLKeyFile}
 cp ${cert} ${SPDYSSLCertFile}
 
-sudo npm install -g spdy
+sudo npm install -g spdyproxy
 
 ln -s ${utilDir}/createuser-spdy.sh ${freeServerRoot}/createuser-spdy
 ln -s ${utilDir}/deleteuser-spdy.sh ${freeServerRoot}/deleteuser-spdy
