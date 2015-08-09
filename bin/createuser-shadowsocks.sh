@@ -16,14 +16,17 @@ configFile="${configDir}/ss-${port}.json"
 
 # both password and port should be given
 
-( [[ -z "${password}" ]] || [[ -z "${port}" ]] ) && echoSExit "you should invoke me via \`$0 PASSWORD PORT \`. Neither PORT or PASSWORD could be omitted."
+( [[ -z "${password}" ]] || [[ -z "${port}" ]] ) && echoSExit "you should invoke me via \`$0 PASSWORD PORT \`. \
+ None of the parameters could be omitted." \
+ && exit 0
 
 # check port available 
 
 checkPortAvailable=$(ls ${configDir}  |gawk "/ss-${port}\./ {print $1}")
 
 if [[ ! -z "${checkPortAvailable}" ]]; then
-        echoSExit "Port $port is already used in file ${checkPortAvailable}. Exit."
+        echoS "Port $port is already used in file ${checkPortAvailable}. Exit."
+        exit 0
 fi
 
 if [ -z ${encrypt} ]; then

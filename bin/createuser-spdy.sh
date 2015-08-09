@@ -2,34 +2,34 @@
 
 source ~/global-utils.sh
 
-#source ${freeServerRoot}/utils/global-utils.sh
-#
-#if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
-#then
-#  echo "$0 PORT PASSWORD"
-#  exit 0
-#fi
-#
-#port=$1
-#password=$2
-#
-## both password and port should be given
-#
-#( [[ -z "${password}" ]] || [[ -z "${port}" ]] ) && echoSExit "you should invoke me via \`$0 PORT PASSWORD\`. Neither PORT or PASSWORD could be omitted."
-#
-## check port available
-#
-#checkPortAvailable=$(cat ${configShadowsocks}  | grep "\"${port}\"")
-#
-#if [[ ! -z "${checkPortAvailable}" ]]; then
-#        echoSExit "Port $port is already used. Exit."
-#fi
-#
-## writing to shadowsocks config file
-#insertLineToFile ${configShadowsocks} "port_password" "\"$port\":\"$password\","
-#
-#echoS "Shadowsocks account created. \n  \
-#Port: ${port} \n  \
-#Password: ${password}"
+if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
+then
+  echo "$0 USERNAME PASSWORD PORT"
+  exit 0
+fi
+
+username=$1
+password=$2
+port=$3
+
+( [[ -z "${username}" ]]  || [[ -z "${password}" ]] || [[ -z "${port}" ]] ) \
+ && echoS "You should invoke me via \`$0 USERNAME PASSWORD PORT \`. \
+ None of the parameters could be omitted." \
+ && exit 0
+
+if [[ ! -z $(gawk "/^${username},/ {print}" ${SPDYConfig}) ]]; then
+  echoS "Ooops, the user ${username} is exited already. Exit"
+  exit 0
+fi
 
 
+if [[ ! -z $(gawk "/,${port}$/ {print}" ${SPDYConfig}) ]]; then
+  echoS "Ooops, the port ${port} is taken already. Exit"
+  exit 0
+fi
+
+newline=${username},${password},${port}
+
+echo ${newline} >> ${SPDYConfig}
+
+spdyproxy -k ${SPDYSSLKeyFile} -c ${SPDYSSLCertFile} -p $port -U $username -P $password >/dev/null 2>&1  &

@@ -16,7 +16,7 @@ SPDYPort=$4
 # both password and port should be given
 
 ( [[ -z "${user}" ]] || [[ -z "${pass}" ]] || [[ -z "${shadowsocksPort}" ]] || [[ -z "${SPDYPort}" ]] ) \
- && echoSExit "You should invoke me via \`$0 Username Pass ShadowsocksPort SPDYPort\`. All arguments could not be omitted."
+ && echoS "You should invoke me via \`$0 Username Pass ShadowsocksPort SPDYPort\`. All arguments could not be omitted." && exit 0
 
 ${freeServerRoot}/createuser-shadowsocks "${shadowsocksPort}" "${pass}"
 ${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"

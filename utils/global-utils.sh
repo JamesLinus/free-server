@@ -25,6 +25,8 @@ export baseUrlSetup=${baseUrl}/setup-tools
 export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 
+export SPDYConfig="${configDir}/SPDY.conf"
+
 
 function randomString()
 {
@@ -70,10 +72,12 @@ function downloadFileToFolder(){
   echoS "Prepare to download file $1 into Folder $2"
 
   if [ ! -d "$2" ]; then
-    echoSExit "Folder $2 is not existed. Exit"
+    echoS "Folder $2 is not existed. Exit"
+    exit 0
   fi
   if [ -z $1 ]; then
-    echoSExit "Url must be provided"
+    echoS "Url must be provided. Exit"
+    exit 0
   fi
   wget -q --directory-prefix="$2" "$1"
 }
