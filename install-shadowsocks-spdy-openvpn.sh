@@ -11,7 +11,7 @@ source ~/global-utils.sh
 echoS "Init Env"
 
 
-if [ -d ${configShadowsocks} ]; then
+if [ -d ${freeServerRoot} ]; then
     echoS "Old free-server installation detected. Back up config files and clean up the folder in 5 seconds.\
      Press Ctrl+C to cancel"
     sleep 5
@@ -31,10 +31,11 @@ if [ -d ${configShadowsocks} ]; then
 
     rm -rf ${freeServerRoot}
 
-    # recreate everything
-    source ~/global-utils.sh
-
 fi
+
+echoS "Create Folder scaffold"
+
+wget --no-cache -qO- ${baseUrlSetup}/init-folders.sh | /bin/bash
 
 echoS "apt-get update"
 

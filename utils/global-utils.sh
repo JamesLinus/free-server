@@ -8,19 +8,15 @@ export baseUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
 # the top install folder
 export freeServerRoot=~/free-server/
-mkdir -p ${freeServerRoot}
 
 # utility folder
 export utilDir=${freeServerRoot}/util
-mkdir -p ${utilDir}
 
 # for configration samples
 export configDir=${freeServerRoot}/config
-mkdir -p ${configDir}
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
-mkdir -p ${freeServerRootTmp}
 
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
