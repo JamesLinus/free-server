@@ -14,6 +14,11 @@ if [ ! -f $1 ];then
         exit
 fi
 
+if [[ ! -f ${SPDYConfig} ]]; then
+  echoS "The SPDY config file ${SPDYConfig} is not found . Exit"
+  exit 0
+fi
+
 if [[ ! -f ${SPDYSSLKeyFile} ]]; then
   echoS "The SSL Key file ${key} is not existed. Exit"
   exit 0
