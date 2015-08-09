@@ -50,10 +50,10 @@ if [[ ! -f ${cert} ]]; then
 fi
 
 removeLineInFile ~/global-utils.sh "SPDYSSLKeyFile="
-insertLineToFile ~/global-utils.sh "SPDYSSLKeyFile=${key}"
+insertLineToFile ~/global-utils.sh "SPDYConfig=" "SPDYSSLKeyFile=${key}"
 
 removeLineInFile ~/global-utils.sh "SPDYSSLCertFile="
-insertLineToFile ~/global-utils.sh "SPDYSSLCertFile=${cert}"
+insertLineToFile ~/global-utils.sh "SPDYConfig=" "SPDYSSLCertFile=${cert}"
 
 source ~/global-utils.sh
 
