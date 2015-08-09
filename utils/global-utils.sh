@@ -40,7 +40,7 @@ export -f randomString
 function echoS(){
   echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
   echo "##"
-  echo "## $1"
+  echo -e "## $1"
   echo "##"
 
   echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
@@ -174,7 +174,6 @@ function removeLineInFile(){
   gawk -i inplace "!/$2/" $1
 }
 export -f removeLineInFile
-
 
 
 #####

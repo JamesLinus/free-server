@@ -18,9 +18,9 @@ ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowso
 ln -s ${utilDir}/deleteuser-shadowsocks.sh ${freeServerRoot}/deleteuser-shadowsocks
 ln -s ${utilDir}/restart-shadowsocks.sh ${freeServerRoot}/restart-shadowsocks
 
-# create first shadowsocks account
-tmpPort=40000
-tmpPwd=`randomString 8`
-${freeServerRoot}/createuser-shadowsocks ${tmpPwd} ${tmpPort} > /dev/null
-echoS "First Shadowsocks account placeholder created, with Port ${tmpPort} and Password ${tmpPwd}. \n \
-You should not remove the placeholder since it's used by script ${freeServerRoot}/createuser-shadowsocks"
+## create first shadowsocks account
+#tmpPort=40000
+#tmpPwd=`randomString 8`
+#${freeServerRoot}/createuser-shadowsocks ${tmpPort} ${tmpPwd}  > /dev/null
+#echoS "First Shadowsocks account placeholder created, with Port ${tmpPort} and Password ${tmpPwd}. \n \
+#You should not remove the placeholder since it's used by script ${freeServerRoot}/createuser-shadowsocks"

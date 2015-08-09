@@ -14,5 +14,6 @@ pkill ss-redir
 for i in $(find ${configDir} -name "*.json"); do
     setsid /usr/bin/ss-server -c "$i" > /dev/null 2>&1
 done
-#setsid /usr/bin/ss-redir -c ${configShadowsocks} > /dev/null 2>&1
+#setsid /usr/bin/ss-server -c ${configShadowsocks} > /dev/null 2>&1
+#setsid /usr/bin/ss-server -c /root/free-server/config/config-swlsf.json > /dev/null 2>&1
 
