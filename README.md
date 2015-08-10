@@ -2,6 +2,11 @@
 
 Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
+## News and Change logs
+* 2015-08-10 Many datacenters of Linode are getting unstable due to China GFW policies. Digital Ocean or Amazon EC2 may be better candidates.
+* 2015-08-10 Shadowsocks and SPDY installation is well tested on Linode Ubuntu 15 now.
+* 2015-08-10 Will work on OpenVPN later
+
 ## Description
 
 * This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, SPDY and OpenVPN, within Ubuntu Server 15.
