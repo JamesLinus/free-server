@@ -74,8 +74,8 @@ fi
 
 echoS "All done. Create user example: \n\n\
 Shadowsocks+SPDY: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
-Shadowsocks: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
-SPDY: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
+Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
+SPDY Only: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
 "
 # remove self
 rm -- "$0"
