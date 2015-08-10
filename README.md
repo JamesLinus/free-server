@@ -8,7 +8,7 @@ Still in progress, not done yet.
 
 Run me within Linode Ubuntu and all set.
 
-## Intallation
+## Installation
 
 ```bash
 rm install-shadowsocks-spdy-openvpn.sh
@@ -21,11 +21,11 @@ I back them up if found before re-installation.
 
 ## Create User
 ```bash
-Shadowsocks+SPDY: /root/free-server//createuser User Pass ShadowsocksPort SPDYPort 
+Shadowsocks+SPDY: ~/free-server/createuser User Pass ShadowsocksPort SPDYPort 
 
-Shadowsocks: /root/free-server//createuser-shadowsocks Port Pass 
+Shadowsocks: ~/free-server/createuser-shadowsocks Port Pass 
 
-SPDY: /root/free-server//createuser-spdy User Pass Port 
+SPDY: ~/free-server/createuser-spdy User Pass Port 
 ```
 
 ## More
