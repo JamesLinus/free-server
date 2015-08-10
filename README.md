@@ -4,7 +4,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## Description
 
-* This script is to helping you setup a Shadowsocks, SPDY and OpenVPN server within Ubuntu Server 15.
+* This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, SPDY and OpenVPN, within Ubuntu Server 15.
 * Still in progress, not done yet.
 * It has been tested within Linode Ubuntu Server 15. It should be running well on all latest Ubuntu Server releases.
 
