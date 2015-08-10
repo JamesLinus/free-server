@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/global-utils.sh
+source ~/.global-utils.sh
 
 # install util
 

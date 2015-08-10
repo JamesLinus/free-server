@@ -4,9 +4,9 @@ export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
 cd ~
 # prepare global functions
-rm ./global-utils.sh
-wget --no-cache ${bashUrl}/utils/global-utils.sh
-source ~/global-utils.sh
+rm ./.global-utils.sh
+wget --no-cache ${bashUrl}/utils/.global-utils.sh
+source ~/.global-utils.sh
 
 echoS "Init Env"
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/global-utils.sh
+source ~/.global-utils.sh
 
 wget -qO- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
 

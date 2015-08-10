@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/global-utils.sh
+source ~/.global-utils.sh
 
 if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
 then
@@ -50,3 +50,9 @@ newline=${username},${password},${port}
 echo ${newline} >> ${SPDYConfig}
 
 spdyproxy -k ${SPDYSSLKeyFile} -c ${SPDYSSLCertFile} -p $port -U $username -P $password >/dev/null 2>&1  &
+
+echoS "SPDY account created with \n\
+Username: $username \n\
+Password: $password \n\
+Port: $port \n\
+"
