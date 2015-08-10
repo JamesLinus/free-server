@@ -10,6 +10,8 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## Installation
 
+You need to obtain a HTTPS SSL Certificate before you install SPDY server. Get one for free from [StartSSL](https://www.startssl.com/?app=12)
+
 ```bash
 rm install-shadowsocks-spdy-openvpn.sh
 wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy-openvpn.sh
