@@ -19,8 +19,8 @@ wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/mas
 bash install-shadowsocks-spdy-openvpn.sh
 ```
 
-Note that, the script could be redeploy/reinstall on your Ubuntu without worries on losing any Shadowsocks/SPDY account, password.
-I back them up if found before re-installation.
+Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks/SPDY account or password.
+It backs them up if found any before execute re-installation.
 
 ## Create User
 
