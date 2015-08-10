@@ -2,9 +2,9 @@
 
 ## Description
 
-This script is to helping you setup a Shadowsocks, SPDY and OpenVPN server wihtin Linode Ubuntu.
-Still in progress, not done yet.
-Run me within Linode Ubuntu and all set.
+* This script is to helping you setup a Shadowsocks, SPDY and OpenVPN server within Ubuntu Server 15.
+* Still in progress, not done yet.
+* It has been tested within Linode Ubuntu Server 15. It should be running well on all latest Ubuntu Server releases.
 
 ## Installation
 
