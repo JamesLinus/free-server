@@ -1,5 +1,5 @@
 # free-server
-Gain more freedom with my free-server for Chinese, Iran, North Korea, and the kind.
+Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
 ## Description
 
