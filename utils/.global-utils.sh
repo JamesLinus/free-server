@@ -56,10 +56,10 @@ function echoSExit(){
 export -f echoSExit
 
 function killProcessesByPattern(){
-  echo "\nThe process(es) below would be killed"
+  echo -e "\nThe process(es) below would be killed"
   ps aux | gawk '/'$1'/ {print}'
   ps aux | gawk '/'$1'/ {print $2}' | xargs kill -9
-  echo "\n\n"
+  echo -e "\n\n"
 
 }
 export -f killProcessesByPattern
