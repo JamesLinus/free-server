@@ -9,12 +9,6 @@ then
   exit 0
 fi
 
-if [ ! -f $1 ];then
-        echo "Usage: ./start.sh config.txt"
-        exit
-fi
-
-
 if [[ ! -f ${SPDYConfig} ]]; then
   echoS "The SPDY config file ${SPDYConfig} is not found . Exit"
   exit 0
