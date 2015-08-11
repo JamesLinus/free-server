@@ -236,7 +236,7 @@ function getUserInput(){
 
     sleep 1
 
-    read -p "${promptMsg}" userinput
+    read -p "${promptMsg} with type ${inputValidator}" userinput
     userinput=$(removeWhiteSpace "${userinput}")
 
     if [[ "${inputValidator}" -eq "file" && ! -f "${userinput}" ]]; then
@@ -282,11 +282,13 @@ function importSqlTarToMySQL(){
 
   echoS "Here is all the files found within folder ${dbFolder}\n"
   cd ${dbFolder}
-  ls .
+  ls . | grep .gz
 
   echo -e "\n\n"
 
-  dbTarGz=$(getUserInput "Input a *.tar.gz to import:  " "file")
+  dbTarGz=$(getUserInput "Enter a *.tar.gz to import (Copy & Paste):  " file)
+  echoS "Selected tar.gz is ${dbTarGz}"
+
   if [[ ! -f ${dbTarGz} || -z $(echo ${dbTarGz} | grep .gz) ]]; then
     echoS "${dbTarGz} is not a valid *.tar.gz file"
     exit 0
@@ -295,7 +297,7 @@ function importSqlTarToMySQL(){
   sleep 1
 
   # provide the db name to create
-  dbName=$(getUserInput "the database name to import to:  " "non-empty")
+  dbName=$(getUserInput "the database name to import to:  " non-empty)
   echoS "dbName is ${dbName}"
   if [[  -z ${dbName} ]]; then
     exit 0
@@ -305,7 +307,7 @@ function importSqlTarToMySQL(){
 
 
   # provide the new user name
-  dbNewUser=$(getUserInput "The owner user name of database ${dbName} (Non-root):  " "non-empty")
+  dbNewUser=$(getUserInput "The owner user name of database ${dbName} (Non-root):  " non-empty)
   echoS "dbNewUser is ${dbNewUser}"
   if [[  -z ${dbNewUser} ]]; then
     exit 0
@@ -315,7 +317,7 @@ function importSqlTarToMySQL(){
 
 
   # provide password for the new user
-  dbPass=$(getUserInput "input password for user ${dbNewUser} of Db ${dbName} (Non-root):  " "non-empty")
+  dbPass=$(getUserInput "input password for user ${dbNewUser} of Db ${dbName} (Non-root):  " non-empty)
   echoS "dbPass is ${dbPass}"
   if [[  -z ${dbPass} ]]; then
     exit 0
