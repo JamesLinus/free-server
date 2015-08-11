@@ -327,8 +327,7 @@ function importSqlTarToMySQL(){
 
 
   # create user and grant
-  echoS "Create new Db ${dbName} with Db user ${dbNewUser}."
-  echoS "Provide MySQL root password:"
+  echoS "Create new Db ${dbName} with Db user ${dbNewUser}. \n\nProvide MySQL root password:"
 
   sql="CREATE DATABASE IF NOT EXISTS ${dbName} ; \
   GRANT ALL PRIVILEGES ON ${dbName}.* To '${dbNewUser}'@'localhost' IDENTIFIED BY '${dbPass}';\
@@ -345,7 +344,7 @@ function importSqlTarToMySQL(){
 
   dbSql=$(ls . | gawk '/\.sql/ {print}')
 
-  echoS "Importing ${dbSql} to database ${dbName}. Provide MySQL root password:"
+  echoS "Importing ${dbSql} to database ${dbName}.\n\n Provide MySQL root password again:"
   mysql -uroot -p ${dbName} < ${dbSql}
   rm -rf ~/__to_import
 }
