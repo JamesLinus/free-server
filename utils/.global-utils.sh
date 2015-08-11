@@ -284,7 +284,7 @@ function importSqlTarToMySQL(){
   cd ${dbFolder}
   ls .
 
-  echo -e "\n"
+  echo -e "\n\n"
 
   dbTarGz=$(getUserInput "Input a *.tar.gz to import:  " "file")
   if [[ ! -f ${dbTarGz} || -z $(echo ${dbTarGz} | grep .gz) ]]; then
@@ -292,23 +292,36 @@ function importSqlTarToMySQL(){
     exit 0
   fi
 
+  sleep 1
+
   # provide the db name to create
   dbName=$(getUserInput "the database name to import to:  " "non-empty")
+  echoS "dbName is ${dbName}"
   if [[  -z ${dbName} ]]; then
     exit 0
   fi
 
+  sleep 1
+
+
   # provide the new user name
   dbNewUser=$(getUserInput "The owner user name of database ${dbName} (Non-root):  " "non-empty")
+  echoS "dbNewUser is ${dbNewUser}"
   if [[  -z ${dbNewUser} ]]; then
     exit 0
   fi
 
+  sleep 1
+
+
   # provide password for the new user
   dbPass=$(getUserInput "input password for user ${dbNewUser} of Db ${dbName} (Non-root):  " "non-empty")
+  echoS "dbPass is ${dbPass}"
   if [[  -z ${dbPass} ]]; then
     exit 0
   fi
+
+  sleep 1
 
 
   # create user and grant
@@ -326,9 +339,12 @@ function importSqlTarToMySQL(){
   tar zxf ${dbTarGz} -C ~/__to_import
   cd ~/__to_import  > /dev/null
 
-  echoS "Importing. Provide MySQL root password:"
-  mysql -uroot -p -h localhost ${dbName} < $(ls . | gawk '/\.sql/ {print}')
+  sleep 1
 
+  dbSql=$(ls . | gawk '/\.sql/ {print}')
+
+  echoS "Importing ${dbSql} to database ${dbName}. Provide MySQL root password:"
+  mysql -uroot -p ${dbName} < ${dbSql}
   rm -rf ~/__to_import
 }
 export -f importSqlTarToMySQL
