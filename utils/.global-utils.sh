@@ -236,16 +236,16 @@ function getUserInput(){
 
     sleep 1
 
-    read -p "${promptMsg} with type ${inputValidator}" userinput
+    read -p "${promptMsg} with type ${inputValidator}:  " userinput
     userinput=$(removeWhiteSpace "${userinput}")
 
-    if [[ "${inputValidator}" -eq "file" && ! -f "${userinput}" ]]; then
+    if [[ "${inputValidator}" == "file" && ! -f "${userinput}" ]]; then
       echoS "The file ${userinput} you input is not existed. Retry"
     else
       break
     fi
 
-    if [[ "${inputValidator}" -eq "non-empty" && -z "${userinput}" ]]; then
+    if [[ "${inputValidator}" == "non-empty" && -z "${userinput}" ]]; then
       echoS "Te input should not be empty. Retry"
     else
       break
