@@ -233,6 +233,9 @@ function getUserInput(){
   fi
 
   while [ ${maxtry} -gt 0 ]; do
+
+    sleep 1
+
     read -p "${promptMsg}" userinput
     userinput=$(removeWhiteSpace "${userinput}")
 
@@ -247,6 +250,7 @@ function getUserInput(){
     else
       break
     fi
+
 
     ((maxtry--))
 
