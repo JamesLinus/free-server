@@ -79,6 +79,6 @@ Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
 SPDY Only: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
 "
 # remove self
-rm -y "$self"
+rm "$self"
 
 
