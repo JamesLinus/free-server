@@ -85,7 +85,7 @@ export -f getIp
 # @example downloadFileToFolder http://www.xiaofang.me/some.zip ~/free-server
 #####
 function downloadFileToFolder(){
-  echoS "Prepare to download file $1 into Folder $2"
+  echo "Prepare to download file $1 into Folder $2"
 
   if [ ! -d "$2" ]; then
     echoS "Folder $2 is not existed. Exit"
