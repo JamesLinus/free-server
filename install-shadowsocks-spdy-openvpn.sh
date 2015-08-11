@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
+export self="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/$0"
 
 cd ~
 # prepare global functions
@@ -78,6 +79,6 @@ Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
 SPDY Only: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
 "
 # remove self
-rm -- "$0"
+rm -y "$self"
 
 
