@@ -9,6 +9,11 @@ rm ./.global-utils.sh
 wget --no-cache ${bashUrl}/utils/.global-utils.sh
 source ~/.global-utils.sh
 
+echoS "apt-get update and install required tools"
+sudo apt-get update -y >> /dev/null
+sudo apt-get install -y gawk  >> /dev/null
+
+
 echoS "Init Env"
 
 
@@ -38,9 +43,6 @@ echoS "Create Folder scaffold"
 
 wget --no-cache -qO- ${baseUrlSetup}/init-folders.sh | /bin/bash
 
-echoS "apt-get update"
-
-sudo apt-get update -y >> /dev/null
 
 echoS "Getting and processing utility package"
 
