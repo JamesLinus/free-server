@@ -6,10 +6,10 @@ echoS "Please input the file (with path) of your SSL Key file  (*.key) : \n\n(Yo
 a free copy from https://www.startssl.com/)\n"
 
 
-key=$(getUserInput "Input *.key File Path (e.g. /root/mydomain.com.key):   " file 1)
+key=$(getUserInput "Input *.key File Path (e.g. /root/mydomain.com.key. Could omited if you've done before):   " file 2)
 echoS "Selected key file is ${key}"
 
-cert=$(getUserInput "input the file (with path) of your SSL Cert file  (*.crt) :  " file 1)
+cert=$(getUserInput "Input *.crt file with the key (e.g. /root/mydomain.com.crt Could omited if you've done before) :  " file 2)
 echoS "Selected cert file is ${cert}"
 
 if [[  -f ${key} &&  -f ${cert} ]]; then
