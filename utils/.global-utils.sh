@@ -208,92 +208,123 @@ function appendDateToString(){
 export -f appendDateToString
 
 
+#####
+# Get User Input
+#
+# @param String $1 is the prompt
+# @param String $2 file if the input must be a file, non-empty if the input must not empty
+# @param Number $3 Max try times
+
+# @example input=$(getUserInput "Provide File" file 3)
+#####
+function getUserInput(){
+
+  promptMsg=$1
+  inputValidator=$2
+  maxtry=$3
+
+  if [[ -z ${promptMsg} ]]; then
+    echoS '@example input=$(getUserInput "Provide File" file 3)'
+    exit 0
+  fi
+
+  if [[ -z ${maxtry} ]]; then
+    maxtry=3
+  fi
+
+  while [ ${maxtry} -gt 0 ]; do
+    read -p "${promptMsg}" userinput
+    userinput=$(removeWhiteSpace "${userinput}")
+
+    if [[ "${inputValidator}" -eq "file" && ! -f "${userinput}" ]]; then
+      echoS "The file ${userinput} you input is not existed. Retry"
+    else
+      break
+    fi
+
+    if [[ "${inputValidator}" -eq "non-empty" && -z "${userinput}" ]]; then
+      echoS "Te input should not be empty. Retry"
+    else
+      break
+    fi
+
+    ((maxtry--))
+
+  done
+
+  echo ${userinput}
+
+
+}
+export -f getUserInput
+
 
 #####
 # Import MySQL db sql backup tar.gz to database
 #
 # @param String $1 is the backup folder to list
 # @param String $2 is the database name
-# @example importSqlTarToMySQL Folder DbName NewDbUserName(Non-root)
+# @example importSqlTarToMySQL Folder
 #####
 function importSqlTarToMySQL(){
 
   dbFolder=$1
-  dbName=$2
-  dbNewUser=$3
 
-  if [[ -z ${dbFolder} || -z ${dbName} || -z ${dbNewUser} ]]; then
-    echoS "@example importSqlTarToMySQL ~/backup/ wp wp"
+  if [[ ! -d ${dbFolder} ]]; then
+    echoS "Folder ${dbFolder} is not existed"
+    echoS "@example importSqlTarToMySQL ~/backup/"
     return 0
   fi
 
-#  # provide the new user name
-#  maxTry=3
-#  while [ ${maxTry} -gt 0 ]; do
-#    read -p "You new MySQL Database user name (Non-root):  " mysqlUsername
-#    mysqlUsername=$(removeWhiteSpace "${dbTarGz}")
-#
-#    if [[ -z ${mysqlUsername} ]]; then
-#      echoS "You need to provide the user before move on . Retry."
-#    else
-#      break
-#    fi
-#    ((maxTry--))
-#  done
-#
-#  if [[  -z ${mysqlUsername} ]]; then
-#    exit 0
-#  fi
+  echoS "Here is all the files found within folder ${dbFolder}\n"
+  cd ${dbFolder}
+  ls .
 
+  echo -e "\n"
 
-  # provide the password for the new user name
-  maxTry=3
-  while [ ${maxTry} -gt 0 ]; do
-    read -p "Input password to create the new MySQL user (Non-root):  " mysqlUserPass
-    mysqlUserPass=$(removeWhiteSpace "${mysqlUserPass}")
-
-    if [[ -z ${mysqlUserPass} ]]; then
-      echoS "You need to provide the password before move on . Retry."
-    else
-      break
-    fi
-    ((maxTry--))
-  done
-
-  if [[  -z ${mysqlUserPass} ]]; then
+  dbTarGz=$(getUserInput "Input a *.tar.gz to import:  " "file")
+  if [[ ! -f ${dbTarGz} || -z $(echo ${dbTarGz} | grep .gz) ]]; then
+    echoS "${dbTarGz} is not a valid *.tar.gz file"
     exit 0
   fi
 
-  # select tar.gz
-  ls ${dbFolder}
-  maxTry=3
-  while [ ${maxTry} -gt 0 ]; do
-    read -p "Select the tar.gz in folder ${dbFolder} to import:  " dbTarGz
-    dbTarGz=$(removeWhiteSpace "${dbTarGz}")
-
-    if [[ ! -f ${dbTarGz} ]]; then
-      echoS "The Db Sql Tar file ${dbTarGz} is not existed. Retry."
-    else
-      break
-    fi
-    ((maxTry--))
-  done
-
-  if [[  -f ${dbTarGz} ]]; then
-    rm -rf ~/_to_import
-    mkdir ~/_to_import
-    tar zxf ${dbTarGz} -C ~/_to_import
-    cd ~/_to_import
-
-    # create user and grant
-    echoS "Create new Db User ${dbNewUser} and grant. Provide MySQL root password:"
-    sql="CREATE DATABASE ${dbName}; GRANT ALL PRIVILEGES ON ${dbName}.* To '${dbNewUser}'@'localhost' IDENTIFIED BY '${mysqlUserPass}';FLUSH PRIVILEGES;"
-    mysql -uroot -p -e "$sql"
-
-    echoS "Exact and import ${dbTarGz} to Db ${dbName}.  Provide MySQL root password:"
-    mysql -uroot -p -h localhost ${dbName} < $(ls . | gawk '/\.sql/ {print}')
-  else
-    echoS "${dbTarGz} not found. Exit."
+  # provide the db name to create
+  dbName=$(getUserInput "the database name to import to:  " "non-empty")
+  if [[  -z ${dbName} ]]; then
+    exit 0
   fi
+
+  # provide the new user name
+  dbNewUser=$(getUserInput "The owner user name of database ${dbName} (Non-root):  " "non-empty")
+  if [[  -z ${dbNewUser} ]]; then
+    exit 0
+  fi
+
+  # provide password for the new user
+  dbPass=$(getUserInput "input password for user ${dbNewUser} of Db ${dbName} (Non-root):  " "non-empty")
+  if [[  -z ${dbPass} ]]; then
+    exit 0
+  fi
+
+
+  # create user and grant
+  echoS "Create new Db ${dbName} with Db user ${dbNewUser}."
+  echoS "Provide MySQL root password:"
+
+  sql="CREATE DATABASE IF NOT EXISTS ${dbName} ; \
+  GRANT ALL PRIVILEGES ON ${dbName}.* To '${dbNewUser}'@'localhost' IDENTIFIED BY '${dbPass}';\
+  FLUSH PRIVILEGES;"
+  mysql -uroot -p -e "$sql"
+
+  echoS "Exact ${dbTarGz}."
+  rm -rf ~/__to_import > /dev/null
+  mkdir -p ~/__to_import  > /dev/null
+  tar zxf ${dbTarGz} -C ~/__to_import
+  cd ~/__to_import  > /dev/null
+
+  echoS "Importing. Provide MySQL root password:"
+  mysql -uroot -p -h localhost ${dbName} < $(ls . | gawk '/\.sql/ {print}')
+
+  rm -rf ~/__to_import
 }
 export -f importSqlTarToMySQL
