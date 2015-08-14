@@ -48,6 +48,32 @@ SPDY Only: ~/free-server/createuser-spdy User Pass Port
 * [Shadowsocks--OpenWRT Router (Chinese only)](http://www.xiaofang.me/2015/05/05/%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%AE%B6%E5%BA%AD%E4%BC%81%E4%B8%9Abeta1%E7%89%88-%E6%99%BA%E8%83%BD%E8%B7%AF%E7%94%B1%E5%99%A8%E6%9E%84%E5%BB%BA%E6%96%B9/ "Chinese only")
 * OpenVPN for IOS (In-progress)
 
+## Donation
+Chinese:  
+
+------
+
+兄弟们，最近 Linode 新加坡、Fremont节点都不稳定，间歇性 IP 屏蔽中断，我搬迁到 Digital Ocean 上面就基本稳定。
+
+得到一个邀请码：[http://www.digitalocean.com/?refcode=1708d0551741](http://www.digitalocean.com/?refcode=1708d0551741)
+ 
+邀请使用～～你得10美金优惠，我得25美金返券 ：）谢谢哈～～
+
+小方的翻墙服务器一键安装教程： [https://github.com/lanshunfang/free-server](https://github.com/lanshunfang/free-server)
+
+软件工程师，翻墙是基本技能 ：）
+
+
+English:  
+
+------
+
+Hey there,
+
+Here is my Digital Ocean initation link. [http://www.digitalocean.com/?refcode=1708d0551741](http://www.digitalocean.com/?refcode=1708d0551741) You get $10 back, I get $25. 
+
+I would be very grateful if you use my code to register and use Digital Ocean Ubuntu/Linux. It's much more stable than Linode for China Mainland Internet connection those days.
+
 ## More
 
 * This script will add several crontab configurations to `/etc/cron.d` and `/etc/cron.daily` to monitor Shadowsocks / SPDY service running healthy.
