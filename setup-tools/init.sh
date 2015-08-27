@@ -14,8 +14,9 @@ echo -e "#!/bin/bash\n\n${freeServerRoot}/restart-spdy" > /etc/cron.daily/restar
 chmod +x /etc/cron.daily/restart-spdy
 
 # smart service watcher for every 2 minutes
-echo -e "*/2 * * * * ${freeServerRoot}/restart-dead-shadowsocks" > /etc/cron.d/restart-dead-shadowsocks
-chmod +x /etc/cron.d/restart-dead-shadowsocks
+echo -e "*/2 * * * * root ${freeServerRoot}/restart-dead-shadowsocks" > /etc/cron.d/restart-dead-shadowsocks
 
-echo -e "*/2 * * * * ${freeServerRoot}/restart-dead-spdy" > /etc/cron.d/restart-dead-spdy
-chmod +x /etc/cron.d/restart-dead-spdy
+echo -e "*/2 * * * * root ${freeServerRoot}/restart-dead-spdy" > /etc/cron.d/restart-dead-spdy
+
+# restart cron service
+service cron restart
