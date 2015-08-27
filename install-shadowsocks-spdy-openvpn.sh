@@ -75,6 +75,9 @@ if [ -d ~/config-bak$(appendDateToString) ]; then
     ${freeServerRoot}/restart-spdy
 fi
 
+# restart cron service
+service cron restart
+
 echoS "All done. Create user example: \n\n\
 Shadowsocks+SPDY: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
 Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
