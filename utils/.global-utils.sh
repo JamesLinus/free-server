@@ -30,13 +30,13 @@ export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
 export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
 
 
-function randomString()
+randomString()
 {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
 }
 export -f randomString
 
-function echoS(){
+echoS(){
   echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
   echo "##"
   echo -e "## $1"
@@ -48,14 +48,14 @@ function echoS(){
 export -f echoS
 
 
-function echoSExit(){
+echoSExit(){
   echoS "$1"
   sleep 1
   exit 0
 }
 export -f echoSExit
 
-function killProcessesByPattern(){
+killProcessesByPattern(){
   echo -e "\nThe process(es) below would be killed"
   ps aux | gawk '/'$1'/ {print}' | cut -d" " -f 24-
   ps aux | gawk '/'$1'/ {print $2}' | xargs kill -9
@@ -64,7 +64,7 @@ function killProcessesByPattern(){
 }
 export -f killProcessesByPattern
 
-function removeWhiteSpace(){
+removeWhiteSpace(){
   echo $(echo "$1" | gawk '{gsub(/ /, "", $0); print}')
 }
 export -f removeWhiteSpace
@@ -72,7 +72,7 @@ export -f removeWhiteSpace
 #####
 # get interfact IP
 #####
-function getIp(){
+getIp(){
   /sbin/ifconfig|grep 'inet addr'|cut -d':' -f2|awk '!/127/ {print $1}'
 }
 export -f getIp
@@ -84,7 +84,7 @@ export -f getIp
 # @param String $2 is the folder to store
 # @example downloadFileToFolder http://www.xiaofang.me/some.zip ~/free-server
 #####
-function downloadFileToFolder(){
+downloadFileToFolder(){
   echo "Prepare to download file $1 into Folder $2"
 
   if [ ! -d "$2" ]; then
@@ -108,7 +108,7 @@ export -f downloadFileToFolder
 # @param RegExp String $2 is searching pattern for awk
 # @param String $3 is line to insert to the found pattern
 #####
-function insertLineToFile(){
+insertLineToFile(){
 
   if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
   then
@@ -139,7 +139,7 @@ export -f insertLineToFile
 # @param RegExp String $2 is searching pattern for awk
 # @param String $3 is line to insert to the found pattern after the matched line removed
 #####
-function replaceLineInFile(){
+replaceLineInFile(){
 
   if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
   then
@@ -170,7 +170,7 @@ export -f replaceLineInFile
 # @param String $1 is the file to operate
 # @param RegExp String $2 is searching pattern for awk
 #####
-function removeLineInFile(){
+removeLineInFile(){
 
   if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
   then
@@ -201,7 +201,7 @@ export -f removeLineInFile
 # @param String $1 is the origin String
 # @example file$(appendDateToString).bak
 #####
-function appendDateToString(){
+appendDateToString(){
   local now=$(date +"%m_%d_%Y")
   echo "-${now}"
 }
@@ -217,7 +217,7 @@ export -f appendDateToString
 
 # @example input=$(getUserInput "Provide File" file 3)
 #####
-function getUserInput(){
+getUserInput(){
 
   promptMsg=$1
   inputValidator=$2
@@ -270,7 +270,7 @@ export -f getUserInput
 # @param String $2 is the database name
 # @example importSqlTarToMySQL Folder
 #####
-function importSqlTarToMySQL(){
+importSqlTarToMySQL(){
 
   dbFolder=$1
 

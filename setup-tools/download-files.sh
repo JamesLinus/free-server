@@ -19,6 +19,8 @@ downloadFileToFolder ${baseUrlBin}/restart-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-spdy.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-dead-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-dead-spdy.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/forever-process-running.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/forever-process-running-generate-cron.d ${utilDir}
 
 # set executable for all shell scripts
 cd ${utilDir}
