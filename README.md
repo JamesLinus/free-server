@@ -3,10 +3,12 @@
 Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
 ## News and Change logs
-* 2015-08-12 Testing passed on Digital Ocean Ubuntu Server 15
+* Important fix: [Bug] fix restart dead processes bug 
+  (for SPDY and Shadowsocks process healthy monitoring, tested passed on Ubuntu 15, Digital Ocean)
 
 -------
 
+* 2015-08-12 Testing passed on Digital Ocean Ubuntu Server 15
 * 2015-08-10 Many datacenters of Linode are getting unstable due to China GFW policies. Digital Ocean or Amazon EC2 may be better candidates.
 * 2015-08-10 Shadowsocks and SPDY installation is well tested on Linode Ubuntu 15 now.
 * 2015-08-10 Will work on OpenVPN later
