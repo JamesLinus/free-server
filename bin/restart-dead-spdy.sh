@@ -32,12 +32,14 @@ for i in $(cat "${SPDYConfig}"); do
   password=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $2}')
   port=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $3}')
 
+  isProcessRunning=$(ps aux | gawk "/-p\ $port -U\ $username -P $password/ {print}")
+
   if [[ -z ${username} || -z ${password} || -z ${port} ]]; then
     echo -e "username, password and port are all mandatory \n\
     username: ${username} \n\
     password: ${password} \n\
     port: ${port} \n"
-  elif [[ ! -z $(ps aux | gawk "/-p $port -U $username -P $password/ {print}" ) ]]; then
+  elif [[ ! -z ${isProcessRunning} ]]; then
     echo "Skip user ${username} since it is already started"
   else
     wall -n "Restart spdyproxy with ${username}"
