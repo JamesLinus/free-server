@@ -2,14 +2,14 @@
 
 source ~/.global-utils.sh
 
-echoS "Please input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
+echoS "For new installation: Input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
 
-key=$(getUserInput "Input *.key File Path (e.g. /root/mydomain.com.key. Could omited if you've done before):   " file 2)
+key=$(getUserInput "Input new *.key file absolute path (e.g. /root/mydomain.com.key) (Leave it empty and Press Enter if you are upgrading, not fresh installation):   " file 2)
 echoS "Selected key file is ${key}"
 
-cert=$(getUserInput "Input *.crt file with the key (e.g. /root/mydomain.com.crt Could omited if you've done before) :  " file 2)
+cert=$(getUserInput "Input new *.crt file absolute path (e.g. /root/mydomain.com.crt) (Leave it empty and Press Enter if you are upgrading, not fresh installation) :  " file 2)
 echoS "Selected cert file is ${cert}"
 
 if [[  -f ${key} &&  -f ${cert} ]]; then
