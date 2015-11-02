@@ -168,7 +168,7 @@ function pre_install(){
     echo "Press any key to start...or Press Ctrl+C to cancel"
 	char=`get_char`
 	#Current folder
-    cur_dir=`pwd`
+    cur_dir=${utilDir}
     cd $cur_dir
 }
 
