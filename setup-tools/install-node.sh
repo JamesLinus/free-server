@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-sudo apt-get install nodejs -y
-sudo apt-get install npm -y
+apt-get install nodejs -y > /dev/null
+apt-get install npm -y > /dev/null
 
 # fix Ubuntu spdyproxy bug
-sudo apt-get install nodejs-legacy
+apt-get install nodejs-legacy > /dev/null

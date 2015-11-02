@@ -2,13 +2,13 @@
 
 source ~/.global-utils.sh
 
-wget -qO- http://shadowsocks.org/debian/1D27208A.gpg | sudo apt-key add -
+wget -qO- http://shadowsocks.org/debian/1D27208A.gpg | apt-key add -
 
 removeLineInFile /etc/apt/sources.list shadowsocks
 
 echo "deb http://shadowsocks.org/debian wheezy main" >>  /etc/apt/sources.list
-sudo apt-get update -y
-sudo apt-get install shadowsocks-libev -y
+apt-get update -y > /dev/null
+apt-get install shadowsocks-libev -y > /dev/null
 
 # prepare all Shadowsocks Utils
 ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowsocks

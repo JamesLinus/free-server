@@ -18,7 +18,7 @@ if [[  -f ${key} &&  -f ${cert} ]]; then
   cp ${cert} ${SPDYSSLCertFile}
 fi
 
-sudo npm install -g spdyproxy > /dev/null 2>&1
+npm install -g spdyproxy > /dev/null 2>&1
 
 ln -s ${utilDir}/createuser-spdy.sh ${freeServerRoot}/createuser-spdy
 ln -s ${utilDir}/deleteuser-spdy.sh ${freeServerRoot}/deleteuser-spdy
