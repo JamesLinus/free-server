@@ -30,7 +30,7 @@ fi
 
 
 #newline=${username},${password},${port}
-newline=${username} %any : EAP \"${password}\"
+newline="${username} %any : EAP \"${password}\""
 
 echo ${newline} >> ${ipsecSecFile}
 
@@ -39,5 +39,5 @@ ipsec restart
 echoS "IPSec account created with \n\n\
 Username: $username \n\
 Password: $password \n\n\
-if file ${ipsecSecFile} \n\
+in file ${ipsecSecFile} \n\
 "

@@ -47,8 +47,19 @@ enforceInstallOnUbuntu(){
 	fi
 
 }
-
 export -f enforceInstallOnUbuntu
+
+enforceInstallOnUbuntu
+
+isUbuntu14(){
+	isUbuntu=`cat /etc/issue | grep "Ubuntu 14."`
+
+	if [[ ! -z ${isUbuntu} ]]; then
+	  echo "YES"
+	fi
+
+}
+export -f isUbuntu14
 
 enforceInstallOnUbuntu
 
@@ -122,75 +133,11 @@ downloadFileToFolder(){
 export -f downloadFileToFolder
 
 
-
-#####
-# insert a line under the matched pattern
-#
-# @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for awk
-# @param String $3 is line to insert to the found pattern
-#####
-insertLineToFile(){
-
-  if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
-  then
-    echo "$FUNCNAME FileName SearchingPattern LineToAdd"
-    exit 0
-  fi
-
-  # all the arguments should be given
-  if [[ -z $1 ]] || [[ -z $2 ]] || [[ -z $3 ]];then
-    echo "You should provide all 3 arguments to invoke $$FUNCNAME"
-    exit 1
-  fi
-
-  if [[ ! -f $1 ]]; then
-    echo "File $1 is not existed"
-    exit 1
-  fi
-
-  gawk -i inplace "/$2/ {print;print $3;next}1" $1
-
-}
-export -f insertLineToFile
-
 #####
 # replace a line with new line
 #
 # @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for awk
-# @param String $3 is line to insert to the found pattern after the matched line removed
-#####
-replaceLineInFile(){
-
-  if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
-  then
-    echo "$FUNCNAME FileName SearchingPattern NewLine"
-    exit 0
-  fi
-
-  # all the arguments should be given
-  if [[ -z $1 ]] || [[ -z $2 ]] || [[ -z $3 ]];then
-    echo "You should provide all 3 arguments to invoke $FUNCNAME"
-    exit 1
-  fi
-
-  if [[ ! -f $1 ]]; then
-    echo "File $1 is not existed"
-    exit 1
-  fi
-
-  # find and remove the line matched to the pattern
-  gawk -i inplace "{gsub(/$2/, $3)}; {print}" $1
-}
-export -f replaceLineInFile
-
-
-#####
-# replace a line with new line
-#
-# @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for awk
+# @param RegExp String $2 is searching pattern for gawk
 #####
 removeLineInFile(){
 
@@ -212,7 +159,9 @@ removeLineInFile(){
   fi
 
   # find and remove the line matched to the pattern
-  gawk -i inplace "!/$2/" $1
+
+  sed -i "/$2/d" $1
+
 }
 export -f removeLineInFile
 
