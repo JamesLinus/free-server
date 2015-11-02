@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $UID -ne 0 ]]; then
+    echo "$0 must be run as root"
+    exit 1
+fi
+
 export globalUtilFile=$0
 
 export bashrc=~/.bashrc
@@ -28,6 +33,10 @@ export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 export SPDYConfig="${configDir}/SPDY.conf"
 export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
 export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
+
+export ipsecSecFile=/usr/local/etc/ipsec.secrets
+export ipsecSecFileBak=/usr/local/etc/ipsec.secrets.bak.free-server
+export ipsecSecFileBakQuericy=/usr/local/etc/ipsec.secrets.bak.quericy
 
 
 randomString()

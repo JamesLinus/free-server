@@ -35,13 +35,13 @@ port=$3
  && exit 0
 
 if [[ ! -z $(gawk "/^${username},/ {print}" ${SPDYConfig}) ]]; then
-  echoS "Ooops, the user ${username} is exited already. Exit"
+  echoS "Ooops, the user ${username} is exited in file ${SPDYConfig} already. Exit"
   exit 0
 fi
 
 
 if [[ ! -z $(gawk "/,${port}$/ {print}" ${SPDYConfig}) ]]; then
-  echoS "Ooops, the port ${port} is taken already. Exit"
+  echoS "Ooops, the port ${port} is taken in file ${SPDYConfig} already. Exit"
   exit 0
 fi
 

@@ -3,16 +3,13 @@
 source ~/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-PROCESS_NAME"
-
-## process checking pattern, for gawk
-processPatt="lib\/PROCESS_NAME"
+file="/etc/cron.d/forever-process-running-shadowsocks"
 
 ## process restart daily command
-restartCommand="service PROCESS_NAME restart"
+restartCommand="${freeServerRoot}/restart-shadowsocks.sh"
 
 ## write watching process every 5 minutes
-echo "*/2 * * * * root ${freeServerRoot}/forever-process-running.sh \"${processPatt}\" \"${restartCommand}\"" > ${file}
+echo "*/2 * * * * root ${freeServerRoot}/restart-dead-shadowsocks.sh" > ${file}
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" >> ${file}

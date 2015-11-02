@@ -20,5 +20,6 @@ SPDYPort=$4
 
 ${freeServerRoot}/createuser-shadowsocks "${shadowsocksPort}" "${pass}"
 ${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
+${freeServerRoot}/createuser-ipsec "${user}" "${pass}"
 
 echoS "All done. Shadowsocks and SPDY account has been created for user $user"
