@@ -204,13 +204,13 @@ function download_files(){
 
 # configure and install strongswan
 function setup_strongswan(){
-  echosS "./configure && make && make install. May need 5 minutes...."
+  echoS "./configure && make && make install. May need 5 minutes...."
 	if [ "$os" = "1" ]; then
 		./configure  --enable-eap-identity --enable-eap-md5 \
 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap  \
 --enable-eap-tnc --enable-eap-dynamic --enable-eap-radius --enable-xauth-eap  \
 --enable-xauth-pam  --enable-dhcp  --enable-openssl  --enable-addrblock --enable-unity  \
---enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp | grep openssl
+--enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp | grep "Error"
 
 	else
 		./configure  --enable-eap-identity --enable-eap-md5 \
@@ -218,9 +218,9 @@ function setup_strongswan(){
 --enable-eap-tnc --enable-eap-dynamic --enable-eap-radius --enable-xauth-eap  \
 --enable-xauth-pam  --enable-dhcp  --enable-openssl  --enable-addrblock --enable-unity  \
 --enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp --enable-kernel-libipsec \
-| grep openssl
+| grep "Error"
 	fi
-	make | grep directory; make install | grep install
+	make | grep "Error"; make install | grep "Error"
 }
 
 # configure cert and key

@@ -33,9 +33,9 @@ downloadFileToFolder ${baseUrlBin}/restart-dead-ipsec.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/forever-process-running.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/forever-process-running-generate-cron.d ${utilDir}
 
-downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-forever-process-running-generate-cron.d ${utilDir}
-downloadFileToFolder ${baseUrlBin}/cron-spdy-forever-process-running-generate-cron.d ${utilDir}
-downloadFileToFolder ${baseUrlBin}/cron-ipsec-forever-process-running-generate-cron.d ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-forever-process-running-generate-cron.d.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-spdy-forever-process-running-generate-cron.d.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-ipsec-forever-process-running-generate-cron.d.sh ${utilDir}
 # set executable for all shell scripts
 cd ${utilDir}
 chmod -R +x *.sh
