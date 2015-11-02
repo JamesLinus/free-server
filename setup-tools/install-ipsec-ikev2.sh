@@ -26,7 +26,6 @@ fi
 #   Intro:  http://quericy.me/blog/699
 #===============================================================================================
 
-clear
 echo "#############################################################"
 echo "# Install IKEV2 VPN for CentOS6.x (32bit/64bit) or Ubuntu"
 echo "# Intro: http://quericy.me/blog/699"
@@ -175,10 +174,10 @@ function pre_install(){
 #install necessary lib
 function yum_install(){
 	if [ "$system_str" = "0" ]; then
-	yum -y update
-	yum -y install pam-devel openssl-devel make gcc
+	yum -y update > /dev/null
+	yum -y install pam-devel openssl-devel make gcc > /dev/null
 	else
-	apt-get -y install libpam0g-dev libssl-dev make gcc
+	apt-get -y install libpam0g-dev libssl-dev make gcc > /dev/null
 	fi
 }
 
@@ -186,6 +185,13 @@ function yum_install(){
 function download_files(){
     strongManVersion=strongswan-5.3.3
     strongManVersionTarGz=${strongManVersion}.tar.gz
+
+    ## this should be added if you want to update the ${strongManVersion}, so that the script can clean the old files
+    strongManOldVersion=strongswan-5.2.1
+    strongManOldVersionTarGz=${strongManOldVersion}.tar.gz
+    rm -rf ${strongManOldVersion}
+    rm -rf ${strongManOldVersionTarGz}
+
     if [ -f ${strongManVersionTarGz} ];then
         echo -e "${strongManVersionTarGz} [\033[32;1mfound\033[0m]"
     else
@@ -257,7 +263,6 @@ function get_key(){
 --outform pem > server.cert.pem
 	ipsec pki --gen --outform pem > client.pem
 	ipsec pki --pub --in client.pem | ipsec pki --issue --cacert ca.cert.pem --cakey ca.pem --dn "C=${my_cert_c}, O=${my_cert_o}, CN=VPN Client" --outform pem > client.cert.pem
-	echo "configure the pkcs12 cert password(Press Enter to leave it empty):"
 	openssl pkcs12 -export -inkey client.pem -in client.cert.pem -name "client" -certfile ca.cert.pem -caname "${my_cert_cn}"  -out client.cert.p12 -passout pass:
 	echo "####################################"
     get_char(){
