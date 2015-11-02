@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 export self="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/$0"
 

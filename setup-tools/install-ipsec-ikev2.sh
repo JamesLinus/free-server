@@ -131,17 +131,17 @@ function pre_install(){
 	fi
   #	echo "please input the cert country(C):"
   #    read -p "C(default value:com):" my_cert_c
-  my_cert_c=CN
+  my_cert_c="CN"
   #	if [ "$my_cert_c" = "" ]; then
   #		my_cert_c="com"
   #	fi
-  my_cert_o="free-server-org"
+  my_cert_o="freeServerOrg"
   #	echo "please input the cert organization(O):"
   #    read -p "O(default value:myvpn):" my_cert_o
   #	if [ "$my_cert_o" = "" ]; then
   #		my_cert_o="myvpn"
   #	fi
-  my_cert_cn="free-server-common-name"
+  my_cert_cn="freeServerCommonName"
   #	echo "please input the cert common name(CN):"
   #    read -p "CN(default value:VPN CA):" my_cert_cn
   #	if [ "$my_cert_cn" = "" ]; then
@@ -213,7 +213,7 @@ function download_files(){
 
 # configure and install strongswan
 function setup_strongswan(){
-  echoS "./configure && make && make install. May need 5 minutes...."
+  echoS "./configure && make && make install StrongSwan.  May need 10 minutes...."
 	if [ "$os" = "1" ]; then
 		./configure  --enable-eap-identity --enable-eap-md5 \
 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap  \
@@ -447,6 +447,9 @@ if [[ -f ${ipsecSecFileBak} ]]; then
 fi
 
 ln -s ${utilDir}/restart-dead-ipsec.sh ${freeServerRoot}/restart-dead-ipsec
+ln -s ${utilDir}/createuser-ipsec.sh ${freeServerRoot}/createuser-ipsec
+ln -s ${utilDir}/restart-ipsec.sh ${freeServerRoot}/restart-ipsec
+ln -s ${utilDir}/deleteuser-ipsec.sh ${freeServerRoot}/deleteuser-ipsec
 ln -s ${utilDir}/cron-ipsec-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d
 
 
