@@ -6,10 +6,10 @@ source ~/.global-utils.sh
 file="/etc/cron.d/forever-process-running-spdy"
 
 ## process restart daily command
-restartCommand="${freeServerRoot}/restart-spdy.sh"
+restartCommand="${freeServerRoot}/restart-spdy"
 
 ## write watching process every 5 minutes
-echo "*/2 * * * * root ${freeServerRoot}/restart-dead-spdy.sh" > ${file}
+echo "*/2 * * * * root ${freeServerRoot}/restart-dead-spdy" > ${file}
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" >> ${file}
