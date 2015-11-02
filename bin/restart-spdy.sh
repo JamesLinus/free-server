@@ -41,7 +41,7 @@ for i in $(cat "${SPDYConfig}"); do
     password: ${password} \n\
     port: ${port} \n"
   else
-    wall -n "Restart spdyproxy with ${username}"
+    echo -e "Restart spdyproxy with ${username}" | wall
     spdyproxy -k ${SPDYSSLKeyFile} -c ${SPDYSSLCertFile} -p $port -U $username -P $password >/dev/null 2>&1  &
   fi
 

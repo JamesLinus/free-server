@@ -8,7 +8,7 @@ then
   exit 0
 fi
 
-wall -n "Restarting all shadowsocks ss-server instances"
+echo -e "Restarting all shadowsocks ss-server instances" | wall
 pkill ss-server
 
 for i in $(find ${configDir} -name "ss-*.json"); do

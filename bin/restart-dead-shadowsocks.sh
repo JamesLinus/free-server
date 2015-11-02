@@ -13,7 +13,7 @@ shadowsocksConfigList=$(find ${configDir} -name "ss-*.json")
 for i in ${shadowsocksConfigList}; do
   isProcessRunning=$(ps aux | awk '$0~v' v="-c\\ ${i}")
   if [[ -z ${isProcessRunning} ]]; then
-    wall -n "Restart ss-server with $i"
+    echo -e "Restart ss-server with $i" | wall
     /usr/bin/ss-server -c "$i" > /dev/null 2>&1 &
   else
     echo "Skipped $i since it is already stated. Process: ${isProcessRunning}"
