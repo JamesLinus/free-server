@@ -18,7 +18,7 @@ fi
 username=$1
 password=$2
 
-( [[ -z "${username}" ]]  || [[ -z "${password}" ]] || [[ -z "${port}" ]] ) \
+( [[ -z "${username}" ]]  || [[ -z "${password}" ]] ) \
  && echoS "You should invoke me via \`$0 USERNAME PASSWORD \`. \
  None of the parameters could be omitted." \
  && exit 0
@@ -30,7 +30,7 @@ fi
 
 
 #newline=${username},${password},${port}
-newline=${username} %any : EAP "${password}"
+newline=${username} %any : EAP \"${password}\"
 
 echo ${newline} >> ${ipsecSecFile}
 
