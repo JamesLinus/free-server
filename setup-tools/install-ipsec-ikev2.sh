@@ -184,16 +184,18 @@ function yum_install(){
 
 # Download strongswan
 function download_files(){
-    strongManVersion=strongswan-5.3.3.tar.gz
-    if [ -f ${strongManVersion} ];then
-        echo -e "${strongManVersion} [\033[32;1mfound\033[0m]"
+    strongManVersion=strongswan-5.3.3
+    strongManVersionTarGz=${strongManVersion}.tar.gz
+    if [ -f ${strongManVersionTarGz} ];then
+        echo -e "${strongManVersionTarGz} [\033[32;1mfound\033[0m]"
     else
-        if ! wget https://download.strongswan.org/${strongManVersion};then
-            echo "Failed to download ${strongManVersion}"
+        if ! wget https://download.strongswan.org/${strongManVersionTarGz};then
+            echo "Failed to download ${strongManVersionTarGz}"
             exit 1
         fi
     fi
-    tar xzf ${strongManVersion}
+    rm -rf ${strongManVersion}
+    tar xzf ${strongManVersionTarGz}
     if [ $? -eq 0 ];then
         cd $cur_dir/strongswan-*/
     else
