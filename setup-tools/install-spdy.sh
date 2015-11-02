@@ -24,3 +24,4 @@ ln -s ${utilDir}/createuser-spdy.sh ${freeServerRoot}/createuser-spdy
 ln -s ${utilDir}/deleteuser-spdy.sh ${freeServerRoot}/deleteuser-spdy
 ln -s ${utilDir}/restart-spdy.sh ${freeServerRoot}/restart-spdy
 ln -s ${utilDir}/restart-dead-spdy.sh ${freeServerRoot}/restart-dead-spdy
+ln -s ${utilDir}/cron-spdy-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-spdy-forever-process-running-generate-cron.d

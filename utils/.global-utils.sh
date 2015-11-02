@@ -38,6 +38,19 @@ export ipsecSecFile=/usr/local/etc/ipsec.secrets
 export ipsecSecFileBak=/usr/local/etc/ipsec.secrets.bak.free-server
 export ipsecSecFileBakQuericy=/usr/local/etc/ipsec.secrets.bak.quericy
 
+enforceInstallOnUbuntu(){
+	isUbuntu=`cat /etc/issue | grep "Ubuntu"`
+
+	if [[ -z ${isUbuntu} ]]; then
+	  echoS "You could only run the script in Ubuntu"
+	  exit 1
+	fi
+
+}
+
+export -f enforceInstallOnUbuntu
+
+enforceInstallOnUbuntu
 
 randomString()
 {

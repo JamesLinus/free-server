@@ -9,6 +9,8 @@ rm ./.global-utils.sh
 wget --no-cache ${bashUrl}/utils/.global-utils.sh
 source ~/.global-utils.sh
 
+enforceInstallOnUbuntu
+
 if [[ $UID -ne 0 ]]; then
     echo "$0 must be run as root"
     exit 1
@@ -17,6 +19,7 @@ fi
 echoS "apt-get update and install required tools"
 apt-get update -y >> /dev/null
 apt-get install -y gawk  >> /dev/null
+apt-get install -y curl  >> /dev/null
 
 
 echoS "Init Env"
@@ -88,7 +91,7 @@ echoS "All done. Create user example: \n\n\
 Shadowsocks+SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
 Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
 SPDY Only: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
-IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass Port \n\n\
+IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass \n\n\
 "
 # remove self
 rm "$self"

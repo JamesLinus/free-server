@@ -204,22 +204,23 @@ function download_files(){
 
 # configure and install strongswan
 function setup_strongswan(){
+  echosS "./configure && make && make install. May need 5 minutes...."
 	if [ "$os" = "1" ]; then
 		./configure  --enable-eap-identity --enable-eap-md5 \
 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap  \
 --enable-eap-tnc --enable-eap-dynamic --enable-eap-radius --enable-xauth-eap  \
 --enable-xauth-pam  --enable-dhcp  --enable-openssl  --enable-addrblock --enable-unity  \
---enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp
+--enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp | grep openssl
 
 	else
 		./configure  --enable-eap-identity --enable-eap-md5 \
 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap  \
 --enable-eap-tnc --enable-eap-dynamic --enable-eap-radius --enable-xauth-eap  \
 --enable-xauth-pam  --enable-dhcp  --enable-openssl  --enable-addrblock --enable-unity  \
---enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp --enable-kernel-libipsec
-
+--enable-certexpire --enable-radattr --enable-tools --enable-openssl --disable-gmp --enable-kernel-libipsec \
+| grep openssl
 	fi
-	make; make install
+	make | grep directory; make install | grep install
 }
 
 # configure cert and key
@@ -253,8 +254,8 @@ function get_key(){
 --outform pem > server.cert.pem
 	ipsec pki --gen --outform pem > client.pem
 	ipsec pki --pub --in client.pem | ipsec pki --issue --cacert ca.cert.pem --cakey ca.pem --dn "C=${my_cert_c}, O=${my_cert_o}, CN=VPN Client" --outform pem > client.cert.pem
-	echo "configure the pkcs12 cert password(Can be empty):"
-	openssl pkcs12 -export -inkey client.pem -in client.cert.pem -name "client" -certfile ca.cert.pem -caname "${my_cert_cn}"  -out client.cert.p12
+	echo "configure the pkcs12 cert password(Press Enter to leave it empty):"
+	openssl pkcs12 -export -inkey client.pem -in client.cert.pem -name "client" -certfile ca.cert.pem -caname "${my_cert_cn}"  -out client.cert.p12 -passout pass:
 	echo "####################################"
     get_char(){
         SAVEDSTTY=`stty -g`
@@ -438,6 +439,7 @@ if [[ -f ${ipsecSecFileBak} ]]; then
 fi
 
 ln -s ${utilDir}/restart-dead-ipsec.sh ${freeServerRoot}/restart-dead-ipsec
+ln -s ${utilDir}/cron-ipsec-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d
 
 
 

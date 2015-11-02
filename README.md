@@ -3,8 +3,8 @@
 Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
 ## News and Change logs
-* Milestone: [Feature] Add IPSec for IOS devices
-* Important fix: [Bug] fix restart dead processes bug 
+* 2015-11-02 Milestone: [Feature] Add IPSec for IOS devices
+* 2015-10-30 Important fix: [Bug] fix restart dead processes bug 
   (for SPDY and Shadowsocks process healthy monitoring, tested passed on Ubuntu 15, Digital Ocean)
 
 -------
