@@ -32,7 +32,7 @@ for i in $(cat "${SPDYConfig}"); do
   password=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $2}')
   port=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $3}')
 
-  isProcessRunning=$(ps aux | gawk "/-p\ $port -U\ $username -P $password/ {print}")
+  isProcessRunning=$(ps aux | gawk "/-p\ $port\ / {print}")
 
   if [[ -z ${username} || -z ${password} || -z ${port} ]]; then
     echo -e "username, password and port are all mandatory \n\
