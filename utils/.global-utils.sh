@@ -274,7 +274,8 @@ getUserInput(){
 
     sleep 1
 
-    read -p "${promptMsg} with type ${inputValidator}:  " userinput
+    echo -e "${promptMsg}:"
+    read -p "Input Value:  " userinput
     userinput=$(removeWhiteSpace "${userinput}")
 
     if [[ "${inputValidator}" == "file" && ! -f "${userinput}" ]]; then
