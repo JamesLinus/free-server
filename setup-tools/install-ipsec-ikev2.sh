@@ -180,6 +180,7 @@ function download_files(){
 
     rm -rf ${ipsecStrongManOldVersion}
     rm -rf ${ipsecStrongManOldVersionTarGz}
+    warnNoEnterReturnKey
 
     if [ -f ${ipsecStrongManVersionTarGz} ];then
         echo -e "${ipsecStrongManVersionTarGz} [\033[32;1mfound\033[0m]"
@@ -203,6 +204,8 @@ function download_files(){
 # configure and install strongswan
 function setup_strongswan(){
   echoS "./configure && make && make install StrongSwan.  May need 10 minutes...."
+  warnNoEnterReturnKey
+
 	if [ "$os" = "1" ]; then
 		./configure  --enable-eap-identity --enable-eap-md5 \
 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap  \

@@ -25,7 +25,7 @@ apt-get install -y curl  >> /dev/null
 
 
 echoS "Init Env"
-
+warnNoEnterReturnKey
 
 if [ -d ${freeServerRoot} ]; then
     echoS "Old free-server installation detected. Script is going to perform Save Upgrading in 5 seconds.\

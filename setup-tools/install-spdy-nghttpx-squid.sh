@@ -52,6 +52,7 @@ installSpdyLay() {
   autotools-dev libtool pkg-config zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libevent-dev \
   -y > /dev/null
 
+  warnNoEnterReturnKey
   wget ${SPDYSpdyLayDownloadLink}
   tar zxf ${SPDYSpdyLayTarGzName} > /dev/null
 
@@ -75,6 +76,7 @@ installNgHttpX() {
   zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libev-dev libevent-dev libjansson-dev   \
   libjemalloc-dev cython python3-dev python-setuptools apache2-utils -y > /dev/null
 
+  warnNoEnterReturnKey
   wget ${SPDYNgHttp2DownloadLink}
   tar zxf ${SPDYNgHttp2TarGzName} > /dev/null
 
