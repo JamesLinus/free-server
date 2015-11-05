@@ -225,17 +225,17 @@ function setup_strongswan(){
 function get_key(){
 	cd $cur_dir
     if [ -f ca.pem ];then
-        echo -e "ca.pem [\033[32;1mfound\033[0m]"
+        echo -e "ca.pem found"
     else
-        echo -e "ca.pem [\033[32;1mauto create\032[0m]"
+        echo -e "ca.pem auto create"
 		echo "auto create ca.pem ..."
 		ipsec pki --gen --outform pem > ca.pem
     fi
 
 	if [ -f ca.cert.pem ];then
-        echo -e "ca.cert.pem [\033[32;1mfound\033[0m]"
+        echo -e "ca.cert.pem found"
     else
-        echo -e "ca.cert.pem [\032[33;1mauto create\032[0m]"
+        echo -e "ca.cert.pem auto create"
 		echo "auto create ca.cert.pem ..."
 		ipsec pki --self --in ca.pem --dn "C=${my_cert_c}, O=${my_cert_o}, CN=${my_cert_cn}" --ca --outform pem >ca.cert.pem
     fi
@@ -439,7 +439,7 @@ prepareFreeServerIpsecSecretFile() {
 
 	touch ${ipsecSecFile}
 
-	psk=$(getUserInput "Input IpSec PSK (Secret in iOS, only a-z or A-Z English letters accepted ) (default: ${ipsecSecPskSecretDefault} ): ")
+	psk=$(getUserInput "Input IpSec PSK (Secret in iOS, only \x1b[46m a-z or A-Z \x1b[0m English letters accepted ) (default: ${ipsecSecPskSecretDefault} ): ")
 
 	if [[ -z ${psk} ]]; then
 		psk=${ipsecSecPskSecretDefault}

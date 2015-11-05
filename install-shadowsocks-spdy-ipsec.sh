@@ -103,12 +103,12 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass \n\n\
 \
 "
 
-echoS "Next step:\n\n\
+echoS "\x1b[46m Next step: \x1b[0m\n\n\
 1. Create a user: ${freeServerRoot}/createuser USERNAME PASSWORD ShadowsocksPort SPDYPort
 2. Config Chrome or other client. Tutorial is here: https://github.com/lanshunfang/free-server#how-to-setup-clients
 "
 
-echoS "Note that, the IpSec PSK(Secret) is located: ${ipsecSecFile}. You may want to reedit the PSK field."
+echoS "Note that, the IpSec PSK(Secret) is located: \x1b[46m ${ipsecSecFile} \x1b[0m. You may want to reedit the PSK field."
 # remove self
 rm "$self"
 

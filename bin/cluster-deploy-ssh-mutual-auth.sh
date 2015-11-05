@@ -39,7 +39,7 @@ readServerListFromFileAndDeploySSHPubKey() {
 }
 
 getPubKeyFilePathFromStdIn() {
-  publicKey=$(getUserInput "Input new *.pub file absolute path (e.g. /root/.ssh/free-server.org_pub)" file 3)
+  publicKey=$(getUserInput "Input new \x1b[46m *.pub \x1b[0m file absolute path (e.g. /root/.ssh/free-server.org_pub)" file 3)
   if [[  ! -f ${key} ]]; then
     echoS "${publicKey} is not a file. Exit."
     exit 0

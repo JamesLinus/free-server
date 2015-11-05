@@ -19,7 +19,7 @@ getSpdySslKeyFile() {
 a free copy from https://www.startssl.com/)\n"
 
 
-  key=$(getUserInput "Input new *.key file absolute path (e.g. /root/mydomain.com.key): " file 3)
+  key=$(getUserInput "Input new \x1b[46m *.key \x1b[0m file absolute path (e.g. /root/mydomain.com.key): " file 3)
 
   echoS "Selected key file is ${key}"
   echoS "Copy Key ${key} to ${configDir}"
@@ -34,7 +34,7 @@ getSpdySslCertFile() {
     return 0
   fi
 
-  cert=$(getUserInput "Input new *.crt file absolute path (e.g. /root/mydomain.com.crt): " file 3)
+  cert=$(getUserInput "Input new \x1b[46m *.crt \x1b[0m file absolute path (e.g. /root/mydomain.com.crt): " file 3)
 
   echoS "Selected cert file is ${cert}"
   echoS "Copy Cert ${cert} to ${configDir}"
