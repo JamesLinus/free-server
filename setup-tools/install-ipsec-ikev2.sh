@@ -2,8 +2,6 @@
 
 source ~/.global-utils.sh
 
-echoS "Script is going to install IPsec/Ikev2. Please refer to \n\n https://github.com/quericy/one-key-ikev2-vpn \n\n for more details"
-
 #if [[ -f ${ipsecSecFileOriginal} || ! -L ${ipsecSecFileOriginal} ]]; then
 ##  isIpsecConfigExisted=$(cat ${ipsecSecFileOriginal} | grep server.pem)
 ##  if [[ ! -z ${isIpsecConfigExisted} ]]; then
@@ -66,7 +64,7 @@ fi
 
 # Get IP address of the server
 function get_my_ip(){
-    echo "Preparing, Please wait a moment..."
+		warnNoEnterReturnKey
     IP=`curl --connect-timeout 8 -s checkip.dyndns.com | cut -d' ' -f 6  | cut -d'<' -f 1`
     if [ -z $IP ]; then
         IP=`curl --connect-timeout 8 -s ifconfig.me/ip`
@@ -118,8 +116,8 @@ function pre_install(){
 				exit 1
 			fi
     fi
-	echo "please input the domain name (or ip) of your VPS:"
-    read -p "domain(default_vale:${IP}):" vps_ip
+	echo "please input the domain (or ip) of your VPS:"
+    read -p "Domain (Default Current IP:${IP}):" vps_ip
 	if [ "$vps_ip" = "" ]; then
 		vps_ip=$IP
 	fi
@@ -227,24 +225,18 @@ function setup_strongswan(){
 # configure cert and key
 function get_key(){
 	cd $cur_dir
-    if [ -f ca.pem ];then
-        echo -e "ca.pem found"
-    else
-        echo -e "ca.pem auto create"
-		echo "auto create ca.pem ..."
+	if [[ ! -f ca.pem ]];then
 		ipsec pki --gen --outform pem > ca.pem
-    fi
+	fi
 
-	if [ -f ca.cert.pem ];then
-        echo -e "ca.cert.pem found"
-    else
-        echo -e "ca.cert.pem auto create"
-		echo "auto create ca.cert.pem ..."
-		ipsec pki --self --in ca.pem --dn "C=${my_cert_c}, O=${my_cert_o}, CN=${my_cert_cn}" --ca --outform pem >ca.cert.pem
-    fi
+	if [[ ! -f ca.cert.pem ]];then
+  	ipsec pki --self --in ca.pem --dn "C=${my_cert_c}, O=${my_cert_o}, CN=${my_cert_cn}" --ca --outform pem >ca.cert.pem
+  fi
+
 	if [ ! -d my_key ];then
-        mkdir my_key
-    fi
+  	mkdir my_key
+  fi
+
 	mv ca.pem my_key/ca.pem
 	mv ca.cert.pem my_key/ca.cert.pem
 	cd my_key
@@ -459,7 +451,6 @@ includeFreeServerIpsecSecretFile(){
 	#if [[ -f ${ipsecSecFileBak} ]]; then
 #	echoS "Rename ${ipsecSecFileOriginal} to ${ipsecSecFileBakQuericy}"
   includeCommandLine="include ${ipsecSecFile}"
-	echoS "Add ${includeCommandLine} to ${ipsecSecFileOriginal}"
 	removeLineInFile ${ipsecSecFileOriginal} ${freeServerInstallationFolderName}
 	echo ${includeCommandLine} >> ${ipsecSecFileOriginal}
 

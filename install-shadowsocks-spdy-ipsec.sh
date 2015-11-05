@@ -70,7 +70,7 @@ ${freeServerRootTmp}/install-shadowsocks.sh > /dev/null
 echoS "Installing SPDY Proxy"
 
 #${freeServerRootTmp}/install-spdy.sh
-${freeServerRootTmp}/install-spdy-nghttpx.sh
+${freeServerRootTmp}/install-spdy-nghttpx-squid.sh
 
 echoS "Installing IPSec/IKEv2 VPN (for IOS)"
 
