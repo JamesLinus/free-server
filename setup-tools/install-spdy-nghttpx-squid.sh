@@ -54,13 +54,12 @@ installSpdyLay() {
   autotools-dev libtool pkg-config zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libevent-dev \
   -y > /dev/null
 
-  warnNoEnterReturnKey
-
   rm -rf ${SPDYSpdyLayTarGzName}
   rm -rf ${SPDYSpdyLayFolderName}
 
   wget ${SPDYSpdyLayDownloadLink}
   echoS "Installing, may need 5 minutes..."
+  warnNoEnterReturnKey
   tar zxf ${SPDYSpdyLayTarGzName} > /dev/null
 
   cd ${SPDYSpdyLayFolderName}/
@@ -97,7 +96,7 @@ installNgHttpX() {
 
   cd ${SPDYNgHttp2FolderName}/
   echoS "Installing, may need 5 minutes..."
-
+  warnNoEnterReturnKey
   autoreconf -i > /dev/null \
     && automake > /dev/null \
     && autoconf >/dev/null \
