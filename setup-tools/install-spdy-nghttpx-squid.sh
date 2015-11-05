@@ -114,8 +114,8 @@ installNgHttpX() {
 
 generateSquidConf() {
   # SPDYSquidConfig
-  replaceStringInFile ${SPDYSquidConfig} "FREE_SERVER_BASIC_HTTP_AUTH_PASSWD_FILE" ${SPDYSquidPassWdFile}
-  replaceStringInFile ${SPDYSquidConfig} "SQUID_AUTH_PROCESS" ${SPDYSquidAuthSubProcessAmount}
+  replaceStringInFile ${SPDYSquidConfig} FREE_SERVER_BASIC_HTTP_AUTH_PASSWD_FILE ${SPDYSquidPassWdFile}
+  replaceStringInFile ${SPDYSquidConfig} SQUID_AUTH_PROCESS ${SPDYSquidAuthSubProcessAmount}
 }
 
 

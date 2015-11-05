@@ -201,7 +201,7 @@ replaceStringInFile(){
 
   # find and remove the line matched to the pattern
 
-  sed -i "s/$2/$3/g" $1
+  sed -i "s#$2#$3#g" $1
 
 }
 export -f replaceStringInFile
