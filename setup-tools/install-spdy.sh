@@ -6,10 +6,10 @@ echoS "For new installation: Input the file (with path) of your SSL Key file  (*
 a free copy from https://www.startssl.com/)\n"
 
 
-key=$(getUserInput "Input new *.key file absolute path (e.g. /root/mydomain.com.key) (Leave it empty and Press Enter if you are upgrading, not fresh installation):   " file 2)
+key=$(getUserInput "Input new *.key file absolute path (e.g. /root/mydomain.com.key) (Leave it empty and Press Enter if you are upgrading, not fresh installation):   " file 3)
 echoS "Selected key file is ${key}"
 
-cert=$(getUserInput "Input new *.crt file absolute path (e.g. /root/mydomain.com.crt) (Leave it empty and Press Enter if you are upgrading, not fresh installation) :  " file 2)
+cert=$(getUserInput "Input new *.crt file absolute path (e.g. /root/mydomain.com.crt) (Leave it empty and Press Enter if you are upgrading, not fresh installation) :  " file 3)
 echoS "Selected cert file is ${cert}"
 
 if [[  -f ${key} &&  -f ${cert} ]]; then

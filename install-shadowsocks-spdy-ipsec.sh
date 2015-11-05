@@ -35,7 +35,7 @@ if [ -d ${freeServerRoot} ]; then
     echoS "Removing Old free-server installation"
 
     # restore backed up config files
-    if [ -d ~/config-bak$(appendDateToString) ]; then
+    if [ -d ${configDirBackup} ]; then
         echoS "Old backed up config files found in ~/${configDir}$(appendDateToString). \
         This is not correct. You should move it to other place or just delete it before proceed. Exit"
         exit 0
@@ -43,7 +43,7 @@ if [ -d ${freeServerRoot} ]; then
 
     # move current config files to a save place if has
 
-    mv ${configDir} ~/config-bak$(appendDateToString)
+    mv ${configDir} ${configDirBackup}
 
     rm -rf ${freeServerRoot}
 
@@ -69,41 +69,48 @@ ${freeServerRootTmp}/install-shadowsocks.sh > /dev/null
 
 echoS "Installing SPDY Proxy"
 
-${freeServerRootTmp}/install-spdy.sh
+#${freeServerRootTmp}/install-spdy.sh
+${freeServerRootTmp}/install-spdy-nghttpx.sh
 
 echoS "Installing IPSec/IKEv2 VPN (for IOS)"
 
 ${freeServerRootTmp}/install-ipsec-ikev2.sh
 
-echoS "Cleaning up env"
-
-${freeServerRootTmp}/init.sh
+#echoS "Installing and Initiating Free Server Cluster for multiple IPs/Domains/Servers with same Login Credentials support"
+#
+#${freeServerRootTmp}/install-cluster.sh
 
 # restore backed up config files
 if [ -d ~/config-bak$(appendDateToString) ]; then
-    cp -r ${configDir}/* ~/config-bak$(appendDateToString)
+    cp -rn ${configDir}/* ~/config-bak$(appendDateToString)
     rm -rf ${configDir}
     mv ~/config-bak$(appendDateToString) ${configDir}
-    echoS "Restart Shadowsocks and SPDY"
-    ${freeServerRoot}/restart-shadowsocks
-    ${freeServerRoot}/restart-spdy
 fi
+
+echoS "Restart and Init Everything in need"
+
+${freeServerRootTmp}/init.sh
 
 echoS "All done. Create user example: \n\n\
+\
 Shadowsocks+SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
+\
 Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
-SPDY Only: ${freeServerRoot}/createuser-spdy User Pass Port \n\n\
+\
+SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port \n\n\
+\
 IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass \n\n\
+\
 "
+
+echoS "Next step:\n\n\
+1. Create a user: ${freeServerRoot}/createuser USERNAME PASSWORD ShadowsocksPort SPDYPort
+2. Config Chrome or other client. Tutorial is here: https://github.com/lanshunfang/free-server#how-to-setup-clients
+"
+
+echoS "Note that, the IpSec PSK(Secret) is located: ${ipsecSecFile}. You may want to reedit the PSK field."
 # remove self
 rm "$self"
-
-if [[ ! -f ${ipsecSecFileBakQuericy} ]]; then
-    echoS "\n\n\
-    One more step: Please edit test IPSec Account/PSK in\n\n\
-     ${ipsecSecFile} after server test pass in your iOS device"
-fi
-
 
 
 

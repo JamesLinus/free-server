@@ -19,7 +19,8 @@ SPDYPort=$4
  && echoS "You should invoke me via \`$0 Username Pass ShadowsocksPort SPDYPort\`. All arguments could not be omitted." && exit 0
 
 ${freeServerRoot}/createuser-shadowsocks "${shadowsocksPort}" "${pass}"
-${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
+#${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
+${freeServerRoot}/createuser-spdy-nghttpx-squid "${user}" "${pass}" "${SPDYPort}"
 ${freeServerRoot}/createuser-ipsec "${user}" "${pass}"
 
 echoS "All done. Shadowsocks and SPDY account has been created for user $user"

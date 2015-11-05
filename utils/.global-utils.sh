@@ -11,14 +11,16 @@ export bashrc=~/.bashrc
 
 export baseUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
+export freeServerInstallationFolderName=free-server
 # the top install folder
-export freeServerRoot=~/free-server/
+export freeServerRoot=~/${freeServerInstallationFolderName}/
 
 # utility folder
 export utilDir=${freeServerRoot}/util
 
 # for configration samples
 export configDir=${freeServerRoot}/config
+export configDirBackup=~/free-server-config-bak
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
@@ -26,17 +28,50 @@ export freeServerRootTmp=${freeServerRoot}/tmp
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
 export baseUrlSetup=${baseUrl}/setup-tools
+export baseUrlConfigSample=${baseUrl}/config-sample
 
 export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 
+export SPDYNgHttp2DownloadLink="https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.4.0/nghttp2-1.4.0.tar.gz"
+export SPDYNgHttp2TarGzName="nghttp2-1.4.0.tar.gz"
+export SPDYSpdyLayDownloadLink="https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz"
+export SPDYSpdyLayTarGzName="spdylay-1.3.2.tar.gz"
 export SPDYConfig="${configDir}/SPDY.conf"
-export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
-export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
+export SPDYSquidConfig="${configDir}/squid.conf"
+export SPDYSquidPassWdFile="${configDir}/squid-auth-passwd"
 
-export ipsecSecFile=/usr/local/etc/ipsec.secrets
+# make SPDYSquidAuthSubProcessAmount bigger, make squid basic auth faster, but may be more unstable indeed
+export SPDYSquidAuthSubProcessAmount=4
+
+export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
+export SPDYSSLKeyFileInConfigDirBackup="${configDirBackup}/SPDY.domain.key"
+export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
+export SPDYSSLCertFileInConfigDirBackup="${configDirBackup}/SPDY.domain.crt"
+export SPDYForwardBackendSquidHost="127.0.0.1"
+export SPDYForwardBackendSquidPort=3128
+export SPDYFrontendListenHost="0.0.0.0"
+
+# make SPDYNgHttpXCPUWorkerAmount bigger, make nghttpx faster, but may be unstable if your VPS is not high-end enough
+export SPDYNgHttpXCPUWorkerAmount=3
+
+export SPDYNgHttpXConcurrentStreamAmount=200
+
+export ipsecSecFile=${configDir}/ipsec.secrets
+export ipsecSecFileInConfigDirBackup=${configDirBackup}/ipsec.secrets
+export ipsecSecFileOriginal=/usr/local/etc/ipsec.secrets
+export ipsecSecFileOriginalDir=/usr/local/etc/
 export ipsecSecFileBak=/usr/local/etc/ipsec.secrets.bak.free-server
-export ipsecSecFileBakQuericy=/usr/local/etc/ipsec.secrets.bak.quericy
+#export ipsecSecFileBakQuericy=/usr/local/etc/ipsec.secrets.bak.quericy
+export ipsecSecPskSecretDefault=freeserver
+export ipsecStrongManVersion=strongswan-5.3.3
+export ipsecStrongManVersionTarGz=${strongManVersion}.tar.gz
+## ipsecStrongManOldVersion should be added if you want to update the ${strongManVersion}, so that the script can clean the old files
+export ipsecStrongManOldVersion=strongswan-5.2.1
+export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
+
+export clusterDefFilePath="${configDir}/cluster-def.txt"
+export clusterDeploySSHMutualAuthAccept="${freeServerRoot}/cluster-deploy-ssh-mutual-auth-accept"
 
 enforceInstallOnUbuntu(){
 	isUbuntu=`cat /etc/issue | grep "Ubuntu"`
@@ -134,10 +169,42 @@ export -f downloadFileToFolder
 
 
 #####
-# replace a line with new line
 #
 # @param String $1 is the file to operate
-# @param RegExp String $2 is searching pattern for gawk
+# @param RegExp String $2 is searching pattern in regexp
+# @param RegExp String $3 is replacement
+#####
+replaceStringInFile(){
+
+  if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
+  then
+    echo "$FUNCNAME FileName SearchingPattern Replacement "
+    exit 0
+  fi
+
+  # all the arguments should be given
+  if [[ -z $1 ]] || [[ -z $2 ]] || [[ -z $3 ]];then
+    echo "You should provide all 3 arguments to invoke $FUNCNAME"
+    exit 1
+  fi
+
+  if [[ ! -f $1 ]]; then
+    echo "File $1 is not existed"
+    exit 1
+  fi
+
+  # find and remove the line matched to the pattern
+
+  sed -i "s/$2/$3/g" $1
+
+}
+export -f replaceStringInFile
+
+
+#####
+#
+# @param String $1 is the file to operate
+# @param RegExp String $2 is searching pattern for sed
 #####
 removeLineInFile(){
 
@@ -211,13 +278,13 @@ getUserInput(){
     userinput=$(removeWhiteSpace "${userinput}")
 
     if [[ "${inputValidator}" == "file" && ! -f "${userinput}" ]]; then
-      echoS "The file ${userinput} you input is not existed. Retry"
+      echoS "The file ${userinput} you input is empty or not a file."
     else
       break
     fi
 
     if [[ "${inputValidator}" == "non-empty" && -z "${userinput}" ]]; then
-      echoS "Te input should not be empty. Retry"
+      echoS "Te input should not be empty."
     else
       break
     fi
@@ -228,7 +295,6 @@ getUserInput(){
   done
 
   echo ${userinput}
-
 
 }
 export -f getUserInput

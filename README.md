@@ -3,6 +3,7 @@
 Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
 ## News and Change logs
+* 2015-11-05 [Enhancement] Replace spdyproxy (NPM module) to nghttpx(C)+Squid.
 * 2015-11-03 [Platform] Add support to Amazon EC2 Ubuntu 14.04.2 LTS. Tested pass with EC2 Singapore Data Center 
 * 2015-11-02 Milestone: [Feature] Add IPSec for IOS devices
 * 2015-10-30 Important fix: [Bug] fix restart dead processes bug 
@@ -21,6 +22,14 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * Still in progress, not done yet.
 * It has been tested within Linode Ubuntu Server 15. It should be running well on all latest Ubuntu Server releases.
 
+## Package installed
+* Shadowsocks: shadowsocks-libev 
+(deb http://shadowsocks.org/debian wheezy main)
+* SPDY/HTTP2: nghttp2-1.4.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
+(https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.4.0/nghttp2-1.4.0.tar.gz)
+(https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
+* IPSec (ikev2)  
+
 ## Installation
 
 * You need to obtain a HTTPS SSL Certificate before you install SPDY server. Get one for free from [StartSSL](https://www.startssl.com/?app=12).
@@ -38,11 +47,13 @@ It backs them up if found any before execute re-installation.
 ## Create User
 
 ```bash
-Shadowsocks+SPDY: ~/free-server/createuser User Pass ShadowsocksPort SPDYPort 
+Shadowsocks+SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort
 
-Shadowsocks Only: ~/free-server/createuser-shadowsocks Port Pass 
+Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass 
 
-SPDY Only: ~/free-server/createuser-spdy User Pass Port 
+SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port 
+
+IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 ```
 
 ## How to setup clients

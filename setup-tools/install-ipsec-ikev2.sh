@@ -4,20 +4,14 @@ source ~/.global-utils.sh
 
 echoS "Script is going to install IPsec/Ikev2. Please refer to \n\n https://github.com/quericy/one-key-ikev2-vpn \n\n for more details"
 
-if [[ -f ${ipsecSecFileBak} ]]; then
-  echoS "IPSec config backup file detected in ${ipsecSecFileBak}. This is not correct. Please backup it before continue"
-  echoS "Skip Installing IPSec/IKEv2. Exit."
-  exit 0
-fi
-
-if [[ -f ${ipsecSecFile} ]]; then
-  isIpsecConfigExisted=$(cat ${ipsecSecFile} | grep server.pem)
-  if [[ ! -z ${isIpsecConfigExisted} ]]; then
-    echoS "IPSec secret file detected in ${ipsecSecFile}. \n\n\
-    Now I am going to backup it to ${ipsecSecFileBak}"
-    mv ${ipsecSecFile} ${ipsecSecFileBak}
-  fi
-fi
+#if [[ -f ${ipsecSecFileOriginal} || ! -L ${ipsecSecFileOriginal} ]]; then
+##  isIpsecConfigExisted=$(cat ${ipsecSecFileOriginal} | grep server.pem)
+##  if [[ ! -z ${isIpsecConfigExisted} ]]; then
+#  echoS "IPSec secret file detected in ${ipsecSecFileOriginal}. \n\n\
+#  Now I am going to backup it to ${ipsecSecFileBak}"
+#  mv ${ipsecSecFileOriginal} ${ipsecSecFileBak}
+##  fi
+#fi
 
 #===============================================================================================
 #   System Required:  CentOS6.x (32bit/64bit) or Ubuntu
@@ -48,10 +42,10 @@ install_ikev2(){
 	get_key
 	configure_ipsec
 	configure_strongswan
-	configure_secrets
+#	configure_secrets
 	iptables_set
-	ipsec start
-	success_info
+#	ipsec start
+#	success_info
 }
 
 # Make sure only root can run our script
@@ -183,25 +177,20 @@ function yum_install(){
 
 # Download strongswan
 function download_files(){
-    strongManVersion=strongswan-5.3.3
-    strongManVersionTarGz=${strongManVersion}.tar.gz
 
-    ## this should be added if you want to update the ${strongManVersion}, so that the script can clean the old files
-    strongManOldVersion=strongswan-5.2.1
-    strongManOldVersionTarGz=${strongManOldVersion}.tar.gz
-    rm -rf ${strongManOldVersion}
-    rm -rf ${strongManOldVersionTarGz}
+    rm -rf ${ipsecStrongManOldVersion}
+    rm -rf ${ipsecStrongManOldVersionTarGz}
 
-    if [ -f ${strongManVersionTarGz} ];then
-        echo -e "${strongManVersionTarGz} [\033[32;1mfound\033[0m]"
+    if [ -f ${ipsecStrongManVersionTarGz} ];then
+        echo -e "${ipsecStrongManVersionTarGz} [\033[32;1mfound\033[0m]"
     else
-        if ! wget https://download.strongswan.org/${strongManVersionTarGz};then
-            echo "Failed to download ${strongManVersionTarGz}"
+        if ! wget https://download.strongswan.org/${ipsecStrongManVersionTarGz};then
+            echo "Failed to download ${ipsecStrongManVersionTarGz}"
             exit 1
         fi
     fi
-    rm -rf ${strongManVersion}
-    tar xzf ${strongManVersionTarGz}
+    rm -rf ${ipsecStrongManVersion}
+    tar xzf ${ipsecStrongManVersionTarGz}
     if [ $? -eq 0 ];then
         cd $cur_dir/strongswan-*/
     else
@@ -365,12 +354,13 @@ EOF
 
 # configure the ipsec.secrets
 function configure_secrets(){
-	cat > /usr/local/etc/ipsec.secrets<<-EOF
-: RSA server.pem
-: PSK "testPSKkey"
-: XAUTH "testXAUTHPass"
-testUserName %any : EAP "testUserPassword"
-	EOF
+#	cat > /usr/local/etc/ipsec.secrets<<-EOF
+#: RSA server.pem
+#: PSK "testPSKkey"
+#: XAUTH "testXAUTHPass"
+#testUserName %any : EAP "testUserPassword"
+#	EOF
+echo ''
 }
 
 # iptables set
@@ -420,37 +410,76 @@ EOF
 }
 
 # echo the success info
-function success_info(){
-	echo "#############################################################"
-	echo -e "#"
-	echo -e "# [\033[32;1mInstall Successful\033[0m]"
-	echo -e "# There is the default login info of your VPN"
-	echo -e "# UserName:\033[33;1m testUserName\033[0m"
-	echo -e "# PassWord:\033[33;1m testUserPassword\033[0m"
-	echo -e "# PSK (Secret):\033[33;1m testPSKkey\033[0m"
-	echo -e "# you can change UserName and PassWord in\033[32;1m /usr/local/etc/ipsec.secrets\033[0m"
-	echo -e "# you might want to copy the cert \033[32;1m ${cur_dir}/my_key/ca.cert.pem \033[0m to the client and install it."
-	echo -e "#"
-	echo -e "#############################################################"
-	echo -e ""
-}
+#function success_info(){
+#	echo "#############################################################"
+#	echo -e "#"
+#	echo -e "# [\033[32;1mInstall Successful\033[0m]"
+#	echo -e "# There is the default login info of your VPN"
+#	echo -e "# UserName:\033[33;1m testUserName\033[0m"
+#	echo -e "# PassWord:\033[33;1m testUserPassword\033[0m"
+#	echo -e "# PSK (Secret):\033[33;1m testPSKkey\033[0m"
+#	echo -e "# you can change UserName and PassWord in\033[32;1m /usr/local/etc/ipsec.secrets\033[0m"
+#	echo -e "# you might want to copy the cert \033[32;1m ${cur_dir}/my_key/ca.cert.pem \033[0m to the client and install it."
+#	echo -e "#"
+#	echo -e "#############################################################"
+#	echo -e ""
+#}
 
 # Initialization step
 install_ikev2
 
-if [[ -f ${ipsecSecFileBak} ]]; then
-  echoS "Restore ${ipsecSecFileBak} to ${ipsecSecFile}. Rename ${ipsecSecFile} to ${ipsecSecFileBakQuericy}"
-  rm ${ipsecSecFileBakQuericy}
-  mv ${ipsecSecFile} ${ipsecSecFileBakQuericy}
-  mv ${ipsecSecFileBak} ${ipsecSecFile}
-  ipsec restart
-fi
+prepareFreeServerIpsecSecretFile() {
+	# ${ipsecSecFile}
+	#${configDirBackup}
 
-ln -s ${utilDir}/restart-dead-ipsec.sh ${freeServerRoot}/restart-dead-ipsec
-ln -s ${utilDir}/createuser-ipsec.sh ${freeServerRoot}/createuser-ipsec
-ln -s ${utilDir}/restart-ipsec.sh ${freeServerRoot}/restart-ipsec
-ln -s ${utilDir}/deleteuser-ipsec.sh ${freeServerRoot}/deleteuser-ipsec
-ln -s ${utilDir}/cron-ipsec-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d
+	if [[ -f ${ipsecSecFileInConfigDirBackup} ]]; then
+		echoS "Previous ipsec secret file detected in ${ipsecSecFileInConfigDirBackup}. Skip generating."
+		return  0
+	fi
+
+	touch ${ipsecSecFile}
+
+	psk=$(getUserInput "Input IpSec PSK (Secret in iOS, only a-z or A-Z English letters accepted ) (default: ${ipsecSecPskSecretDefault} ): ")
+
+	if [[ -z ${psk} ]]; then
+		psk=${ipsecSecPskSecretDefault}
+	fi
+
+	echo ": RSA server.pem" >> ${ipsecSecFile}
+	echo ": PSK \"${psk}\"" >> ${ipsecSecFile}
+	echo ": XAUTH \"${psk}XAUTHPass\"" >> ${ipsecSecFile}
+
+}
+prepareFreeServerIpsecSecretFile
+
+includeFreeServerIpsecSecretFile(){
+	#if [[ -f ${ipsecSecFileBak} ]]; then
+#	echoS "Rename ${ipsecSecFileOriginal} to ${ipsecSecFileBakQuericy}"
+  includeCommandLine="include ${ipsecSecFile}"
+	echoS "Add ${includeCommandLine} to ${ipsecSecFileOriginal}"
+	removeLineInFile ${ipsecSecFileOriginal} ${freeServerInstallationFolderName}
+	echo ${includeCommandLine} >> ${ipsecSecFileOriginal}
+
+#	rm ${ipsecSecFileBakQuericy}
+#	mv ${ipsecSecFileOriginal} ${ipsecSecFileBakQuericy}
+#	ln -s ${ipsecSecFile} ${ipsecSecFileOriginalDir}
+	#  mv ${ipsecSecFileBak} ${ipsecSecFileOriginal}
+	#fi
+
+}
+
+includeFreeServerIpsecSecretFile
+
+linkBinUtilAsShortcut() {
+	ln -s ${utilDir}/restart-dead-ipsec.sh ${freeServerRoot}/restart-dead-ipsec
+	ln -s ${utilDir}/createuser-ipsec.sh ${freeServerRoot}/createuser-ipsec
+	ln -s ${utilDir}/restart-ipsec.sh ${freeServerRoot}/restart-ipsec
+	ln -s ${utilDir}/deleteuser-ipsec.sh ${freeServerRoot}/deleteuser-ipsec
+	ln -s ${utilDir}/cron-ipsec-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d
+
+}
+
+linkBinUtilAsShortcut
 
 
 

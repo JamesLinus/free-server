@@ -11,6 +11,7 @@ fi
 
 if [[ ! -f ${ipsecSecFile} ]]; then
   echoS "IPSec config file (${ipsecSecFile}) is not detected. This you may not install it correctly. Exit."
+  sleep 2
   exit 1
 fi
 
@@ -21,10 +22,11 @@ password=$2
 ( [[ -z "${username}" ]]  || [[ -z "${password}" ]] ) \
  && echoS "You should invoke me via \`$0 USERNAME PASSWORD \`. \
  None of the parameters could be omitted." \
- && exit 0
+ && sleep 2 && exit 0
 
 if [[ ! -z $(gawk "/^${username} / {print}" ${ipsecSecFile}) ]]; then
   echoS "Ooops, the user ${username} is exited in file ${ipsecSecFile} already. Exit"
+  sleep 2
   exit 0
 fi
 
