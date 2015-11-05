@@ -27,6 +27,7 @@ downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-forever-process-running-gene
 
 downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
 downloadFileToFolder ${baseUrlSetup}/install-spdy-nghttpx-squid.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlBin}/createuser-spdy-nghttpx-squid.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-spdy-nghttpx-squid.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/start-spdy-nghttpx.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-spdy-squid.sh ${utilDir}

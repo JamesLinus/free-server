@@ -8,6 +8,8 @@ main() {
   installSpdyLay
   installNgHttpX
   linkBinUtilAsShortcut
+  generateSquidConf
+  installSquid
 }
 
 getSpdySslKeyFile() {
@@ -58,6 +60,7 @@ installSpdyLay() {
   rm -rf ${SPDYSpdyLayFolderName}
 
   wget ${SPDYSpdyLayDownloadLink}
+  echoS "Installing, may need 5 minutes..."
   tar zxf ${SPDYSpdyLayTarGzName} > /dev/null
 
   cd ${SPDYSpdyLayFolderName}/
@@ -93,6 +96,8 @@ installNgHttpX() {
   tar zxf ${SPDYNgHttp2TarGzName} > /dev/null
 
   cd ${SPDYNgHttp2FolderName}/
+  echoS "Installing, may need 5 minutes..."
+
   autoreconf -i > /dev/null \
     && automake > /dev/null \
     && autoconf >/dev/null \
@@ -117,7 +122,7 @@ generateSquidConf() {
 
 installSquid() {
 
-  echoS "Install Squid"
+  echoS "Install Squid, may need 5 minutes."
   apt-get install squid3 -y > /dev/null
 }
 

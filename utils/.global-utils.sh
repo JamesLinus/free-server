@@ -101,7 +101,7 @@ export -f isUbuntu14
 enforceInstallOnUbuntu
 
 warnNoEnterReturnKey() {
-  echoS "\x1b[31m Do NOT press any Enter/Return on Program Installation \x1b[0m if haven't been asked. Or, it may fail."
+  echoS "\x1b[31m Do NOT press any Enter/Return key while script is compiling / downloading \x1b[0m if haven't been asked. Or, it may fail."
 }
 
 randomString()
