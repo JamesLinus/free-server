@@ -28,14 +28,14 @@ echoS "Init Env"
 
 
 if [ -d ${freeServerRoot} ]; then
-    echoS "Old free-server installation detected. Back up config files and clean up the folder in 5 seconds.\
+    echoS "Old free-server installation detected. Script is going to perform Save Upgrading in 5 seconds.\
      Press Ctrl+C to cancel"
     sleep 5
 
     echoS "Removing Old free-server installation"
 
     # restore backed up config files
-    if [ -d ${configDirBackup} ]; then
+    if [[ -d ${configDirBackup} ]]; then
         echoS "Old backed up config files found in ~/${configDir}$(appendDateToString). \
         This is not correct. You should move it to other place or just delete it before proceed. Exit"
         exit 0
@@ -81,10 +81,10 @@ ${freeServerRootTmp}/install-ipsec-ikev2.sh
 #${freeServerRootTmp}/install-cluster.sh
 
 # restore backed up config files
-if [ -d ~/config-bak$(appendDateToString) ]; then
-    cp -rn ${configDir}/* ~/config-bak$(appendDateToString)
+if [ -d ${configDirBackup} ]; then
+    cp -rn ${configDir}/* ${configDirBackup}
     rm -rf ${configDir}
-    mv ~/config-bak$(appendDateToString) ${configDir}
+    mv ${configDirBackup} ${configDir}
 fi
 
 echoS "Restart and Init Everything in need"
