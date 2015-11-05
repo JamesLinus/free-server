@@ -14,7 +14,6 @@ if [[ "${ubuntu14}" == "YES" ]]; then
 #  echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
 #  gpg --keyserver pgpkeys.mit.edu --recv-key 7638D0442B90D010
 #  gpg -a --export 7638D0442B90D010 | sudo apt-key add -
-  warnNoEnterReturnKey
 
   wget http://launchpadlibrarian.net/173841617/init-system-helpers_1.18_all.deb > /dev/null
   dpkg -i init-system-helpers_1.18_all.deb  > /dev/null

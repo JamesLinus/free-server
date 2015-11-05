@@ -56,7 +56,7 @@ installSpdyLay() {
   wget ${SPDYSpdyLayDownloadLink}
   tar zxf ${SPDYSpdyLayTarGzName} > /dev/null
 
-  cd ${SPDYSpdyLayTarGzName}/
+  cd ${SPDYSpdyLayFolderName}/
   autoreconf -i > /dev/null \
     && automake > /dev/null \
     && autoconf >/dev/null \
@@ -80,7 +80,7 @@ installNgHttpX() {
   wget ${SPDYNgHttp2DownloadLink}
   tar zxf ${SPDYNgHttp2TarGzName} > /dev/null
 
-  cd ${SPDYNgHttp2TarGzName}/
+  cd ${SPDYNgHttp2FolderName}/
   autoreconf -i > /dev/null \
     && automake > /dev/null \
     && autoconf >/dev/null \

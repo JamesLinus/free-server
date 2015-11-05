@@ -19,6 +19,7 @@ if [[ $UID -ne 0 ]]; then
 fi
 
 echoS "apt-get update and install required tools"
+warnNoEnterReturnKey
 apt-get update -y >> /dev/null
 apt-get install -y gawk  >> /dev/null
 apt-get install -y curl  >> /dev/null
@@ -55,19 +56,23 @@ wget --no-cache -qO- ${baseUrlSetup}/init-folders.sh | /bin/bash
 
 
 echoS "Getting and processing utility package"
+warnNoEnterReturnKey
 
 downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
 /bin/bash ${freeServerRootTmp}/download-files.sh
 
 echoS "Installing NodeJS and NPM"
+warnNoEnterReturnKey
 
 ${freeServerRootTmp}/install-node.sh > /dev/null
 
 echoS "Installing and initing Shadowsocks"
+warnNoEnterReturnKey
 
 ${freeServerRootTmp}/install-shadowsocks.sh > /dev/null
 
 echoS "Installing SPDY Proxy"
+warnNoEnterReturnKey
 
 #${freeServerRootTmp}/install-spdy.sh
 ${freeServerRootTmp}/install-spdy-nghttpx-squid.sh
