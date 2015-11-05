@@ -183,7 +183,7 @@ replaceStringInFile(){
   fi
 
   # all the arguments should be given
-  if [[ -z $1 ]] || [[ -z $2 ]] || [[ -z $3 ]];then
+  if [[ -z $1 || -z $2 || -z $3 ]];then
     echo "You should provide all 3 arguments to invoke $FUNCNAME"
     exit 1
   fi
