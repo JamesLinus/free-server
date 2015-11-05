@@ -65,8 +65,8 @@ export ipsecSecFileBak=/usr/local/etc/ipsec.secrets.bak.free-server
 #export ipsecSecFileBakQuericy=/usr/local/etc/ipsec.secrets.bak.quericy
 export ipsecSecPskSecretDefault=freeserver
 export ipsecStrongManVersion=strongswan-5.3.3
-export ipsecStrongManVersionTarGz=${strongManVersion}.tar.gz
-## ipsecStrongManOldVersion should be added if you want to update the ${strongManVersion}, so that the script can clean the old files
+export ipsecStrongManVersionTarGz=${ipsecStrongManVersion}.tar.gz
+## ipsecStrongManOldVersion should be added if you want to update the ${ipsecStrongManVersion}, so that the script can clean the old files
 export ipsecStrongManOldVersion=strongswan-5.2.1
 export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 
