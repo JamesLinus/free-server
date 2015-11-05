@@ -53,6 +53,10 @@ installSpdyLay() {
   -y > /dev/null
 
   warnNoEnterReturnKey
+
+  rm -rf ${SPDYSpdyLayTarGzName}
+  rm -rf ${SPDYSpdyLayFolderName}
+
   wget ${SPDYSpdyLayDownloadLink}
   tar zxf ${SPDYSpdyLayTarGzName} > /dev/null
 
@@ -66,6 +70,10 @@ installSpdyLay() {
     > /dev/null
   ldconfig
 
+  cd ..
+  rm -rf ${SPDYSpdyLayTarGzName}
+  rm -rf ${SPDYSpdyLayFolderName}
+
 }
 
 installNgHttpX() {
@@ -77,6 +85,10 @@ installNgHttpX() {
   libjemalloc-dev cython python3-dev python-setuptools apache2-utils -y > /dev/null
 
   warnNoEnterReturnKey
+
+  rm -rf ${SPDYNgHttp2FolderName}
+  rm -rf ${SPDYNgHttp2TarGzName}
+
   wget ${SPDYNgHttp2DownloadLink}
   tar zxf ${SPDYNgHttp2TarGzName} > /dev/null
 
@@ -89,6 +101,10 @@ installNgHttpX() {
     && make install \
     > /dev/null
   ldconfig
+
+  cd ..
+  rm -rf ${SPDYNgHttp2FolderName}
+  rm -rf ${SPDYNgHttp2TarGzName}
 
 }
 

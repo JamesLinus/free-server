@@ -37,7 +37,7 @@ if [ -d ${freeServerRoot} ]; then
 
     # restore backed up config files
     if [[ -d ${configDirBackup} ]]; then
-        echoS "Old backed up config files found in ~/${configDir}$(appendDateToString). \
+        echoS "Old backed up config files found in ${configDirBackup}. \
         This is not correct. You should move it to other place or just delete it before proceed. Exit"
         exit 0
     fi
