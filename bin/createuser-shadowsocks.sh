@@ -25,7 +25,7 @@ configFile="${configDir}/ss-${port}.json"
 checkPortAvailable=$(ls ${configDir}  |gawk "/ss-${port}\./ {print $1}")
 
 if [[ ! -z "${checkPortAvailable}" ]]; then
-        echoS "Port $port is already used in file ${checkPortAvailable}. Exit." "stderr"
+        echoS "Port $port is already used in file ${configDir}/ss-${port}.json. Exit." "stderr"
         exit 0
 fi
 

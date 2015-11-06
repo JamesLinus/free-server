@@ -242,6 +242,16 @@ removeLineInFile(){
 }
 export -f removeLineInFile
 
+# usage:   removeLineByRegPattAndInsert /etc/sysctl.conf "fs\.file-max" "fs.file-max = 51200"
+removeLineByRegPattAndInsert() {
+  file=$1
+  regexpForSed=$2
+  linkToAppend=$3
+  removeLineInFile "${file}" "${regexpForSed}"
+  echo "${linkToAppend}" >> "${file}"
+
+}
+export -f removeLineByRegPattAndInsert
 
 #####
 # Add date to String
@@ -396,3 +406,35 @@ importSqlTarToMySQL(){
   rm -rf ~/__to_import
 }
 export -f importSqlTarToMySQL
+
+
+optimizeLinuxForShadowsocks(){
+
+  removeLineByRegPattAndInsert /etc/security/limits.conf "soft nofile 51200" "* soft nofile 51200"
+  removeLineByRegPattAndInsert /etc/security/limits.conf "hard nofile 51200" "* hard nofile 51200"
+
+  ulimit -n 51200
+
+  removeLineByRegPattAndInsert /etc/sysctl.conf "fs\.file-max" "fs.file-max = 51200"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "rmem_max" "net.core.rmem_max = 67108864"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "wmem_max" "net.core.wmem_max = 67108864"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "netdev_max_backlog" "net.core.netdev_max_backlog = 250000"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "somaxconn" "net.core.somaxconn = 4096"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_syncookies" "net.ipv4.tcp_syncookies = 1"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_tw_reuse" "net.ipv4.tcp_tw_reuse = 1"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_tw_recycle" "net.ipv4.tcp_tw_recycle = 0"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_fin_timeout" "net.ipv4.tcp_fin_timeout = 30"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_keepalive_time" "net.ipv4.tcp_keepalive_time = 1200"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "ip_local_port_range" "net.ipv4.ip_local_port_range = 10000 65000"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_max_syn_backlog"  "net.ipv4.tcp_max_syn_backlog = 8192"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_max_tw_buckets"  "net.ipv4.tcp_max_tw_buckets = 5000"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_fastopen"  "net.ipv4.tcp_fastopen = 3"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_rmem"  "net.ipv4.tcp_rmem = 4096 87380 67108864"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_wmem"  "net.ipv4.tcp_wmem = 4096 65536 67108864"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_mtu_probing"  "net.ipv4.tcp_mtu_probing = 1"
+  removeLineByRegPattAndInsert /etc/sysctl.conf "tcp_congestion_control"  "net.ipv4.tcp_congestion_control = hybla"
+
+  sysctl -p
+}
+
+export -f optimizeLinuxForShadowsocks

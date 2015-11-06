@@ -20,6 +20,8 @@ if [[ "${ubuntu14}" == "YES" ]]; then
   rm -rf init-system-helpers_1.18_all.deb*  > /dev/null
 fi
 
+optimizeLinuxForShadowsocks
+
 apt-get update -y > /dev/null
 apt-get install shadowsocks-libev -y > /dev/null
 

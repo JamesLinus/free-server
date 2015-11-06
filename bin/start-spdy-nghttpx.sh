@@ -52,11 +52,12 @@ startNgHttpX() {
   nghttpx \
   --daemon \
   --http2-proxy \
-  --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
+  --fastopen=3 \
   --workers=${SPDYNgHttpXCPUWorkerAmount} \
   --frontend="${SPDYFrontendListenHost},${port}" \
   --backend="${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}" \
   "${SPDYSSLKeyFile}" "${SPDYSSLCertFile}"
+#    --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
 
 }
 
