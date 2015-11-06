@@ -14,6 +14,8 @@ getObseleteInstallationFolder() {
 }
 
 migrateOldToNew() {
+  echoS "Migrate old installation ${oldFolder} to ${newFolder}"
+
   oldFolder=$1
   newFolder=${freeServerRoot}
   migrateBak=${oldFolder}.migrated.bak
@@ -27,6 +29,7 @@ migrateOldToNew() {
   cp -r ${oldFolder} ${migrateBak}
   mkdir -p ${newFolder}
   mv ${oldFolder}/config ${newFolder}/config
+  rm -rf ${oldFolder}
 
 }
 
