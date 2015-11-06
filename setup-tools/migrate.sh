@@ -3,7 +3,7 @@
 source /opt/.global-utils.sh
 
 main() {
-  oldFolder=$(detectObseleteInstallationFolder)
+  oldFolder=$(getObseleteInstallationFolder)
   if [[ -d ${oldFolder} ]]; then
     migrateOldToNew ${oldFolder}
   fi
