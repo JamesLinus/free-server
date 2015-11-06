@@ -32,7 +32,8 @@ echoS "Migrate obsolete installation"
 cd ${globalUtilStoreDir}
 rm migrate.sh
 downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/
-./migrate.sh > /dev/null
+# Should not remove /bin/bash since it's not executable
+/bin/bash ./migrate.sh > /dev/null
 
 echoS "Init Env"
 warnNoEnterReturnKey
@@ -68,7 +69,8 @@ echoS "Getting and processing utility package"
 warnNoEnterReturnKey
 
 downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
-${freeServerRootTmp}/download-files.sh
+# Should not remove /bin/bash since it's not executable
+/bin/bash ${freeServerRootTmp}/download-files.sh
 
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
