@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /root/.global-utils.sh
+source /opt/.global-utils.sh
 
 port=$1
 

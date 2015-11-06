@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /root/.global-utils.sh
+source /opt/.global-utils.sh
 
 ## file to write to cron.d
 file="/etc/cron.d/forever-process-running-shadowsocks"

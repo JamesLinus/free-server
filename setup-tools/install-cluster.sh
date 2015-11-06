@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source /root/.global-utils.sh
+source /opt/.global-utils.sh
 
-# clusterDefFilePath in /root/.global-utils.sh
+# clusterDefFilePath in /opt/.global-utils.sh
 
 init() {
   createConfigFile

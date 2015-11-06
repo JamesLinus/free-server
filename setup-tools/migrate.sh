@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /root/.global-utils.sh
+source /opt/.global-utils.sh
 
 main() {
   oldFolder=$(detectObseleteInstallationFolder)
