@@ -9,18 +9,18 @@ then
 fi
 
 if [[ ! -f ${SPDYConfig} ]]; then
-  echoS "The SPDY config file ${SPDYConfig} is not found . Exit"
+  echoS "The SPDY config file ${SPDYConfig} is not found . Exit" "stderr"
   exit 0
 fi
 
 if [[ ! -f ${SPDYSSLKeyFile} ]]; then
-  echoS "The SSL Key file ${key} is not existed. Exit"
+  echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
   exit 0
 fi
 
 
 if [[ ! -f ${SPDYSSLCertFile} ]]; then
-  echoS "The SSL cert file ${cert} is not existed. Exit"
+  echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
   exit 0
 fi
 

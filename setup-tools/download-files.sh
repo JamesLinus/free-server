@@ -6,6 +6,7 @@ source ~/.global-utils.sh
 
 # setup tools
 downloadFileToFolder ${baseUrlSetup}/init.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlSetup}/migrate.sh ${freeServerRootTmp}
 
 downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
 # runtime bin

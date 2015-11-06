@@ -2,7 +2,7 @@
 
 source ~/.global-utils.sh
 
-echoS "For new installation: Input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
+echoS "Input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
 

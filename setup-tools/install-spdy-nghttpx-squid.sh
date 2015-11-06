@@ -14,10 +14,10 @@ main() {
 
 getSpdySslKeyFile() {
   if [[ -f ${SPDYSSLKeyFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating."
+    echoS "Previous SPDY SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating." "stderr"
     return 0
   fi
-  echoS "For new installation: Input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
+  echoS "Input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
 
@@ -32,7 +32,7 @@ a free copy from https://www.startssl.com/)\n"
 
 getSpdySslCertFile() {
   if [[ -f ${SPDYSSLCertFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY SSL Cert file detected in ${SPDYSSLCertFileInConfigDirBackup}. Skip generating."
+    echoS "Previous SPDY SSL Cert file detected in ${SPDYSSLCertFileInConfigDirBackup}. Skip generating." "stderr"
     return 0
   fi
 
@@ -117,7 +117,7 @@ generateSquidConf() {
   replaceStringInFile ${SPDYSquidConfig} FREE_SERVER_BASIC_HTTP_AUTH_PASSWD_FILE ${SPDYSquidPassWdFile}
   replaceStringInFile ${SPDYSquidConfig} SQUID_AUTH_PROCESS ${SPDYSquidAuthSubProcessAmount}
   touch ${SPDYSquidPassWdFile}
-  chown proxy ${SPDYSquidPassWdFile}
+  chown proxy.proxy ${SPDYSquidPassWdFile}
   touch ${SPDYConfig}
 }
 
@@ -125,6 +125,7 @@ generateSquidConf() {
 installSquid() {
 
   echoS "Install Squid, may need 5 minutes."
+
   apt-get install squid -y > /dev/null
 }
 

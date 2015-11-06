@@ -18,14 +18,14 @@ fi
 
 
 if [[ ! -f ${SPDYSSLKeyFile} ]]; then
-  echoS "The SSL Key file ${key} is not existed. Exit"
+  echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
   sleep 2
   exit 0
 fi
 
 
 if [[ ! -f ${SPDYSSLCertFile} ]]; then
-  echoS "The SSL cert file ${cert} is not existed. Exit"
+  echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
   sleep 2
   exit 0
 fi
@@ -36,18 +36,18 @@ port=$3
 
 ( [[ -z "${username}" ]]  || [[ -z "${password}" ]] || [[ -z "${port}" ]] ) \
  && echoS "You should invoke me via \`$0 USERNAME PASSWORD PORT \`. \
- None of the parameters could be omitted." \
+ None of the parameters could be omitted."  "stderr" \
  &&  sleep 2 && exit 0
 
 if [[ ! -z $(gawk "/^${username},/ {print}" ${SPDYConfig}) ]]; then
-  echoS "Ooops, the user ${username} is exited in file ${SPDYConfig} already. Exit"
+  echoS "Ooops, the user ${username} is exited in file ${SPDYConfig} already. Exit" "stderr"
   sleep 2
   exit 0
 fi
 
 
 if [[ ! -z $(gawk "/,${port}$/ {print}" ${SPDYConfig}) ]]; then
-  echoS "Ooops, the port ${port} is taken in file ${SPDYConfig} already. Exit"
+  echoS "Ooops, the port ${port} is taken in file ${SPDYConfig} already. Exit" "stderr"
   sleep 2
   exit 0
 fi

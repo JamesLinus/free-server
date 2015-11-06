@@ -101,7 +101,7 @@ export -f isUbuntu14
 enforceInstallOnUbuntu
 
 warnNoEnterReturnKey() {
-  echoS "\x1b[31m Do NOT press any Enter/Return key while script is compiling / downloading \x1b[0m if haven't been asked. Or, it may fail."
+  echoS "\x1b[31m Do NOT press any Enter/Return key while script is compiling / downloading \x1b[0m if haven't been asked. Or, it may fail." "stderr"
 }
 
 randomString()
@@ -113,7 +113,11 @@ export -f randomString
 echoS(){
   echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
   echo "##"
-  echo -e "## $1"
+  if [[ "$2" == "stderr" ]]; then
+    >&2 echo -e "## \x1b[31m $1 \x1b[0m"
+  else
+    echo -e "## \x1b[34m $1 \x1b[0m"
+  fi
   echo "##"
 
   echo "***********++++++++++++++++++++++++++++++++++++++++++++++++++***********"
@@ -162,11 +166,11 @@ downloadFileToFolder(){
   echo "Prepare to download file $1 into Folder $2"
 
   if [ ! -d "$2" ]; then
-    echoS "Folder $2 is not existed. Exit"
+    echoS "Folder $2 is not existed. Exit" "stderr"
     exit 0
   fi
   if [ -z $1 ]; then
-    echoS "Url must be provided. Exit"
+    echoS "Url must be provided. Exit" "stderr"
     exit 0
   fi
   wget -q --directory-prefix="$2" "$1"
@@ -284,13 +288,13 @@ getUserInput(){
     userinput=$(removeWhiteSpace "${userinput}")
 
     if [[ "${inputValidator}" == "file" && ! -f "${userinput}" ]]; then
-      echoS "The file ${userinput} you input is empty or not a file."
+      echoS "The file ${userinput} you input is empty or not a file." "stderr"
     else
       break
     fi
 
     if [[ "${inputValidator}" == "non-empty" && -z "${userinput}" ]]; then
-      echoS "Te input should not be empty."
+      echoS "The input should not be empty." "stderr"
     else
       break
     fi
@@ -318,7 +322,7 @@ importSqlTarToMySQL(){
   dbFolder=$1
 
   if [[ ! -d ${dbFolder} ]]; then
-    echoS "Folder ${dbFolder} is not existed"
+    echoS "Folder ${dbFolder} is not existed" "stderr"
     echoS "@example importSqlTarToMySQL ~/backup/"
     return 0
   fi

@@ -428,7 +428,7 @@ prepareFreeServerIpsecSecretFile() {
 	#${configDirBackup}
 
 	if [[ -f ${ipsecSecFileInConfigDirBackup} ]]; then
-		echoS "Previous ipsec secret file detected in ${ipsecSecFileInConfigDirBackup}. Skip generating."
+		echoS "Previous ipsec secret file detected in ${ipsecSecFileInConfigDirBackup}. Skip generating." "stderr"
 		return  0
 	fi
 

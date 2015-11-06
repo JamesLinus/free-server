@@ -24,6 +24,8 @@ apt-get update -y >> /dev/null
 apt-get install -y gawk  >> /dev/null
 apt-get install -y curl  >> /dev/null
 
+echoS "Migrate obsolete installation"
+${freeServerRootTmp}/migrate.sh > /dev/null
 
 echoS "Init Env"
 warnNoEnterReturnKey
