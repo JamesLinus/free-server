@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/.global-utils.sh
+source /root/.global-utils.sh
 
 #if [[ -f ${ipsecSecFileOriginal} || ! -L ${ipsecSecFileOriginal} ]]; then
 ##  isIpsecConfigExisted=$(cat ${ipsecSecFileOriginal} | grep server.pem)

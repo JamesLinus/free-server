@@ -5,11 +5,15 @@ clear
 export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 export self="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/$0"
 
-cd ~
+# get global utils
+globalUtilStoreDir=/opt
+mkdir -p ${globalUtilStoreDir}
+chmod 755 ${globalUtilStoreDir}
+cd ${globalUtilStoreDir}
 # prepare global functions
-rm ./.global-utils.sh
+rm .global-utils.sh
 wget --no-cache ${bashUrl}/utils/.global-utils.sh
-source ~/.global-utils.sh
+source .global-utils.sh
 
 enforceInstallOnUbuntu
 

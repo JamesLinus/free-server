@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.global-utils.sh
+source /root/.global-utils.sh
 
 ## file to write to cron.d
 file="/etc/cron.d/forever-process-running-spdy-nghttpx-squid"

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source ~/.global-utils.sh
+source /root/.global-utils.sh
 
 ipsec restart

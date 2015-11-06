@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.global-utils.sh
+source /root/.global-utils.sh
 
 if [ "x$1" = "x-h" -o "x$1" = "x--help" ]
 then
