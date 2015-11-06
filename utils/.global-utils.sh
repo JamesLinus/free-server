@@ -163,14 +163,14 @@ export -f getIp
 # @example downloadFileToFolder http://www.xiaofang.me/some.zip ~/free-server
 #####
 downloadFileToFolder(){
-  echo "Prepare to download file $1 into Folder $2"
+  echo "[$FUNCNAME] Prepare to download file $1 into Folder $2"
 
   if [ ! -d "$2" ]; then
-    echoS "Folder $2 is not existed. Exit" "stderr"
+    echoS "[$FUNCNAME] Folder $2 is not existed. Exit" "stderr"
     exit 0
   fi
   if [ -z $1 ]; then
-    echoS "Url must be provided. Exit" "stderr"
+    echoS "[$FUNCNAME] Url must be provided. Exit" "stderr"
     exit 0
   fi
   wget -q --directory-prefix="$2" "$1"
@@ -194,12 +194,12 @@ replaceStringInFile(){
 
   # all the arguments should be given
   if [[ -z $1 || -z $2 || -z $3 ]];then
-    echo "You should provide all 3 arguments to invoke $FUNCNAME"
+    echo "[$FUNCNAME] You should provide all 3 arguments to invoke $FUNCNAME"
     exit 1
   fi
 
   if [[ ! -f $1 ]]; then
-    echo "File $1 is not existed"
+    echo "[$FUNCNAME] File $1 is not existed"
     exit 1
   fi
 

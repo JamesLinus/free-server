@@ -29,13 +29,15 @@ apt-get install -y gawk  >> /dev/null
 apt-get install -y curl  >> /dev/null
 
 echoS "Migrate obsolete installation"
-downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${freeServerRootTmp}
-${freeServerRootTmp}/migrate.sh > /dev/null
+cd ${globalUtilStoreDir}
+rm migrate.sh
+downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/
+./migrate.sh > /dev/null
 
 echoS "Init Env"
 warnNoEnterReturnKey
 
-if [ -d ${freeServerRoot} ]; then
+if [[ -d ${freeServerRoot} ]]; then
     echoS "Old free-server installation detected. Script is going to perform Save Upgrading in 5 seconds.\
      Press Ctrl+C to cancel"
     sleep 5
