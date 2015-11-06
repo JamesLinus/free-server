@@ -25,7 +25,8 @@ migrateOldToNew() {
   fi
   rm -rf ${migrateBak}
   cp -r ${oldFolder} ${migrateBak}
-  mv ${oldFolder} ${newFolder}
+  mkdir -p ${newFolder}
+  mv ${oldFolder}/config ${newFolder}/config
 
 }
 
