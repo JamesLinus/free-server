@@ -25,6 +25,7 @@ apt-get install -y gawk  >> /dev/null
 apt-get install -y curl  >> /dev/null
 
 echoS "Migrate obsolete installation"
+downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${freeServerRootTmp}
 ${freeServerRootTmp}/migrate.sh > /dev/null
 
 echoS "Init Env"
@@ -61,7 +62,7 @@ echoS "Getting and processing utility package"
 warnNoEnterReturnKey
 
 downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
-/bin/bash ${freeServerRootTmp}/download-files.sh
+${freeServerRootTmp}/download-files.sh
 
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
