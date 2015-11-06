@@ -173,7 +173,7 @@ downloadFileToFolder(){
     echoS "[$FUNCNAME] Url must be provided. Exit" "stderr"
     exit 0
   fi
-  wget -q --directory-prefix="$2" "$1"
+  wget --no-cache -q --directory-prefix="$2" "$1"
 }
 export -f downloadFileToFolder
 
