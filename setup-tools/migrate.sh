@@ -10,7 +10,7 @@ main() {
 }
 
 getObseleteInstallationFolder() {
-  echo "~/free-server"
+  echo "/root/free-server"
 }
 
 migrateOldToNew() {
