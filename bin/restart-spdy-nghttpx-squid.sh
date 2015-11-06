@@ -25,7 +25,7 @@ if [[ ! -f ${SPDYSSLCertFile} ]]; then
   exit 0
 fi
 
-killProcessesByPattern nghttpx
+pkill nghttpx
 
 for i in $(cat "${SPDYConfig}"); do
 
@@ -42,10 +42,10 @@ for i in $(cat "${SPDYConfig}"); do
     port: ${port} \n"
   else
     echo -e "Restart nghttpx: Username: ${username}, Port ${port} " | wall
-    ${freeServerRootTmp}/start-spdy-nghttpx ${port}
+    ${freeServerRoot}/start-spdy-nghttpx ${port}
   fi
 
 done
 
-${freeServerRootTmp}/restart-spdy-squid
+${freeServerRoot}/restart-spdy-squid
 

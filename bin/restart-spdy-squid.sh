@@ -11,4 +11,4 @@ fi
 echoS "Restart SPDY Squid3"
 pkill squid
 pkill squid3
-squid3 -f ${SPDYSquidConfig}
+squid3 -f ${SPDYSquidConfig} -k reconfigure

@@ -13,14 +13,14 @@ export baseUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 
 export freeServerInstallationFolderName=free-server
 # the top install folder
-export freeServerRoot=~/${freeServerInstallationFolderName}/
+export freeServerRoot=/opt/${freeServerInstallationFolderName}/
 
 # utility folder
 export utilDir=${freeServerRoot}/util
 
 # for configration samples
 export configDir=${freeServerRoot}/config
-export configDirBackup=~/free-server-config-bak
+export configDirBackup=/opt/free-server-config-bak
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp

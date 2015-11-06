@@ -117,6 +117,7 @@ generateSquidConf() {
   replaceStringInFile ${SPDYSquidConfig} FREE_SERVER_BASIC_HTTP_AUTH_PASSWD_FILE ${SPDYSquidPassWdFile}
   replaceStringInFile ${SPDYSquidConfig} SQUID_AUTH_PROCESS ${SPDYSquidAuthSubProcessAmount}
   touch ${SPDYSquidPassWdFile}
+  chown proxy ${SPDYSquidPassWdFile}
   touch ${SPDYConfig}
 }
 
@@ -124,7 +125,7 @@ generateSquidConf() {
 installSquid() {
 
   echoS "Install Squid, may need 5 minutes."
-  apt-get install squid3 -y > /dev/null
+  apt-get install squid -y > /dev/null
 }
 
 linkBinUtilAsShortcut() {
