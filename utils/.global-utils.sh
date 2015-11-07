@@ -24,11 +24,13 @@ export configDirBackup=/opt/free-server-config-bak
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
+export freeServerRootMisc=${freeServerRoot}/misc
 
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
 export baseUrlSetup=${baseUrl}/setup-tools
 export baseUrlConfigSample=${baseUrl}/config-sample
+export baseUrlMisc=${baseUrl}/misc
 
 export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"

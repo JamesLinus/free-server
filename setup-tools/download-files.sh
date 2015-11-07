@@ -52,6 +52,8 @@ downloadFileToFolder ${baseUrlBin}/cluster-restart.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cluster-deploy-ssh-mutual-auth.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cluster-deploy-ssh-mutual-auth-accept.sh ${utilDir}
 
+downloadFileToFolder ${baseUrlMisc}/testing-web.js ${freeServerRootMisc}
+
 # set executable for all shell scripts
 cd ${utilDir}
 chmod -R +x *.sh

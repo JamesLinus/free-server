@@ -7,6 +7,7 @@ main() {
   createFolderByPath ${utilDir}
   createFolderByPath ${configDir}
   createFolderByPath ${freeServerRootTmp}
+  createFolderByPath ${freeServerRootMisc}
 }
 
 createFolderByPath() {

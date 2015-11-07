@@ -44,7 +44,6 @@ commonCheck() {
 }
 
 
-
 startNgHttpX() {
   echo -e "Start nghttpx:  Port ${port} " | wall
   # Testing:
@@ -53,11 +52,11 @@ startNgHttpX() {
   --daemon \
   --http2-proxy \
   --fastopen=3 \
+  --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
   --workers=${SPDYNgHttpXCPUWorkerAmount} \
   --frontend="${SPDYFrontendListenHost},${port}" \
   --backend="${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}" \
   "${SPDYSSLKeyFile}" "${SPDYSSLCertFile}"
-#    --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
 
 }
 
