@@ -5,6 +5,7 @@ source /opt/.global-utils.sh
 main() {
   getSpdySslKeyFile
   getSpdySslCertFile
+  getSpdySslCaPemFile
   installSpdyLay
   installNgHttpX
   linkBinUtilAsShortcut
@@ -14,34 +15,80 @@ main() {
 
 getSpdySslKeyFile() {
   if [[ -f ${SPDYSSLKeyFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating." "stderr"
+    echoS "Previous SPDY/HTTP2 SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating." "stderr"
     return 0
   fi
   echoS "Input the file (with path) of your SSL Key file  (*.key) : \n\n(You could not use self-signed SSL cert. You could get \
 a free copy from https://www.startssl.com/)\n"
 
 
-  key=$(getUserInput "Input new \x1b[46m *.key \x1b[0m file absolute path (e.g. /root/mydomain.com.key): " file 3)
+  key=$(getUserInput "Input \x1b[46m *.key \x1b[0m file absolute path (e.g. /root/mydomain.com.key): " file 3)
 
-  echoS "Selected key file is ${key}"
-  echoS "Copy Key ${key} to ${configDir}"
+  if [[ ! -f ${key} ]]; then
 
-  cp ${key} ${SPDYSSLKeyFile}
+    echoErr "SSL Key file  (*.key) is required for installation of SPDY/HTTP2 server."
+
+  else
+
+    echoS "Selected key file is ${key}"
+    echoS "Copy Key ${key} to ${configDir}"
+    cp ${key} ${SPDYSSLKeyFile}
+
+  fi
+
 
 }
 
 getSpdySslCertFile() {
   if [[ -f ${SPDYSSLCertFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY SSL Cert file detected in ${SPDYSSLCertFileInConfigDirBackup}. Skip generating." "stderr"
+    echoS "Previous SPDY/HTTP2 SSL Cert file detected in ${SPDYSSLCertFileInConfigDirBackup}. Skip generating." "stderr"
     return 0
   fi
 
-  cert=$(getUserInput "Input new \x1b[46m *.crt \x1b[0m file absolute path (e.g. /root/mydomain.com.crt): " file 3)
+  cert=$(getUserInput "Input \x1b[46m *.crt \x1b[0m file absolute path (e.g. /root/mydomain.com.crt): " file 3)
 
-  echoS "Selected cert file is ${cert}"
-  echoS "Copy Cert ${cert} to ${configDir}"
 
-  cp ${cert} ${SPDYSSLCertFile}
+  if [[ ! -f ${cert} ]]; then
+
+    echoErr "SSL Cert file  (*.crt) is required for installation of SPDY/HTTP2 server."
+
+  else
+
+    echoS "Selected cert file is ${cert}"
+    echoS "Copy Cert ${cert} to ${configDir}"
+
+    cp ${cert} ${SPDYSSLCertFile}
+
+  fi
+
+
+
+}
+
+
+getSpdySslCaPemFile() {
+  if [[ -f ${SPDYSSLCaPemFileInConfigDirBackup} ]]; then
+    echoS "Previous SPDY/HTTP2 SSL CA Pem file detected in ${SPDYSSLCaPemFileInConfigDirBackup}. Skip generating." "stderr"
+    return 0
+  fi
+  echoS "Input the file (with path) of your SSL Ca pem file  (*.pem, one file could include multiple certificates) \n\n\
+   (This is mandatory for Windows Chrome user) : \n\n\
+    If your free SSL certificate is from startssl.com, then here it is: http://www.startssl.com/certs/sub.class1.server.ca.pem \n\n"
+
+  caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/sub.class1.server.ca.pem): " file 3)
+
+  if [[ ! -f ${caPem} ]]; then
+
+    echoErr "SSL CA Pem file  (ca.pem) is required for installation of SPDY/HTTP2 server."
+
+  else
+
+    echoS "Selected ca.pem file is ${caPem}"
+    echoS "Copy Key ${caPem} to ${configDir}"
+
+    cp ${caPem} ${SPDYSSLCaPemFile}
+
+  fi
 
 }
 

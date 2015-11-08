@@ -48,6 +48,8 @@ export SPDYSquidPassWdFile="${configDir}/squid-auth-passwd"
 # make SPDYSquidAuthSubProcessAmount bigger, make squid basic auth faster, but may be more unstable indeed
 export SPDYSquidAuthSubProcessAmount=4
 
+export SPDYSSLCaPemFile="${configDir}/SPDY.ca-multiple.pem"
+export SPDYSSLCaPemFileInConfigDirBackup="${configDirBackup}/SPDY.ca-multiple.pem"
 export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
 export SPDYSSLKeyFileInConfigDirBackup="${configDirBackup}/SPDY.domain.key"
 export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
@@ -127,6 +129,10 @@ echoS(){
 }
 export -f echoS
 
+echoErr(){
+  >&2 echo -e "\x1b[31m$@\x1b[0m"
+}
+export -f echoErr
 
 echoSExit(){
   echoS "$1"
@@ -283,6 +289,8 @@ getUserInput(){
   inputValidator=$2
   maxtry=$3
 
+  userinput=''
+
   if [[ -z ${promptMsg} ]]; then
     echoS '@example input=$(getUserInput "Provide File" file 3)'
     exit 0
@@ -296,19 +304,24 @@ getUserInput(){
 
     sleep 1
 
-    read -p "$(echo -e ${promptMsg}) \$: " userinput
+    read -p "$(echo -e ${maxtry} attempt\(s\) left, ${promptMsg}) \$: " userinput
     userinput=$(removeWhiteSpace "${userinput}")
 
-    if [[ "${inputValidator}" == "file" && ! -f "${userinput}" ]]; then
-      echoS "The file ${userinput} you input is empty or not a file." "stderr"
-    else
-      break
+    if [[ "${inputValidator}" == "file" ]]; then
+      if [[ ! -f "${userinput}"  ]]; then
+        echoErr "The file ${userinput} you input is empty or not a file."
+        userinput=''
+      else
+        break
+      fi
     fi
 
-    if [[ "${inputValidator}" == "non-empty" && -z "${userinput}" ]]; then
-      echoS "The input should not be empty." "stderr"
-    else
-      break
+    if [[ "${inputValidator}" == "non-empty" ]]; then
+      if [[  -z "${userinput}" ]]; then
+        echo "\x1b[0m The input should not be empty.\x1b[0m"
+      else
+        break
+      fi
     fi
 
 
