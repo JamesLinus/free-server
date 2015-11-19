@@ -327,6 +327,10 @@ getUserInput(){
 
     ((maxtry--))
 
+    if [[ -z ${inputValidator} ]]; then
+        break
+    fi
+
   done
 
   echo ${userinput}
