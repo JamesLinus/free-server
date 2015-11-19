@@ -25,3 +25,5 @@ ${freeServerRoot}/restart-spdy-nghttpx-squid > /dev/null
 echoS "Create a simple website for testing purpose."
 
 npm install -g forever
+${utilDir}/restart-misc.sh  > /dev/null
+
