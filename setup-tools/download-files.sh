@@ -53,6 +53,9 @@ downloadFileToFolder ${baseUrlBin}/cluster-deploy-ssh-mutual-auth.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cluster-deploy-ssh-mutual-auth-accept.sh ${utilDir}
 
 downloadFileToFolder ${baseUrlMisc}/testing-web.js ${freeServerRootMisc}
+downloadFileToFolder ${baseUrlBin}/restart-misc.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-misc-forever-process-running-generate-cron.d.sh ${utilDir}
+
 
 # set executable for all shell scripts
 cd ${utilDir}

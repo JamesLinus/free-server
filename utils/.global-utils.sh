@@ -24,7 +24,7 @@ export configDirBackup=/opt/free-server-config-bak
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
-export freeServerRootMisc=${freeServerRoot}/misc
+export freeServerRootMisc=${freeServerRoot}misc
 
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
@@ -342,6 +342,10 @@ getUserInput(){
 
 
     ((maxtry--))
+
+    if [[ -z ${inputValidator} ]]; then
+        break
+    fi
 
   done
 

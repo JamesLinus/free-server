@@ -434,7 +434,7 @@ prepareFreeServerIpsecSecretFile() {
 
 	touch ${ipsecSecFile}
 
-	psk=$(getUserInput "Input IpSec PSK (Secret in iOS, only \x1b[46m a-z or A-Z \x1b[0m English letters accepted ) (default: ${ipsecSecPskSecretDefault} ): ")
+	psk=$(getUserInput "Input IpSec PSK (Secret in iOS, only \x1b[46m a-z or A-Z \x1b[0m English letters accepted ) (default: ${ipsecSecPskSecretDefault} ): " "non-empty" 2)
 
 	if [[ -z ${psk} ]]; then
 		psk=${ipsecSecPskSecretDefault}
