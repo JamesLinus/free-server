@@ -24,16 +24,25 @@ fi
 
 echoS "apt-get update and install required tools"
 warnNoEnterReturnKey
-apt-get update -y >> /dev/null
-apt-get install -y gawk  >> /dev/null
-apt-get install -y curl  >> /dev/null
+apt-get update -y > /dev/null
+
+catchError=$(apt-get install -y gawk 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
+
+catchError=$(apt-get install -y curl 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
 
 echoS "Migrate obsolete installation"
 cd ${globalUtilStoreDir}
 rm migrate.sh
-downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/
-chmod 755 ./migrate.sh > /dev/null
-./migrate.sh > /dev/null
+
+catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1 >${loggerStdoutFile})
+exitOnError ${catchError}
+
+chmod 755 ./migrate.sh >${loggerStdoutFile}
+./migrate.sh >${loggerStdoutFile}
 
 echoS "Init Env"
 warnNoEnterReturnKey
@@ -75,22 +84,31 @@ ${freeServerRootTmp}/download-files.sh
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-node.sh > /dev/null
+catchError=$(${freeServerRootTmp}/install-node.sh 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
+
 
 echoS "Installing and initing Shadowsocks"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-shadowsocks.sh > /dev/null
+catchError=$(${freeServerRootTmp}/install-shadowsocks.sh 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
 
 echoS "Installing SPDY Proxy"
 warnNoEnterReturnKey
 
 #${freeServerRootTmp}/install-spdy.sh
-${freeServerRootTmp}/install-spdy-nghttpx-squid.sh
+catchError=$(${freeServerRootTmp}/install-spdy-nghttpx-squid.sh 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
 
 echoS "Installing IPSec/IKEv2 VPN (for IOS)"
 
-${freeServerRootTmp}/install-ipsec-ikev2.sh
+catchError=$(${freeServerRootTmp}/install-ipsec-ikev2.sh 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
 
 #echoS "Installing and Initiating Free Server Cluster for multiple IPs/Domains/Servers with same Login Credentials support"
 #
@@ -105,7 +123,9 @@ fi
 
 echoS "Restart and Init Everything in need"
 
-${freeServerRootTmp}/init.sh
+catchError=$(${freeServerRootTmp}/init.sh 2>&1 >${loggerStdoutFile})
+
+exitOnError ${catchError}
 
 echoS "All done. Create user example: \n\n\
 \

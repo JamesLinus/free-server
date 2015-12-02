@@ -8,6 +8,11 @@ main() {
   createFolderByPath ${configDir}
   createFolderByPath ${freeServerRootTmp}
   createFolderByPath ${freeServerRootMisc}
+  createFolderByPath ${loggerStdoutFolder}
+  touch ${loggerStdoutFile}
+  touch ${loggerStderrFile}
+  touch ${loggerRuntimeInfoFile}
+  touch ${loggerRuntimeErrFile}
 }
 
 createFolderByPath() {

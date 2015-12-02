@@ -79,6 +79,12 @@ export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 export clusterDefFilePath="${configDir}/cluster-def.txt"
 export clusterDeploySSHMutualAuthAccept="${freeServerRoot}/cluster-deploy-ssh-mutual-auth-accept"
 
+export loggerStdoutFolder=${freeServerRoot}/log
+export loggerStdoutFile=${loggerStdoutFolder}/stdout.log
+export loggerStdoutFile=${loggerStderrFile}/stderr.log
+export loggerRuntimeInfoFile=${loggerStdoutFolder}/runtime_info.log
+export loggerRuntimeErrFile=${loggerStdoutFolder}/runtime_error.log
+
 enforceInstallOnUbuntu(){
 	isUbuntu=`cat /etc/issue | grep "Ubuntu"`
 
@@ -140,6 +146,16 @@ echoSExit(){
   exit 0
 }
 export -f echoSExit
+
+exitOnError(){
+  if [[ ! -z $1 ]]; then
+    echoS $1
+    echo $1 >> ${loggerStderrFile}
+    sleep 2
+    exit
+  fi
+}
+export -f exitOnError
 
 killProcessesByPattern(){
   echo -e "\nThe process(es) below would be killed"
