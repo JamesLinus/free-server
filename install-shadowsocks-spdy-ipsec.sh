@@ -26,11 +26,11 @@ echoS "apt-get update and install required tools"
 warnNoEnterReturnKey
 apt-get update -y > /dev/null
 
-catchError=$(apt-get install -y gawk 2>&1 >${loggerStdoutFile})
+catchError=$(apt-get install -y gawk 2>&1)
 
 exitOnError "${catchError}"
 
-catchError=$(apt-get install -y curl 2>&1 >${loggerStdoutFile})
+catchError=$(apt-get install -y curl 2>&1)
 
 exitOnError "${catchError}"
 
@@ -38,11 +38,11 @@ echoS "Migrate obsolete installation"
 cd ${globalUtilStoreDir}
 rm -f migrate.sh
 
-catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1 >${loggerStdoutFile})
+catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1)
 exitOnError "${catchError}"
 
-chmod 755 ./migrate.sh >${loggerStdoutFile}
-./migrate.sh >${loggerStdoutFile}
+chmod 755 ./migrate.sh
+./migrate.sh
 
 echoS "Init Env"
 warnNoEnterReturnKey
@@ -84,7 +84,7 @@ ${freeServerRootTmp}/download-files.sh
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
 
-catchError=$(${freeServerRootTmp}/install-node.sh 2>&1 >${loggerStdoutFile})
+catchError=$(${freeServerRootTmp}/install-node.sh 2>&1 >> ${loggerStdoutFile})
 
 exitOnError "${catchError}"
 
@@ -92,7 +92,7 @@ exitOnError "${catchError}"
 echoS "Installing and initing Shadowsocks"
 warnNoEnterReturnKey
 
-catchError=$(${freeServerRootTmp}/install-shadowsocks.sh 2>&1 >${loggerStdoutFile})
+catchError=$(${freeServerRootTmp}/install-shadowsocks.sh 2>&1 >> ${loggerStdoutFile})
 
 exitOnError "${catchError}"
 
@@ -100,13 +100,13 @@ echoS "Installing SPDY Proxy"
 warnNoEnterReturnKey
 
 #${freeServerRootTmp}/install-spdy.sh
-catchError=$(${freeServerRootTmp}/install-spdy-nghttpx-squid.sh 2>&1 >${loggerStdoutFile})
+catchError=$(${freeServerRootTmp}/install-spdy-nghttpx-squid.sh 2>&1 >> ${loggerStdoutFile})
 
 exitOnError "${catchError}"
 
 echoS "Installing IPSec/IKEv2 VPN (for IOS)"
 
-catchError=$(${freeServerRootTmp}/install-ipsec-ikev2.sh 2>&1 >${loggerStdoutFile})
+catchError=$(${freeServerRootTmp}/install-ipsec-ikev2.sh 2>&1 >> ${loggerStdoutFile})
 
 exitOnError "${catchError}"
 
@@ -123,7 +123,7 @@ fi
 
 echoS "Restart and Init Everything in need"
 
-catchError=$(${freeServerRootTmp}/init.sh 2>&1 >${loggerStdoutFile})
+catchError=$(${freeServerRootTmp}/init.sh 2>&1 >> ${loggerStdoutFile})
 
 exitOnError "${catchError}"
 
