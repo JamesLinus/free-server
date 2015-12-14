@@ -11,7 +11,7 @@ mkdir -p ${globalUtilStoreDir}
 chmod 755 ${globalUtilStoreDir}
 cd ${globalUtilStoreDir}
 # prepare global functions
-rm .global-utils.sh
+rm -f .global-utils.sh
 wget --no-cache ${bashUrl}/utils/.global-utils.sh
 source .global-utils.sh
 
@@ -36,7 +36,7 @@ exitOnError "${catchError}"
 
 echoS "Migrate obsolete installation"
 cd ${globalUtilStoreDir}
-rm migrate.sh
+rm -f migrate.sh
 
 catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1 >${loggerStdoutFile})
 exitOnError "${catchError}"
@@ -146,7 +146,7 @@ echoS "\x1b[46m Next step: \x1b[0m\n\n\
 
 echoS "Note that, the IpSec PSK(Secret) is located: \x1b[46m ${ipsecSecFile} \x1b[0m. You may want to reedit the PSK field."
 # remove self
-rm "$self"
+rm -f "$self"
 
 
 
