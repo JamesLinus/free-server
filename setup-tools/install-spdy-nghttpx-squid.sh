@@ -22,7 +22,7 @@ getSpdySslKeyFile() {
 a free copy from https://www.startssl.com/)\n"
 
 
-  key=$(getUserInput "Input \x1b[46m *.key \x1b[0m file absolute path (e.g. /root/mydomain.com.key): " file 3)
+  key=$(getUserInput "Input \x1b[46m *.key \x1b[0m file absolute path (e.g. /root/ssl/server.key): " file 3)
 
   if [[ ! -f ${key} ]]; then
 
@@ -45,7 +45,7 @@ getSpdySslCertFile() {
     return 0
   fi
 
-  cert=$(getUserInput "Input \x1b[46m *.crt \x1b[0m file absolute path (e.g. /root/mydomain.com.crt): " file 3)
+  cert=$(getUserInput "Input \x1b[46m *.crt \x1b[0m file absolute path (e.g. /root/ssl/mydomain.com.crt): " file 3)
 
 
   if [[ ! -f ${cert} ]]; then
@@ -105,7 +105,7 @@ installSpdyLay() {
   rm -rf ${SPDYSpdyLayTarGzName}
   rm -rf ${SPDYSpdyLayFolderName}
 
-  wget ${SPDYSpdyLayDownloadLink}
+  wget ${SPDYSpdyLayDownloadLink} >> /dev/null 2>&1
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
 
@@ -113,11 +113,11 @@ installSpdyLay() {
   exitOnError "${catchError}"
 
   cd ${SPDYSpdyLayFolderName}/
-  autoreconf -i \
-    && automake \
-    && autoconf \
-    && ./configure \
-    && make \
+  autoreconf -i >> /dev/null \
+    && automake >> /dev/null \
+    && autoconf >> /dev/null \
+    && ./configure >> /dev/null \
+    && make >> /dev/null \
     && make install \
      >> /dev/null
 
@@ -143,7 +143,7 @@ installNgHttpX() {
   rm -rf ${SPDYNgHttp2FolderName}
   rm -rf ${SPDYNgHttp2TarGzName}
 
-  wget ${SPDYNgHttp2DownloadLink}
+  wget ${SPDYNgHttp2DownloadLink} >> /dev/null 2>&1
 
   catchError=$(tar zxf ${SPDYNgHttp2TarGzName} 2>&1 >> ${loggerStdoutFile})
   exitOnError "${catchError}"
@@ -152,13 +152,13 @@ installNgHttpX() {
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
 
-  autoreconf -i \
-    && automake \
-    && autoconf \
-    && ./configure \
-    && make \
+  autoreconf -i >> /dev/null \
+    && automake >> /dev/null \
+    && autoconf >> /dev/null \
+    && ./configure >> /dev/null \
+    && make >> /dev/null \
     && make install \
-     > /dev/null
+     >> /dev/null
 
   ldconfig
 
