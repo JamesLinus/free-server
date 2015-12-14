@@ -23,17 +23,18 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## Description
 
-* This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, SPDY and IPSec, within Ubuntu Server 15.
-* Still in progress, not done yet.
-* It has been tested within Linode Ubuntu Server 15. It should be running well on all latest Ubuntu Server releases.
+* This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, SPDY and IPSec, within Ubuntu Server 14/15.
+* It has been tested within Linode Ubuntu Server 15 / Digital Ocean Ubuntu 15 / Amazone EC2 Ubuntu 14. It should be running well on all latest Ubuntu Server releases.
 
 ## Package installed
+* node / npm / node-legacy
 * Shadowsocks: shadowsocks-libev 
 (deb http://shadowsocks.org/debian wheezy main)
 * SPDY/HTTP2: nghttp2-1.4.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
 (https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.4.0/nghttp2-1.4.0.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
-* IPSec (ikev2)  
+* IPSec (ikev2) 
+* node forever
 
 ## Installation
 
