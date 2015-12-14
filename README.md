@@ -24,7 +24,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 ## Description
 
 * This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, SPDY and IPSec, within Ubuntu Server 14/15.
-* It has been tested within Linode Ubuntu Server 15 / Digital Ocean Ubuntu 15 / Amazone EC2 Ubuntu 14. It should be running well on all latest Ubuntu Server releases.
+* It has been tested on Amazon EC2 Ubuntu 14 / Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15. It should be running well on all latest Ubuntu Server releases.
 
 ## Package installed
 * node / npm / node-legacy
