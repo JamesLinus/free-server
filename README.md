@@ -75,7 +75,7 @@ Chinese:
 
 ------
 
-兄弟们，最近 Linode 新加坡、Fremont节点都不稳定，间歇性 IP 屏蔽中断，我搬迁到 Digital Ocean 上面就基本稳定。
+兄弟们，最近 Linode 新加坡、Fremont节点都不稳定，间歇性 IP 屏蔽中断，我搬迁到 Digital Ocean 上面就基本稳定; 不过 Digital Ocean 实在太慢。如果你足够土豪，支付得起流量，这个脚本也支持 EC2 Ubuntu 14 版本。
 
 得到一个邀请码：[http://www.digitalocean.com/?refcode=1708d0551741](http://www.digitalocean.com/?refcode=1708d0551741)
  
