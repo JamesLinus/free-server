@@ -7,23 +7,37 @@ ln -s ${utilDir}/createuser.sh ${freeServerRoot}/createuser
 echoS "Write to crontab for auto restart"
 
 # smart service watcher for every 2 minutes
-${freeServerRoot}/cron-shadowsocks-forever-process-running-generate-cron.d > /dev/null
-${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d > /dev/null
+catchError=$(${freeServerRoot}/cron-shadowsocks-forever-process-running-generate-cron.d  2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
+catchError=$(${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
 #${freeServerRoot}/cron-spdy-forever-process-running-generate-cron.d
-${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d > /dev/null
+catchError=$(${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
 
 # restart cron service
-service cron restart  > /dev/null
+catchError=$(service cron restart 2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
 
 echoS "Restart Shadowsocks/SPDY/IPSec"
 
-${freeServerRoot}/restart-ipsec  > /dev/null
-${freeServerRoot}/restart-shadowsocks > /dev/null
+catchError=$(${freeServerRoot}/restart-ipsec  2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
+catchError=$(${freeServerRoot}/restart-shadowsocks 2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
 #${freeServerRoot}/restart-spdy
-${freeServerRoot}/restart-spdy-nghttpx-squid > /dev/null
+catchError=$(${freeServerRoot}/restart-spdy-nghttpx-squid 2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
 
 echoS "Create a simple website for testing purpose."
 
-npm install -g forever > /dev/null
-${utilDir}/restart-misc.sh  > /dev/null
+catchError=$(npm install -g forever >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
+catchError=$(${utilDir}/restart-misc.sh >> ${loggerStdoutFile})
+exitOnError "${catchError}"
 

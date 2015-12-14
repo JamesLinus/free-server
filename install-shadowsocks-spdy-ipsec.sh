@@ -26,11 +26,11 @@ echoS "apt-get update and install required tools"
 warnNoEnterReturnKey
 apt-get update -y > /dev/null
 
-catchError=$(apt-get install -y gawk 2>&1)
+catchError=$(apt-get install -y gawk 2>&1 > /dev/null)
 
 exitOnError "${catchError}"
 
-catchError=$(apt-get install -y curl 2>&1)
+catchError=$(apt-get install -y curl 2>&1 > /dev/null)
 
 exitOnError "${catchError}"
 
@@ -38,7 +38,7 @@ echoS "Migrate obsolete installation"
 cd ${globalUtilStoreDir}
 rm -f migrate.sh
 
-catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1)
+catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1  > /dev/null)
 exitOnError "${catchError}"
 
 chmod 755 ./migrate.sh

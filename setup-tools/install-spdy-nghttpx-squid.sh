@@ -98,8 +98,9 @@ installSpdyLay() {
   echoS "Install SpdyLay"
   #npm install -g spdyproxy > /dev/null 2>&1
   apt-get install autoconf automake \
-  autotools-dev libtool pkg-config zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libevent-dev \
-  -y > /dev/null
+  catchError=$(autotools-dev libtool pkg-config zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libevent-dev \
+   2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
 
   rm -rf ${SPDYSpdyLayTarGzName}
   rm -rf ${SPDYSpdyLayFolderName}
@@ -107,16 +108,20 @@ installSpdyLay() {
   wget ${SPDYSpdyLayDownloadLink}
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
-  tar zxf ${SPDYSpdyLayTarGzName} > /dev/null
+
+  catchError=$(tar zxf ${SPDYSpdyLayTarGzName} 2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
 
   cd ${SPDYSpdyLayFolderName}/
-  autoreconf -i > /dev/null \
-    && automake > /dev/null \
-    && autoconf >/dev/null \
-    && ./configure > /dev/null \
-    && make > /dev/null \
+  catchError=$(autoreconf -i \
+    && automake \
+    && autoconf \
+    && ./configure \
+    && make \
     && make install \
-    > /dev/null
+     2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
+
   ldconfig
 
   cd ..
@@ -129,9 +134,10 @@ installNgHttpX() {
 
   echoS "Install NgHttpX"
   #npm install -g spdyproxy > /dev/null 2>&1
-  apt-get install g++ make binutils autoconf automake autotools-dev libtool pkg-config   \
+  catchError=$(apt-get install g++ make binutils autoconf automake autotools-dev libtool pkg-config   \
   zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libev-dev libevent-dev libjansson-dev   \
-  libjemalloc-dev cython python3-dev python-setuptools apache2-utils -y > /dev/null
+  libjemalloc-dev cython python3-dev python-setuptools apache2-utils -y 2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
 
   warnNoEnterReturnKey
 
@@ -139,18 +145,23 @@ installNgHttpX() {
   rm -rf ${SPDYNgHttp2TarGzName}
 
   wget ${SPDYNgHttp2DownloadLink}
-  tar zxf ${SPDYNgHttp2TarGzName} > /dev/null
+
+  catchError=$(tar zxf ${SPDYNgHttp2TarGzName} 2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
 
   cd ${SPDYNgHttp2FolderName}/
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
-  autoreconf -i > /dev/null \
-    && automake > /dev/null \
-    && autoconf >/dev/null \
-    && ./configure > /dev/null \
-    && make > /dev/null \
+
+  catchError=$(autoreconf -i \
+    && automake \
+    && autoconf \
+    && ./configure \
+    && make \
     && make install \
-    > /dev/null
+     2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
+
   ldconfig
 
   cd ..
@@ -173,7 +184,9 @@ installSquid() {
 
   echoS "Install Squid, may need 5 minutes."
 
-  apt-get install squid -y > /dev/null
+  catchError=$(apt-get install squid -y 2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
+
 }
 
 linkBinUtilAsShortcut() {
