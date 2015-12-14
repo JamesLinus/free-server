@@ -3,6 +3,11 @@
 Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
 ## News and Change logs
+
+* 2015-12-15 [Bug] Important Fix: Now iPSec/nghttpx+Squid (HTTP2/SPDY)/Shadowsocks supports Amazon EC2 again.
+
+-------
+
 * 2015-11-06 [Enhancement] Replace spdyproxy (NPM module) to nghttpx(C)+Squid.
 * 2015-11-03 [Platform] Add support to Amazon EC2 Ubuntu 14.04.2 LTS. Tested pass with EC2 Singapore Data Center 
 * 2015-11-02 Milestone: [Feature] Add IPSec for IOS devices
