@@ -81,7 +81,7 @@ export clusterDeploySSHMutualAuthAccept="${freeServerRoot}/cluster-deploy-ssh-mu
 
 export loggerStdoutFolder=${freeServerRoot}/log
 export loggerStdoutFile=${loggerStdoutFolder}/stdout.log
-export loggerStdoutFile=${loggerStderrFile}/stderr.log
+export loggerStderrFile=${loggerStdoutFolder}/stderr.log
 export loggerRuntimeInfoFile=${loggerStdoutFolder}/runtime_info.log
 export loggerRuntimeErrFile=${loggerStdoutFolder}/runtime_error.log
 
