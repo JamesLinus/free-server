@@ -36,7 +36,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * Note that you can't use self-signed SSL cert. It must be issued by third-party authorities thanks to Chrome SPDY SSL validation.
 
 ```bash
-rm install-shadowsocks-spdy-ipsec.sh
+rm -f install-shadowsocks-spdy-ipsec.sh
 wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy-ipsec.sh
 bash install-shadowsocks-spdy-ipsec.sh
 ```

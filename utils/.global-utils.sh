@@ -151,6 +151,9 @@ exitOnError(){
   if [[ ! -z $1 ]]; then
     echoS $1
     echo $1 >> ${loggerStderrFile}
+    sleep 1
+    echo "Cat ${loggerStderrFile}"
+    cat ${loggerStderrFile}
     sleep 2
     exit
   fi
