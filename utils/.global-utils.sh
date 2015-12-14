@@ -150,9 +150,10 @@ export -f echoSExit
 exitOnError(){
   if [[ ! -z $1 ]]; then
     echoS $1
-    echo $1 >> ${loggerStderrFile}
+    echo "Redirect error message to ${loggerStderrFile}:"
+    echo "$1" >> ${loggerStderrFile}
     sleep 1
-    echo "Cat ${loggerStderrFile}"
+    echo "Cat ${loggerStderrFile}:"
     cat ${loggerStderrFile}
     sleep 2
     exit
