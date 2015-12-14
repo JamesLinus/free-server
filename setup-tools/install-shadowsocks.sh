@@ -15,10 +15,10 @@ if [[ "${ubuntu14}" == "YES" ]]; then
 #  gpg --keyserver pgpkeys.mit.edu --recv-key 7638D0442B90D010
 #  gpg -a --export 7638D0442B90D010 | sudo apt-key add -
 
-  catchError=$(wget http://launchpadlibrarian.net/173841617/init-system-helpers_1.18_all.deb  >> ${loggerStdoutFile})
+  catchError=$(wget http://launchpadlibrarian.net/173841617/init-system-helpers_1.18_all.deb  2>&1 >> ${loggerStdoutFile})
   exitOnError "${catchError}"
 
-  catchError=$(dpkg -i init-system-helpers_1.18_all.deb  >> ${loggerStdoutFile})
+  catchError=$(dpkg -i init-system-helpers_1.18_all.deb  2>&1 >> ${loggerStdoutFile})
   exitOnError "${catchError}"
 
   rm -rf init-system-helpers_1.18_all.deb*  > /dev/null
@@ -27,7 +27,7 @@ fi
 optimizeLinuxForShadowsocks
 
 apt-get update -y > /dev/null
-catchError=$(apt-get install shadowsocks-libev -y  >> ${loggerStdoutFile})
+catchError=$(apt-get install shadowsocks-libev -y 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
 # prepare all Shadowsocks Utils

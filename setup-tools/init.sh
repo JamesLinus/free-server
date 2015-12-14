@@ -35,9 +35,9 @@ exitOnError "${catchError}"
 
 echoS "Create a simple website for testing purpose."
 
-catchError=$(npm install -g forever >> ${loggerStdoutFile})
+catchError=$(npm install -g forever 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
-catchError=$(${utilDir}/restart-misc.sh >> ${loggerStdoutFile})
+catchError=$(${utilDir}/restart-misc.sh  2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
