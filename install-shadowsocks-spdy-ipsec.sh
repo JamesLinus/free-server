@@ -84,31 +84,22 @@ ${freeServerRootTmp}/download-files.sh
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
 
-catchError=$(${freeServerRootTmp}/install-node.sh 2>&1 >> ${loggerStdoutFile})
-
-exitOnError "${catchError}"
-
+${freeServerRootTmp}/install-node.sh
 
 echoS "Installing and initing Shadowsocks"
 warnNoEnterReturnKey
 
-catchError=$(${freeServerRootTmp}/install-shadowsocks.sh 2>&1 >> ${loggerStdoutFile})
-
-exitOnError "${catchError}"
+${freeServerRootTmp}/install-shadowsocks.sh
 
 echoS "Installing SPDY Proxy"
 warnNoEnterReturnKey
 
 #${freeServerRootTmp}/install-spdy.sh
-catchError=$(${freeServerRootTmp}/install-spdy-nghttpx-squid.sh 2>&1 >> ${loggerStdoutFile})
-
-exitOnError "${catchError}"
+${freeServerRootTmp}/install-spdy-nghttpx-squid.sh
 
 echoS "Installing IPSec/IKEv2 VPN (for IOS)"
 
-catchError=$(${freeServerRootTmp}/install-ipsec-ikev2.sh 2>&1 >> ${loggerStdoutFile})
-
-exitOnError "${catchError}"
+${freeServerRootTmp}/install-ipsec-ikev2.sh
 
 #echoS "Installing and Initiating Free Server Cluster for multiple IPs/Domains/Servers with same Login Credentials support"
 #
@@ -123,9 +114,7 @@ fi
 
 echoS "Restart and Init Everything in need"
 
-catchError=$(${freeServerRootTmp}/init.sh 2>&1 >> ${loggerStdoutFile})
-
-exitOnError "${catchError}"
+${freeServerRootTmp}/init.sh
 
 echoS "All done. Create user example: \n\n\
 \
