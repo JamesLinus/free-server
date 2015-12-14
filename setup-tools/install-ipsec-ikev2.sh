@@ -102,7 +102,7 @@ function pre_install(){
 	echo "#"
 	echo "#############################################################"
 	echo ""
-    echo "please choose the type of your VPS(Xen、KVM: 1 -- 1 is Mostly, say EC2/Digital Ocean/Linode, etc  ,  OpenVZ: 2):"
+    echo "please choose the type of your VPS(Xen、KVM: 1,  OpenVZ: 2) (Choice 1 is more often, say EC2/Digital Ocean/Linode, etc):"
     read -p "your choice(1 or 2):" os_choice
     if [ "$os_choice" = "1" ]; then
         os="1"

@@ -32,8 +32,7 @@ ${freeServerRoot}/restart-spdy-nghttpx-squid
 
 echoS "Create a simple website for testing purpose."
 
-catchError=$(npm install -g forever 2>&1 >> ${loggerStdoutFile})
-exitOnError "${catchError}"
+npm install -g forever
 
 ${utilDir}/restart-misc.sh
 

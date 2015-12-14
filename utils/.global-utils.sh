@@ -149,15 +149,20 @@ export -f echoSExit
 
 exitOnError(){
   if [[ ! -z $1 ]]; then
-    echoS "Error message detected, connect is below"
+    echoS "Error message detected, content is below"
     echo "$1"
     if [[ -f ${loggerStderrFile} ]]; then
 
         echo "Redirect error message to ${loggerStderrFile}:"
         echo "$1" >> ${loggerStderrFile}
         sleep 1
+        echo ">>>>>>>>>>>>>>>>>>"
+        echo ">>>>>>>>>>>>>>>>>>"
         echo "Cat ${loggerStderrFile}:"
         cat ${loggerStderrFile}
+        echo "<<<<<<<<<<<<<<<<<<"
+        echo "<<<<<<<<<<<<<<<<<<"
+
     else
         echo "${loggerStderrFile} is not existed. Skipping saving Error Log."
     fi

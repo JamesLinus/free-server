@@ -105,6 +105,8 @@ installSpdyLay() {
   rm -rf ${SPDYSpdyLayTarGzName}
   rm -rf ${SPDYSpdyLayFolderName}
 
+  echoS "Downloading ${SPDYSpdyLayDownloadLink}"
+
   wget ${SPDYSpdyLayDownloadLink} >> /dev/null 2>&1
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
@@ -142,6 +144,8 @@ installNgHttpX() {
 
   rm -rf ${SPDYNgHttp2FolderName}
   rm -rf ${SPDYNgHttp2TarGzName}
+
+  echoS "Downloading ${SPDYNgHttp2DownloadLink}"
 
   wget ${SPDYNgHttp2DownloadLink} >> /dev/null 2>&1
 
