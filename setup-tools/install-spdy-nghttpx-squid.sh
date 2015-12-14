@@ -75,7 +75,7 @@ getSpdySslCaPemFile() {
    (This is mandatory for Windows Chrome user) : \n\n\
     If your free SSL certificate is from startssl.com, then here it is: http://www.startssl.com/certs/sub.class1.server.ca.pem \n\n"
 
-  caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/sub.class1.server.ca.pem): " file 3)
+  caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/ssl/sub.class1.server.ca.pem): " file 3)
 
   if [[ ! -f ${caPem} ]]; then
 
@@ -113,14 +113,13 @@ installSpdyLay() {
   exitOnError "${catchError}"
 
   cd ${SPDYSpdyLayFolderName}/
-  catchError=$(autoreconf -i \
+  autoreconf -i \
     && automake \
     && autoconf \
     && ./configure \
     && make \
     && make install \
-     2>&1 >> ${loggerStdoutFile})
-  exitOnError "${catchError}"
+     >> /dev/null
 
   ldconfig
 
@@ -153,14 +152,13 @@ installNgHttpX() {
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
 
-  catchError=$(autoreconf -i \
+  autoreconf -i \
     && automake \
     && autoconf \
     && ./configure \
     && make \
     && make install \
-     2>&1 >> ${loggerStdoutFile})
-  exitOnError "${catchError}"
+     > /dev/null
 
   ldconfig
 

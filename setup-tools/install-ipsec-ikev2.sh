@@ -98,11 +98,11 @@ function pre_install(){
 	echo "# Install IKEV2 VPN for CentOS6.x (32bit/64bit) or Ubuntu"
 	echo "# Intro: http://quericy.me/blog/699"
 	echo "#"
-	echo "# Author:quericy"
+	echo "# Author:quericy, Paul"
 	echo "#"
 	echo "#############################################################"
 	echo ""
-    echo "please choose the type of your VPS(Xen、KVM: 1  ,  OpenVZ: 2):"
+    echo "please choose the type of your VPS(Xen、KVM: 1 -- 1 is Mostly, say EC2/Digital Ocean/Linode, etc  ,  OpenVZ: 2):"
     read -p "your choice(1 or 2):" os_choice
     if [ "$os_choice" = "1" ]; then
         os="1"

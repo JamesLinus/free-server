@@ -163,7 +163,7 @@ exitOnError(){
     fi
 
     sleep 2
-    exit
+    exit 1
   fi
 }
 export -f exitOnError

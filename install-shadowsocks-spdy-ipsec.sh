@@ -22,6 +22,9 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
+# fix perl lang locale warning
+locale-gen en_US.UTF-8 > /dev/null
+
 echoS "apt-get update and install required tools"
 warnNoEnterReturnKey
 apt-get update -y > /dev/null
@@ -79,27 +82,27 @@ warnNoEnterReturnKey
 
 downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
 chmod 755 ${freeServerRootTmp}/download-files.sh
-${freeServerRootTmp}/download-files.sh
+${freeServerRootTmp}/download-files.sh || exit 1
 
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-node.sh
+${freeServerRootTmp}/install-node.sh || exit 1
 
 echoS "Installing and initing Shadowsocks"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-shadowsocks.sh
+${freeServerRootTmp}/install-shadowsocks.sh || exit 1
 
 echoS "Installing SPDY Proxy"
 warnNoEnterReturnKey
 
 #${freeServerRootTmp}/install-spdy.sh
-${freeServerRootTmp}/install-spdy-nghttpx-squid.sh
+${freeServerRootTmp}/install-spdy-nghttpx-squid.sh || exit 1
 
 echoS "Installing IPSec/IKEv2 VPN (for IOS)"
 
-${freeServerRootTmp}/install-ipsec-ikev2.sh
+${freeServerRootTmp}/install-ipsec-ikev2.sh || exit 1
 
 #echoS "Installing and Initiating Free Server Cluster for multiple IPs/Domains/Servers with same Login Credentials support"
 #
@@ -114,7 +117,7 @@ fi
 
 echoS "Restart and Init Everything in need"
 
-${freeServerRootTmp}/init.sh
+${freeServerRootTmp}/init.sh || exit 1
 
 echoS "All done. Create user example: \n\n\
 \
