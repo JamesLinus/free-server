@@ -5,6 +5,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 ## News and Change logs
 
 * 2015-12-15 [Bug] Important Fix: Now iPSec/nghttpx+Squid (HTTP2/SPDY)/Shadowsocks supports Amazon EC2 Ubuntu again.
+* 2015-12-15 [Enhancement] Add Stderr Logging / Stdout Logging control to log files, and "Stop on Critical Error".
 
 -------
 
@@ -34,7 +35,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 (https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.4.0/nghttp2-1.4.0.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
 * IPSec (ikev2) 
-* node forever
+* node forever (npm module)
 
 ## Installation
 
@@ -68,35 +69,15 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 * [SPDY (Chinese only)](http://www.xiaofang.me/2014/12/20/windowsmaclinux-%E4%BD%BF%E7%94%A8%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E7%9A%84-spdy-%E9%AB%98%E9%80%9F%E7%BF%BB%E5%A2%99%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks--Windows/Mac/Android (Chinese only)](http://www.xiaofang.me/2013/05/17/%E5%B0%8F%E6%96%B9%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%9F%BA%E4%BA%8Eshadowsocks%E7%9A%84%E7%BF%BB%E5%A2%99%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks--OpenWRT Router (Chinese only)](http://www.xiaofang.me/2015/05/05/%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%AE%B6%E5%BA%AD%E4%BC%81%E4%B8%9Abeta1%E7%89%88-%E6%99%BA%E8%83%BD%E8%B7%AF%E7%94%B1%E5%99%A8%E6%9E%84%E5%BB%BA%E6%96%B9/ "Chinese only")
-* IPSec for IOS (In-progress)
+* [IPSec for iOS (Chinese only)](http://www.xiaofang.me/2015/11/06/%E3%80%90%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E3%80%91-iphone-ipad-%E4%B9%8B-ipsec-vpn-%E8%AE%BE%E7%BD%AE%EF%BC%88%E5%82%BB%E7%93%9C%E5%8C%96%E6%95%99%E7%A8%8B%EF%BC%89/ "Chinese only")
 
 ## Donation
-Chinese:  
 
+如果你觉得这个程序促进了你的信息传播与资讯获取自由, 欢迎你考虑给小方一些捐赠, 5元/10元即可, 表示一下鼓励与安慰. 支付宝账号: lanshunfang#gmail.com (替换#为@), 小方会更加有力的响应需求的. 谢谢.
 ------
-
-兄弟们，最近 Linode 新加坡、Fremont节点都不稳定，间歇性 IP 屏蔽中断，我搬迁到 Digital Ocean 上面就基本稳定; 不过 Digital Ocean 实在太慢。如果你足够土豪，支付得起流量，这个脚本也支持 EC2 Ubuntu 14 版本。
-
-得到一个邀请码：[http://www.digitalocean.com/?refcode=1708d0551741](http://www.digitalocean.com/?refcode=1708d0551741)
- 
-邀请使用～～你得10美金优惠，我得25美金返券 ：）谢谢哈～～
-
-小方的翻墙服务器一键安装教程： [https://github.com/lanshunfang/free-server](https://github.com/lanshunfang/free-server)
-
-软件工程师，翻墙是基本技能 ：）
-
-
-English:  
-
-------
-
-Hey there,
-
-Here is my Digital Ocean initation link. [http://www.digitalocean.com/?refcode=1708d0551741](http://www.digitalocean.com/?refcode=1708d0551741) You get $10 back, I get $25. 
-
-I would be very grateful if you use my code to register and use Digital Ocean Ubuntu/Linux. It's much more stable than Linode for China Mainland Internet connection those days.
+Please consider donation to Paul so that he will be encouraged by your favor. Paypal: lanshunfang#gmail.com (replace # to @). Thank you :)
 
 ## More
 
-* This script will add several crontab configurations to `/etc/cron.d` and `/etc/cron.daily` to monitor Shadowsocks / SPDY service running healthy.
+* This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks / HTTP2 (nghttpx, squid) / iPSec / demo web server service status.
 * For more stability, both Shadowsocks and SPDY are running in multiple instances, one per user, not single process.
