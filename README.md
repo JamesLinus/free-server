@@ -71,11 +71,14 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 * [Shadowsocks--OpenWRT Router (Chinese only)](http://www.xiaofang.me/2015/05/05/%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%AE%B6%E5%BA%AD%E4%BC%81%E4%B8%9Abeta1%E7%89%88-%E6%99%BA%E8%83%BD%E8%B7%AF%E7%94%B1%E5%99%A8%E6%9E%84%E5%BB%BA%E6%96%B9/ "Chinese only")
 * [IPSec for iOS (Chinese only)](http://www.xiaofang.me/2015/11/06/%E3%80%90%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E3%80%91-iphone-ipad-%E4%B9%8B-ipsec-vpn-%E8%AE%BE%E7%BD%AE%EF%BC%88%E5%82%BB%E7%93%9C%E5%8C%96%E6%95%99%E7%A8%8B%EF%BC%89/ "Chinese only")
 
+
 ## Donation
 
-如果你觉得这个程序促进了你的信息传播与资讯获取自由, 欢迎你考虑给小方一些捐赠, 5元/10元即可, 表示一下鼓励与安慰. 支付宝账号: lanshunfang#gmail.com (替换#为@), 小方会更加有力的响应需求的. 谢谢.
+* 如果你觉得这个程序促进了你的信息传播与资讯获取自由, 欢迎你考虑给小方一些捐赠, 5元/10元即可, 表示一下鼓励与安慰. 支付宝账号: lanshunfang#gmail.com (替换#为@), 小方会更加有力的响应需求的. 谢谢.
+
 ------
-Please consider donation to Paul so that he will be encouraged by your favor. Paypal: lanshunfang#gmail.com (replace # to @). Thank you :)
+
+* Please consider donation to Paul so that he will be encouraged by your favor. Paypal: lanshunfang#gmail.com (replace # to @). Thank you :)
 
 ## More
 
