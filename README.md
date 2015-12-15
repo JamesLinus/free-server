@@ -24,14 +24,14 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## Description
 
-* This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, SPDY and IPSec, within Ubuntu Server 14/15.
+* This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks, HTTP2/SPDY and IPSec, within Ubuntu Server 14/15.
 * It has been tested on Amazon EC2 Ubuntu 14 / Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15. It should be running well on all latest Ubuntu Server releases.
 
 ## Package installed
 * node / npm / node-legacy
 * Shadowsocks: shadowsocks-libev 
 (deb http://shadowsocks.org/debian wheezy main)
-* SPDY/HTTP2: nghttp2-1.4.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
+* HTTP2/SPDY: nghttp2-1.4.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
 (https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.4.0/nghttp2-1.4.0.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
 * IPSec (ikev2) 
@@ -39,8 +39,8 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## Installation
 
-* You need to obtain a HTTPS SSL Certificate before you install SPDY server. Get one for free from [StartSSL](https://www.startssl.com/?app=12).
-* Note that you can't use self-signed SSL cert. It must be issued by third-party authorities thanks to Chrome SPDY SSL validation.
+* You need to obtain a HTTPS SSL Certificate before you install HTTP2/SPDY server. Get one for free from [StartSSL](https://www.startssl.com/?app=12).
+* Note that you can't use self-signed SSL cert. It must be issued by third-party authorities thanks to Chrome HTTP2/SPDY SSL validation.
 
 ```bash
 rm -f install-shadowsocks-spdy-ipsec.sh
@@ -48,17 +48,17 @@ wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/mas
 bash install-shadowsocks-spdy-ipsec.sh
 ```
 
-Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks/SPDY account or password.
+Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks, HTTP2/SPDY and iPSec account or password.
 It backs them up if found any before execute re-installation.
 
 ## Create User
 
 ```bash
-Shadowsocks+SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort
+Shadowsocks+HTTP2/SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort
 
 Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass 
 
-SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port 
+HTTP2/SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port
 
 IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 ```
@@ -66,7 +66,7 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 ## How to setup clients
 
 * All the pages are password protected. To get the password, pls email to lanshunfang#gmail.com with email title: "free-server password" (Auto respond)
-* [SPDY (Chinese only)](http://www.xiaofang.me/2014/12/20/windowsmaclinux-%E4%BD%BF%E7%94%A8%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E7%9A%84-spdy-%E9%AB%98%E9%80%9F%E7%BF%BB%E5%A2%99%E8%AE%BE%E7%BD%AE/ "Chinese only")
+* [HTTP2/SPDY (Chinese only)](http://www.xiaofang.me/2014/12/20/windowsmaclinux-%E4%BD%BF%E7%94%A8%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E7%9A%84-spdy-%E9%AB%98%E9%80%9F%E7%BF%BB%E5%A2%99%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks--Windows/Mac/Android (Chinese only)](http://www.xiaofang.me/2013/05/17/%E5%B0%8F%E6%96%B9%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%9F%BA%E4%BA%8Eshadowsocks%E7%9A%84%E7%BF%BB%E5%A2%99%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks--OpenWRT Router (Chinese only)](http://www.xiaofang.me/2015/05/05/%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%AE%B6%E5%BA%AD%E4%BC%81%E4%B8%9Abeta1%E7%89%88-%E6%99%BA%E8%83%BD%E8%B7%AF%E7%94%B1%E5%99%A8%E6%9E%84%E5%BB%BA%E6%96%B9/ "Chinese only")
 * [IPSec for iOS (Chinese only)](http://www.xiaofang.me/2015/11/06/%E3%80%90%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E3%80%91-iphone-ipad-%E4%B9%8B-ipsec-vpn-%E8%AE%BE%E7%BD%AE%EF%BC%88%E5%82%BB%E7%93%9C%E5%8C%96%E6%95%99%E7%A8%8B%EF%BC%89/ "Chinese only")
@@ -83,4 +83,4 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 ## More
 
 * This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks / HTTP2 (nghttpx, squid) / iPSec / demo web server service status.
-* For more stability, both Shadowsocks and SPDY are running in multiple instances, one per user, not single process.
+* For more stability, both Shadowsocks and HTTP2/SPDY are running in multiple instances, one per user, not single process.
