@@ -61,6 +61,8 @@ getSpdySslCertFile() {
 
   fi
 
+}
+
 
 getSpdySslCaPemFile() {
   if [[ -f ${SPDYSSLCaPemFileInConfigDirBackup} ]]; then
