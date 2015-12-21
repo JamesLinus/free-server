@@ -25,6 +25,15 @@ fi
 # fix perl lang locale warning
 locale-gen en_US.UTF-8 > /dev/null
 
+# fix hostname -f
+hostName=$(hostname)
+if [[ ! -z $hostName ]]; then
+
+    echo "127.0.1.1 ${hostName}" >> /etc/hosts
+    echo "127.0.1.1 ${hostName}.local" >> /etc/hosts
+
+fi
+
 echoS "apt-get update and install required tools"
 warnNoEnterReturnKey
 apt-get update -y > /dev/null

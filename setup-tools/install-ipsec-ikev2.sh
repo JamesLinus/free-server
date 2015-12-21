@@ -451,6 +451,10 @@ includeFreeServerIpsecSecretFile(){
 	#if [[ -f ${ipsecSecFileBak} ]]; then
 #	echoS "Rename ${ipsecSecFileOriginal} to ${ipsecSecFileBakQuericy}"
   includeCommandLine="include ${ipsecSecFile}"
+  if [[ ! -f ${ipsecSecFileOriginal} ]]; then
+    mkdir -p ${ipsecSecFileOriginalDir}
+  	touch ${ipsecSecFileOriginal}
+  fi
 	removeLineInFile ${ipsecSecFileOriginal} ${freeServerInstallationFolderName}
 	echo ${includeCommandLine} >> ${ipsecSecFileOriginal}
 
