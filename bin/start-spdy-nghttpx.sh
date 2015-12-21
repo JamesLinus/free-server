@@ -48,9 +48,9 @@ startNgHttpX() {
   echo -e "Start nghttpx:  Port ${port} " | wall
   # Testing:
   # nghttpx --daemon --http2-proxy --frontend="0.0.0.0,25" --backend="localhost,3128" /root/free-server/config/SPDY.domain.key /root/free-server/config/SPDY.domain.crt
+  # --cacert=${SPDYSSLCaPemFile} \
   nghttpx \
   --daemon \
-  --cacert=${SPDYSSLCaPemFile} \
   --http2-proxy \
   --fastopen=3 \
   --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \

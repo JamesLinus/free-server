@@ -13,6 +13,7 @@ echo "*/2 * * * * root ${freeServerRoot}/restart-dead-spdy-nghttpx-squid" > ${fi
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" >> ${file}
+echo "@reboot root ${restartCommand}" >> ${file}
 
 echo "Done, cat ${file}"
 cat ${file}

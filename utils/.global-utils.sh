@@ -48,8 +48,8 @@ export SPDYSquidPassWdFile="${configDir}/squid-auth-passwd"
 # make SPDYSquidAuthSubProcessAmount bigger, make squid basic auth faster, but may be more unstable indeed
 export SPDYSquidAuthSubProcessAmount=4
 
-export SPDYSSLCaPemFile="${configDir}/SPDY.ca-multiple.pem"
-export SPDYSSLCaPemFileInConfigDirBackup="${configDirBackup}/SPDY.ca-multiple.pem"
+#export SPDYSSLCaPemFile="${configDir}/SPDY.ca-multiple.pem"
+#export SPDYSSLCaPemFileInConfigDirBackup="${configDirBackup}/SPDY.ca-multiple.pem"
 export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
 export SPDYSSLKeyFileInConfigDirBackup="${configDirBackup}/SPDY.domain.key"
 export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
