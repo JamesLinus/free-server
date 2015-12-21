@@ -27,7 +27,8 @@ locale-gen en_US.UTF-8 > /dev/null
 
 # fix hostname -f
 hostName=$(hostname)
-if [[ ! -z $hostName ]]; then
+hostNameF=$(hostname -f)
+if [[ -z $hostNameF && ! -z $hostName ]]; then
 
     echo "127.0.1.1 ${hostName}" >> /etc/hosts
     echo "127.0.1.1 ${hostName}.local" >> /etc/hosts
