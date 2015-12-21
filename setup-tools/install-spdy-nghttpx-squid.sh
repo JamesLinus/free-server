@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 source /opt/.global-utils.sh
 
@@ -22,7 +22,7 @@ getSpdySslKeyFile() {
   (You could generate your own from https://letsencrypt.org/)"
 
 
-  key=$(getUserInput "Input \x1b[46m HTTPS/SSL PRIVATE KEY \x1b[0m file absolute path (e.g. /etc/letsencrypt/live/www.free-server.com/privkey.pem): " file 3)
+  key=$(getUserInput "Input \x1b[46m HTTPS SSL PRIVATE KEY \x1b[0m absolute path (e.g. /etc/letsencrypt/live/DOMAIN/privkey.pem): " file 3)
 
   if [[ ! -f ${key} ]]; then
 
@@ -45,7 +45,7 @@ getSpdySslCertFile() {
     return 0
   fi
 
-  cert=$(getUserInput "Input \x1b[46m HTTPS/SSL CERTIFICATE \x1b[0m file absolute path (e.g. /etc/letsencrypt/live/www.free-server.com/fullchain.pem): " file 3)
+  cert=$(getUserInput "Input \x1b[46m HTTPS SSL CERTIFICATE \x1b[0m absolute path (e.g. /etc/letsencrypt/live/DOMAIN/fullchain.pem): " file 3)
 
 
   if [[ ! -f ${cert} ]]; then
@@ -67,9 +67,7 @@ getSpdySslCaPemFile() {
     echoS "Previous SPDY/HTTP2 SSL CA Pem file detected in ${SPDYSSLCaPemFileInConfigDirBackup}. Skip generating." "stderr"
     return 0
   fi
-  echoS "Input the file (with path) of your SSL Ca pem file  (*.pem, one file could include multiple certificates) \n\n\
-   (This is mandatory for Windows Chrome user) : \n\n\
-    If your free SSL certificate is from startssl.com, then here it is: http://www.startssl.com/certs/sub.class1.server.ca.pem \n\n"
+  echoS "Input the file (with path) of your SSL Ca pem file"
 
   caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/ssl/sub.class1.server.ca.pem): " file 3)
 
