@@ -18,7 +18,8 @@ getSpdySslKeyFile() {
     echoS "Previous SPDY/HTTP2 SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating." "stderr"
     return 0
   fi
-  echoS "Input the file (with path) of your HTTPS/SSL PRIVATE KEY file : \n\n(You could generate your own from https://letsencrypt.org/)\n"
+  echoS "Input the file (with path) of your HTTPS/SSL PRIVATE KEY file : \n\n\
+  (You could generate your own from https://letsencrypt.org/)"
 
 
   key=$(getUserInput "Input \x1b[46m HTTPS/SSL PRIVATE KEY \x1b[0m file absolute path (e.g. /etc/letsencrypt/live/www.free-server.com/privkey.pem): " file 3)
@@ -61,31 +62,31 @@ getSpdySslCertFile() {
   fi
 
 
-#getSpdySslCaPemFile() {
-#  if [[ -f ${SPDYSSLCaPemFileInConfigDirBackup} ]]; then
-#    echoS "Previous SPDY/HTTP2 SSL CA Pem file detected in ${SPDYSSLCaPemFileInConfigDirBackup}. Skip generating." "stderr"
-#    return 0
-#  fi
-#  echoS "Input the file (with path) of your SSL Ca pem file  (*.pem, one file could include multiple certificates) \n\n\
-#   (This is mandatory for Windows Chrome user) : \n\n\
-#    If your free SSL certificate is from startssl.com, then here it is: http://www.startssl.com/certs/sub.class1.server.ca.pem \n\n"
-#
-#  caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/ssl/sub.class1.server.ca.pem): " file 3)
-#
-#  if [[ ! -f ${caPem} ]]; then
-#
-#    echoErr "SSL CA Pem file  (ca.pem) is required for installation of SPDY/HTTP2 server."
-#
-#  else
-#
-#    echoS "Selected ca.pem file is ${caPem}"
-#    echoS "Copy Key ${caPem} to ${configDir}"
-#
-#    cp ${caPem} ${SPDYSSLCaPemFile}
-#
-#  fi
-#
-#}
+getSpdySslCaPemFile() {
+  if [[ -f ${SPDYSSLCaPemFileInConfigDirBackup} ]]; then
+    echoS "Previous SPDY/HTTP2 SSL CA Pem file detected in ${SPDYSSLCaPemFileInConfigDirBackup}. Skip generating." "stderr"
+    return 0
+  fi
+  echoS "Input the file (with path) of your SSL Ca pem file  (*.pem, one file could include multiple certificates) \n\n\
+   (This is mandatory for Windows Chrome user) : \n\n\
+    If your free SSL certificate is from startssl.com, then here it is: http://www.startssl.com/certs/sub.class1.server.ca.pem \n\n"
+
+  caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/ssl/sub.class1.server.ca.pem): " file 3)
+
+  if [[ ! -f ${caPem} ]]; then
+
+    echoErr "SSL CA Pem file  (ca.pem) is required for installation of SPDY/HTTP2 server."
+
+  else
+
+    echoS "Selected ca.pem file is ${caPem}"
+    echoS "Copy Key ${caPem} to ${configDir}"
+
+    cp ${caPem} ${SPDYSSLCaPemFile}
+
+  fi
+
+}
 
 
 installSpdyLay() {
@@ -196,5 +197,6 @@ linkBinUtilAsShortcut() {
     ${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d
 }
 
-
 main "$@"
+
+#EOF
