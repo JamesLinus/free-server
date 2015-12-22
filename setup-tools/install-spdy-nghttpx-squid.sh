@@ -11,6 +11,13 @@ main() {
   linkBinUtilAsShortcut
   generateSquidConf
   installSquid
+  sleep 2
+
+  squid3 -f /etc/squid3/squid.conf  -k kill
+  sleep 2
+  pkill squid3
+  sleep 2
+
 }
 
 getSpdySslKeyFile() {

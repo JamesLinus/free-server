@@ -17,6 +17,8 @@ exitOnError "${catchError}"
 catchError=$(${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
+${utilDir}/cron-misc-forever-process-running-generate-cron.d.sh
+
 # restart cron service
 catchError=$(service cron restart 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"

@@ -12,7 +12,7 @@ processPatt="lib\/PROCESS_NAME"
 restartCommand="service PROCESS_NAME restart"
 
 ## write watching process every 5 minutes
-echo "*/2 * * * * root ${freeServerRoot}/forever-process-running.sh \"${processPatt}\" \"${restartCommand}\"" > ${file}
+echo "*/2 * * * * root ${utilDir}/forever-process-running.sh \"${processPatt}\" \"${restartCommand}\"" > ${file}
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" >> ${file}
