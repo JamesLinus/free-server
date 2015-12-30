@@ -38,7 +38,7 @@ for i in $(cat "${SPDYConfig}"); do
     port: ${port} \n"
   else
 
-    runCommandIfPortClosed "${port}" "${freeServerRoot}/start-spdy-nghttpx ${port};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\" | wall"
+    runCommandIfPortClosed "${port}" "${freeServerRoot}/start-spdy-nghttpx ${port};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\""
 
   fi
 

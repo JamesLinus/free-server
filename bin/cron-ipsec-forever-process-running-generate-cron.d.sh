@@ -6,7 +6,7 @@ source /opt/.global-utils.sh
 file="/etc/cron.d/forever-process-running-ipsec"
 
 ## process restart daily command
-restartCommand="${freeServerRoot}/restart-ipsec"
+restartCommand="/bin/bash ${freeServerRoot}/restart-ipsec"
 
 ## write watching process every 5 minutes
 echo "*/2 * * * * root ${freeServerRoot}/restart-dead-ipsec" > ${file}

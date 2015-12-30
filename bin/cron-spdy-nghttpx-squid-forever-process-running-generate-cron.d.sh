@@ -6,10 +6,10 @@ source /opt/.global-utils.sh
 file="/etc/cron.d/forever-process-running-spdy-nghttpx-squid"
 
 ## process restart daily command
-restartCommand="${freeServerRoot}/restart-spdy-nghttpx-squid"
+restartCommand="/bin/bash ${freeServerRoot}/restart-spdy-nghttpx-squid"
 
 ## write watching process every 5 minutes
-echo "*/2 * * * * root ${freeServerRoot}/restart-dead-spdy-nghttpx-squid" > ${file}
+echo "*/2 * * * * root /bin/bash ${freeServerRoot}/restart-dead-spdy-nghttpx-squid" > ${file}
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" >> ${file}

@@ -6,7 +6,7 @@ source /opt/.global-utils.sh
 file="/etc/cron.d/forever-process-running-shadowsocks"
 
 ## process restart daily command
-restartCommand="${freeServerRoot}/restart-shadowsocks"
+restartCommand="/bin/bash ${freeServerRoot}/restart-shadowsocks"
 
 ## write watching process every 5 minutes
 echo "*/2 * * * * root ${freeServerRoot}/restart-dead-shadowsocks" > ${file}

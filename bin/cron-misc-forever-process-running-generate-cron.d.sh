@@ -6,7 +6,7 @@ source /opt/.global-utils.sh
 file="/etc/cron.d/forever-process-running-misc"
 
 ## process restart daily command
-restartCommand="${utilDir}/restart-misc.sh"
+restartCommand="/bin/bash ${utilDir}/restart-misc.sh"
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" > ${file}
