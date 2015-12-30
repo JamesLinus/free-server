@@ -27,25 +27,7 @@ fi
 
 pkill nghttpx
 
-for i in $(cat "${SPDYConfig}"); do
-
-  echo "Process $i"
-
-  username=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $1}')
-  password=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $2}')
-  port=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $3}')
-
-  if [[ -z ${username} || -z ${password} || -z ${port} ]]; then
-    echo -e "username, password and port are all mandatory \n\
-    username: ${username} \n\
-    password: ${password} \n\
-    port: ${port} \n"
-  else
-    echo -e "Restart nghttpx: Username: ${username}, Port ${port} " | wall
-    ${freeServerRoot}/start-spdy-nghttpx ${port}
-  fi
-
-done
-
 ${freeServerRoot}/restart-spdy-squid
+
+${freeServerRoot}/restart-dead-spdy-nghttpx-squid
 

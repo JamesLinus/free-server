@@ -23,6 +23,7 @@ if [[ $UID -ne 0 ]]; then
 fi
 
 # fix perl lang locale warning
+locale-gen UTF-8
 locale-gen en_US.UTF-8 > /dev/null
 
 # fix hostname -f

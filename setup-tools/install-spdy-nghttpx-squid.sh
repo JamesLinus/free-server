@@ -11,9 +11,9 @@ main() {
   linkBinUtilAsShortcut
   generateSquidConf
   installSquid
-  sleep 2
+  linkSquid3DefaultConf
 
-  squid3 -f /etc/squid3/squid.conf  -k kill
+  squid3 -f /etc/squid3/squid.conf  -k reconfigure
   sleep 2
   pkill squid3
   sleep 2
@@ -187,6 +187,10 @@ generateSquidConf() {
 
 installSquid() {
 
+  mkdir -p $SPDYSquidCacheDir
+
+  chmod -R 777 $SPDYSquidCacheDir
+
   echoS "Install Squid, may need 5 minutes."
 
   catchError=$(apt-get install squid -y 2>&1 >> ${loggerStdoutFile})
@@ -202,6 +206,12 @@ linkBinUtilAsShortcut() {
   ln -s ${utilDir}/restart-dead-spdy-nghttpx-squid.sh ${freeServerRoot}/restart-dead-spdy-nghttpx-squid
   ln -s ${utilDir}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d.sh \
     ${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d
+}
+
+linkSquid3DefaultConf() {
+
+    rm /etc/squid3/squid.conf
+    ln -s ${SPDYSquidConfig} /etc/squid3/squid.conf
 }
 
 main "$@"

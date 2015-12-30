@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 if [[ $UID -ne 0 ]]; then
     echo "$0 must be run as root"
     exit 1
@@ -43,6 +47,7 @@ export SPDYSpdyLayFolderName="spdylay-1.3.2"
 export SPDYSpdyLayTarGzName="${SPDYSpdyLayFolderName}.tar.gz"
 export SPDYConfig="${configDir}/SPDY.conf"
 export SPDYSquidConfig="${configDir}/squid.conf"
+export SPDYSquidCacheDir="/var/spool/squid3"
 export SPDYSquidPassWdFile="${configDir}/squid-auth-passwd"
 
 # make SPDYSquidAuthSubProcessAmount bigger, make squid basic auth faster, but may be more unstable indeed
@@ -59,7 +64,7 @@ export SPDYForwardBackendSquidPort=3128
 export SPDYFrontendListenHost="0.0.0.0"
 
 # make SPDYNgHttpXCPUWorkerAmount bigger, make nghttpx faster, but may be unstable if your VPS is not high-end enough
-export SPDYNgHttpXCPUWorkerAmount=3
+export SPDYNgHttpXCPUWorkerAmount=2
 
 export SPDYNgHttpXConcurrentStreamAmount=200
 
@@ -172,6 +177,75 @@ exitOnError(){
   fi
 }
 export -f exitOnError
+
+checkPortClosed(){
+    sleep 1
+    port=$1
+    nc -z localhost $port
+}
+export -f checkPortClosed
+
+waitUntilPortOpen() {
+    port=$1
+    maxWait=$2
+    currentSecond=0
+    checkPortClosed ${port}
+    isPortClosed=$?
+
+    while (( $currentSecond < $maxWait ))  && [[ $isPortClosed == 1 ]]; do
+        sleep 1
+
+        checkPortClosed ${port}
+
+        isPortClosed=$?
+
+        (( currentSecond++ ))
+    done
+
+    if [[ $isPortClosed == 1 ]]; then
+        echoErr "Error: Port $port is still closed on max timeout $maxWait seconds."
+        return 1
+    else
+        return 0
+    fi
+}
+export -f waitUntilPortOpen
+
+runCommandIfPortClosed(){
+    port=$1
+    commandToRun=$2
+
+    checkPortClosed ${port}
+    isPortClosed=$?
+
+    if [[ $isPortClosed == 0 ]]; then
+        return 0
+    else
+        eval $commandToRun
+    fi
+
+    maxTry=2
+    currentTry=0
+
+    while (( $currentTry < $maxTry ))  && [[ $isPortClosed == 1 ]]; do
+
+            waitUntilPortOpen ${port} 3
+
+            isPortClosed=$?
+
+            if [[ $isPortClosed == 0 ]]; then
+                return 0
+            else
+                echo ""
+                #eval $commandToRun
+            fi
+
+            (( currentTry++ ))
+
+    done
+}
+export -f runCommandIfPortClosed
+
 
 killProcessesByPattern(){
   echo -e "\nThe process(es) below would be killed"

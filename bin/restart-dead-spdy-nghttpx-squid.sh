@@ -26,31 +26,24 @@ fi
 
 for i in $(cat "${SPDYConfig}"); do
 
-  echo "Process $i"
-
   username=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $1}')
   password=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $2}')
   port=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $3}')
 
-  isProcessRunning=$(ps aux | gawk "/nghttpx.*,${port}\ /")
 
   if [[ -z ${username} || -z ${password} || -z ${port} ]]; then
     echoS "username, password and port are all mandatory \n\
     username: ${username} \n\
     password: ${password} \n\
     port: ${port} \n"
-  elif [[ ! -z ${isProcessRunning} ]]; then
-    echo "Skip user ${username} since it is already started"
   else
-    echo "Restart spdyproxy with ${username}" | wall
-#    spdyproxy -k ${SPDYSSLKeyFile} -c ${SPDYSSLCertFile} -p $port -U $username -P $password >/dev/null 2>&1  &
 
-    ${freeServerRoot}/start-spdy-nghttpx ${port}
+    runCommandIfPortClosed "${port}" "${freeServerRoot}/start-spdy-nghttpx ${port};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\" | wall"
 
   fi
 
 done
 
-
+runCommandIfPortClosed "${SPDYForwardBackendSquidPort}"  "${freeServerRoot}/restart-spdy-squid"
 
 
