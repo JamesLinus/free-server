@@ -4,6 +4,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2015-12-30 [Enhancement] Update nghttpx to 1.6.0
 * 2015-12-15 [Bug] Important Fix: Now iPSec/nghttpx+Squid (HTTP2/SPDY)/Shadowsocks supports Amazon EC2 Ubuntu again.
 * 2015-12-15 [Enhancement] Add Stderr Logging / Stdout Logging control to log files, and "Stop on Critical Error".
 
@@ -31,15 +32,15 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * node / npm / node-legacy
 * Shadowsocks: shadowsocks-libev 
 (deb http://shadowsocks.org/debian wheezy main)
-* HTTP2/SPDY: nghttp2-1.4.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
-(https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.4.0/nghttp2-1.4.0.tar.gz)
+* HTTP2/SPDY: nghttp2-1.6.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
+(https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.6.0/nghttp2-1.6.0.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
 * IPSec (ikev2) 
 * node forever (npm module)
 
 ## Installation
 
-* You need to obtain a HTTPS SSL Certificate before you install HTTP2/SPDY server. Get one for free from [StartSSL](https://www.startssl.com/?app=12).
+* You need to obtain a HTTPS SSL Certificate before you install HTTP2/SPDY server. Generate one with [Let’s Encrypt](https://letsencrypt.org/) or get one for free from [StartSSL](https://www.startssl.com/?app=12).
 * Note that you can't use self-signed SSL cert. It must be issued by third-party authorities thanks to Chrome HTTP2/SPDY SSL validation.
 
 ```bash
