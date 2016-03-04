@@ -23,19 +23,13 @@ if [[ $UID -ne 0 ]]; then
 fi
 
 # fix perl lang locale warning
-locale-gen en_US.UTF-8 > /dev/null
+locale-gen en_US.UTF-8
 
-removeLineInFile /etc/default/locale LANG
-echo LANG=\"en_US.UTF-8\" >> /etc/default/locale
-
-removeLineInFile /etc/default/locale LC_CTYPE
-echo LC_CTYPE=\"en_US.UTF-8\" >> /etc/default/locale
-
-removeLineInFile /etc/default/locale LC_ALL
-echo LC_ALL=\"en_US.UTF-8\" >> /etc/default/locale
-
-removeLineInFile /etc/default/locale LANGUAGE
-echo LANGUAGE=\"en_US:en\" >> /etc/default/locale
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+locale-gen en_US.UTF-8
+dpkg-reconfigure locales
 
 
 dpkg-reconfigure locales
