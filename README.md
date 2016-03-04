@@ -4,6 +4,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2016-03-05 [Bug] Fix locale issue of perl
 * 2015-12-30 [Enhancement] Update nghttpx to 1.6.0
 * 2015-12-15 [Bug] Important Fix: Now iPSec/nghttpx+Squid (HTTP2/SPDY)/Shadowsocks supports Amazon EC2 Ubuntu again.
 * 2015-12-15 [Enhancement] Add Stderr Logging / Stdout Logging control to log files, and "Stop on Critical Error".
@@ -74,10 +75,6 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 
 
 ## Donation
-
-* 如果你觉得这个程序促进了你的信息传播与资讯获取自由, 欢迎你考虑给小方一些捐赠, 5元/10元即可, 表示一下鼓励与安慰. 支付宝账号: lanshunfang#gmail.com (替换#为@), 小方会更加有力的响应需求的. 谢谢.
-
-------
 
 * Please consider donation to Paul so that he will be encouraged by your favor. Paypal: lanshunfang#gmail.com (replace # to @). Thank you :)
 
