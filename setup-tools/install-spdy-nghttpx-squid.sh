@@ -10,6 +10,7 @@ main() {
   installNgHttpX
   linkBinUtilAsShortcut
   generateSquidConf
+  linkSquid3DefaultConf
   installSquid
   linkSquid3DefaultConf
 
