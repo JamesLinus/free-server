@@ -48,10 +48,13 @@ startNgHttpX() {
   # Testing:
   # nghttpx --daemon --http2-proxy --frontend="0.0.0.0,25" --backend="localhost,3128" /root/free-server/config/SPDY.domain.key /root/free-server/config/SPDY.domain.crt
   # --cacert=${SPDYSSLCaPemFile} \
+  # --errorlog-file="${loggerRuntimeErrFile}" \
+  # --log-level="ERROR" \
 
   nghttpx \
   --daemon \
   --http2-proxy \
+  --no-via \
   --fastopen=3 \
   --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
   --workers=${SPDYNgHttpXCPUWorkerAmount} \

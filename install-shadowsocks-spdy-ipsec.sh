@@ -25,6 +25,9 @@ fi
 # fix perl lang locale warning
 locale-gen UTF-8
 locale-gen en_US.UTF-8 > /dev/null
+dpkg-reconfigure locales
+removeLineInFile /etc/default/locale LC_CTYPE
+echo LC_CTYPE=\"en_US.UTF-8\" >> /etc/default/locale
 
 # fix hostname -f
 hostName=$(hostname)
