@@ -210,8 +210,10 @@ linkBinUtilAsShortcut() {
 }
 
 linkSquid3DefaultConf() {
-
-    rm /etc/squid3/squid.conf
+    config=/etc/squid3/squid.conf
+    mkdir -p /etc/squid3
+    touch $config
+    rm $config
     ln -s ${SPDYSquidConfig} /etc/squid3/squid.conf
 }
 
