@@ -27,6 +27,8 @@ downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-forever-process-running-gene
 #downloadFileToFolder ${baseUrlBin}/cron-spdy-forever-process-running-generate-cron.d.sh ${utilDir}
 
 downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
+downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
+downloadFileToFolder ${baseUrlConfigSample}/haproxy-user.conf ${configDir}
 downloadFileToFolder ${baseUrlSetup}/install-spdy-nghttpx-squid.sh ${freeServerRootTmp}
 downloadFileToFolder ${baseUrlBin}/createuser-spdy-nghttpx-squid.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-spdy-nghttpx-squid.sh ${utilDir}
@@ -34,6 +36,8 @@ downloadFileToFolder ${baseUrlBin}/start-spdy-nghttpx.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-spdy-squid.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-dead-spdy-nghttpx-squid.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d.sh ${utilDir}
+
+downloadFileToFolder ${baseUrlBin}/restart-dead-loadbalancer.sh ${utilDir}
 
 
 
