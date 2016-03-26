@@ -9,6 +9,9 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 export globalUtilFile=$0
 
 export bashrc=~/.bashrc

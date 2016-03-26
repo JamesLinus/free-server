@@ -22,17 +22,16 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
-# fix perl lang locale warning
-locale-gen en_US.UTF-8
 
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-locale-gen en_US.UTF-8
-dpkg-reconfigure locales
 
+echo LC_CTYPE=\"en_US.UTF-8\" > /etc/default/locale
+echo LC_ALL=\"en_US.UTF-8\" >> /etc/default/locale
+echo LANG=\"en_US.UTF-8\" >> /etc/default/locale
 
-dpkg-reconfigure locales
+apt-get install language-pack-en-base -y && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales
+
 
 
 # fix hostname -f
