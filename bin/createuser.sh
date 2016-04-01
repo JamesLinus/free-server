@@ -21,6 +21,7 @@ SPDYPort=$4
 ${freeServerRoot}/createuser-shadowsocks "${shadowsocksPort}" "${pass}"
 #${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
 ${freeServerRoot}/createuser-spdy-nghttpx-squid "${user}" "${pass}" "${SPDYPort}"
-${freeServerRoot}/createuser-ipsec "${user}" "${pass}"
+#${freeServerRoot}/createuser-ipsec "${user}" "${pass}"
+${freeServerRoot}/createuser-ocserv "${user}" "${pass}"
 
-echoS "All done. Shadowsocks and SPDY account has been created for user $user"
+echoS "All done. HTTP2/SPDY, Shadowsocks, Cisco AnyConnect VPN account has been created for user $user"

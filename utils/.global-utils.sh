@@ -1,13 +1,17 @@
 #!/bin/bash
 
 
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+export SHELL=/bin/bash
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 if [[ $UID -ne 0 ]]; then
     echo "$0 must be run as root"
     exit 1
 fi
+
+source ${freeServerGlobalEnv}
+
+export currentDate=$(date +"%m_%d_%Y")
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -28,6 +32,9 @@ export utilDir=${freeServerRoot}/util
 # for configration samples
 export configDir=${freeServerRoot}/config
 export configDirBackup=/opt/free-server-config-bak
+export configDirBackupDate=/opt/free-server-config-bak-$currentDate
+
+export freeServerGlobalEnv=${configDir}/envrc
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
@@ -83,6 +90,10 @@ export ipsecStrongManVersionTarGz=${ipsecStrongManVersion}.tar.gz
 ## ipsecStrongManOldVersion should be added if you want to update the ${ipsecStrongManVersion}, so that the script can clean the old files
 export ipsecStrongManOldVersion=strongswan-5.2.1
 export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
+
+export ocservPasswd=${configDir}/ocserv.passwd
+export ocservConfig="${configDir}/ocserv.conf"
+
 
 export clusterDefFilePath="${configDir}/cluster-def.txt"
 export clusterDeploySSHMutualAuthAccept="${freeServerRoot}/cluster-deploy-ssh-mutual-auth-accept"
@@ -377,8 +388,7 @@ export -f removeLineByRegPattAndInsert
 # @example file$(appendDateToString).bak
 #####
 appendDateToString(){
-  local now=$(date +"%m_%d_%Y")
-  echo "-${now}"
+  echo "-$currentDate"
 }
 export -f appendDateToString
 
@@ -566,3 +576,43 @@ optimizeLinuxForShadowsocks(){
 }
 
 export -f optimizeLinuxForShadowsocks
+
+
+# get current server name
+setServerName() {
+
+  serverName=$(getUserInput "Input \x1b[46m Server Domain \x1b[0m (e.g. vpn.xiaofang.me): " non-empty 3)
+
+  if [[ -z ${serverName} ]]; then
+
+    echoErr "Sever Name should not be empty"
+
+  else
+
+    echo "export freeServerName=${serverName}" >> ${freeServerGlobalEnv}
+
+  fi
+
+
+}
+export -f setServerName
+
+# get current user email
+setEmail() {
+
+  email=$(getUserInput "Input \x1b[46m Your Email \x1b[0m (e.g. paul_lan@gmail.com): " non-empty 3)
+
+  if [[ -z ${email} ]]; then
+
+    echoErr "User Email should not be empty"
+
+  else
+
+    echo "export freeServerUserEmail=${email}" >> ${freeServerGlobalEnv}
+
+  fi
+
+
+}
+export -f setEmail
+

@@ -10,7 +10,8 @@ echoS "Write to crontab for auto restart"
 catchError=$(${freeServerRoot}/cron-shadowsocks-forever-process-running-generate-cron.d  2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
-catchError=$(${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
+#catchError=$(${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
+catchError=$(${freeServerRoot}/cron-ocserv-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
 #${freeServerRoot}/cron-spdy-forever-process-running-generate-cron.d
@@ -23,9 +24,11 @@ ${utilDir}/cron-misc-forever-process-running-generate-cron.d.sh
 catchError=$(service cron restart 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
-echoS "Restart Shadowsocks/SPDY/IPSec"
+#echoS "Restart Shadowsocks/SPDY/IPSec"
+echoS "Restart Shadowsocks/SPDY/Cisco AnyConnect"
 
-${freeServerRoot}/restart-ipsec
+#${freeServerRoot}/restart-ipsec
+${freeServerRoot}/restart-ocserv
 
 ${freeServerRoot}/restart-shadowsocks
 

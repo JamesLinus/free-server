@@ -19,14 +19,8 @@ downloadFileToFolder ${baseUrlBin}/restart-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-dead-shadowsocks.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-forever-process-running-generate-cron.d.sh ${utilDir}
 
-#downloadFileToFolder ${baseUrlSetup}/install-spdy.sh ${freeServerRootTmp}
-#downloadFileToFolder ${baseUrlBin}/createuser-spdy.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/deleteuser-spdy.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/restart-spdy.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/restart-dead-spdy.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/cron-spdy-forever-process-running-generate-cron.d.sh ${utilDir}
-
 downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
+downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
 downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
 downloadFileToFolder ${baseUrlConfigSample}/haproxy-user.conf ${configDir}
 downloadFileToFolder ${baseUrlSetup}/install-spdy-nghttpx-squid.sh ${freeServerRootTmp}
@@ -39,14 +33,19 @@ downloadFileToFolder ${baseUrlBin}/cron-spdy-nghttpx-squid-forever-process-runni
 
 downloadFileToFolder ${baseUrlBin}/restart-dead-loadbalancer.sh ${utilDir}
 
+downloadFileToFolder ${baseUrlSetup}/install-ocserv.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlBin}/createuser-ocserv.sh ${utilDir}
+#downloadFileToFolder ${baseUrlBin}/deleteuser-ocserv.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/restart-ocserv.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/restart-dead-ocserv.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-ocserv-forever-process-running-generate-cron.d.sh ${utilDir}
 
-
-downloadFileToFolder ${baseUrlSetup}/install-ipsec-ikev2.sh ${freeServerRootTmp}
-downloadFileToFolder ${baseUrlBin}/createuser-ipsec.sh ${utilDir}
+#downloadFileToFolder ${baseUrlSetup}/install-ipsec-ikev2.sh ${freeServerRootTmp}
+#downloadFileToFolder ${baseUrlBin}/createuser-ipsec.sh ${utilDir}
 #downloadFileToFolder ${baseUrlBin}/deleteuser-ipsec.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/restart-ipsec.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/restart-dead-ipsec.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/cron-ipsec-forever-process-running-generate-cron.d.sh ${utilDir}
+#downloadFileToFolder ${baseUrlBin}/restart-ipsec.sh ${utilDir}
+#downloadFileToFolder ${baseUrlBin}/restart-dead-ipsec.sh ${utilDir}
+#downloadFileToFolder ${baseUrlBin}/cron-ipsec-forever-process-running-generate-cron.d.sh ${utilDir}
 
 downloadFileToFolder ${baseUrlBin}/forever-process-running.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/forever-process-running-generate-cron.d ${utilDir}

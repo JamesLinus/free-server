@@ -13,6 +13,7 @@ main() {
   touch ${loggerStderrFile}
   touch ${loggerRuntimeInfoFile}
   touch ${loggerRuntimeErrFile}
+  touch ${freeServerGlobalEnv}
 }
 
 createFolderByPath() {

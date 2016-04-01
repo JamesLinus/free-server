@@ -33,7 +33,6 @@ echo LANG=\"en_US.UTF-8\" >> /etc/default/locale
 apt-get install language-pack-en-base -y && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales
 
 
-
 # fix hostname -f
 hostName=$(hostname)
 hostNameF=$(hostname -f)
@@ -78,7 +77,7 @@ if [[ -d ${freeServerRoot} ]]; then
 
     # restore backed up config files
     if [[ -d ${configDirBackup} ]]; then
-        echoS "Old backed up config files found in ${configDirBackup}. \
+        echoS "Old backed up config files found in ${configDirBackup} ${configDirBackupDate}. \
         This is not correct. You should move it to other place or just delete it before proceed. Exit"
         exit 0
     fi
@@ -86,15 +85,39 @@ if [[ -d ${freeServerRoot} ]]; then
     # move current config files to a save place if has
 
     mv ${configDir} ${configDirBackup}
+    # copy a another backup
+    cp -nr ${configDirBackup} ${configDirBackupDate}
 
     rm -rf ${freeServerRoot}
 
 fi
 
+
 echoS "Create Folder scaffold"
 
 wget --no-cache -qO- ${baseUrlSetup}/init-folders.sh | /bin/bash
 
+echoS "Restore Config"
+
+
+# restore backed up config files
+if [ -d ${configDirBackup} ]; then
+    mv ${configDirBackup} ${configDir}
+    source .global-utils.sh
+fi
+
+
+echoS "Get Global Settings"
+
+if [[ -z $freeServerName ]]; then
+    setServerName
+    source .global-utils.sh
+fi
+
+if [[ -z $freeServerUserEmail ]]; then
+    setEmail
+    source .global-utils.sh
+fi
 
 echoS "Getting and processing utility package"
 warnNoEnterReturnKey
@@ -119,20 +142,19 @@ warnNoEnterReturnKey
 #${freeServerRootTmp}/install-spdy.sh
 ${freeServerRootTmp}/install-spdy-nghttpx-squid.sh || exit 1
 
-echoS "Installing IPSec/IKEv2 VPN (for IOS)"
+#echoS "Installing IPSec/IKEv2 VPN (for IOS)"
+#${freeServerRootTmp}/install-ipsec-ikev2.sh || exit 1
 
-${freeServerRootTmp}/install-ipsec-ikev2.sh || exit 1
+echoS "Installing Cisco AnyConnect (Open Connect Ocserv)"
+${freeServerRootTmp}/install-ocserv.sh || exit 1
 
 #echoS "Installing and Initiating Free Server Cluster for multiple IPs/Domains/Servers with same Login Credentials support"
 #
 #${freeServerRootTmp}/install-cluster.sh
 
-# restore backed up config files
-if [ -d ${configDirBackup} ]; then
-    cp -rn ${configDir}/* ${configDirBackup}
-    rm -rf ${configDir}
-    mv ${configDirBackup} ${configDir}
-fi
+
+
+
 
 echoS "Restart and Init Everything in need"
 
@@ -140,13 +162,13 @@ ${freeServerRootTmp}/init.sh || exit 1
 
 echoS "All done. Create user example: \n\n\
 \
-Shadowsocks+SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
+Shadowsocks+SPDY+Cisco AnyConnect VPN: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
 \
 Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
 \
 SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port \n\n\
 \
-IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass \n\n\
+Cisco AnyConnect VPN Only: ${freeServerRoot}/createuser-ocserv User Pass \n\n\
 \
 "
 
@@ -155,7 +177,7 @@ echoS "\x1b[46m Next step: \x1b[0m\n\n\
 2. Config Chrome or other client. Tutorial is here: https://github.com/lanshunfang/free-server#how-to-setup-clients
 "
 
-echoS "Note that, the IpSec PSK(Secret) is located: \x1b[46m ${ipsecSecFile} \x1b[0m. You may want to reedit the PSK field."
+#echoS "Note that, the IpSec PSK(Secret) is located: \x1b[46m ${ipsecSecFile} \x1b[0m. You may want to reedit the PSK field."
 # remove self
 rm -f "$self"
 
