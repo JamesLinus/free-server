@@ -49,8 +49,8 @@ export baseUrlMisc=${baseUrl}/misc
 export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 
-export SPDYNgHttp2DownloadLink="https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.6.0/nghttp2-1.6.0.tar.gz"
-export SPDYNgHttp2FolderName="nghttp2-1.6.0"
+export SPDYNgHttp2DownloadLink="https://github.com/nghttp2/nghttp2/releases/download/v1.9.1/nghttp2-1.9.1.tar.gz"
+export SPDYNgHttp2FolderName="nghttp2-1.9.1"
 export SPDYNgHttp2TarGzName="${SPDYNgHttp2FolderName}.tar.gz"
 export SPDYSpdyLayDownloadLink="https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz"
 export SPDYSpdyLayFolderName="spdylay-1.3.2"
