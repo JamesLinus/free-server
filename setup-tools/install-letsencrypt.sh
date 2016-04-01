@@ -3,39 +3,29 @@
 source /opt/.global-utils.sh
 
 main() {
-    installOcserv
-    copyDefaultConfig
-
+    installLetsencrypt
+    prepareLetEncryptEnv
+    getCert
+    afterLetEncryptEnv
+    enableAutoRenew
 }
 
-installOcserv() {
-    cd ${freeServerRootTmp}
-    wget ftp://ftp.infradead.org/pub/ocserv/ocserv-0.9.2.tar.xz
-    tar -xf ocserv-0.9.2.tar.xz
-    cd ocserv-0.9.2
-    apt-get install -y build-essential pkg-config libgnutls28-dev libwrap0-dev libpam0g-dev libseccomp-dev libreadline-dev libnl-route-3-dev
-    ./configure && make && make install
-
+installLetsencrypt() {
+    apt-get install git
+    git config --global user.name "Free Server"
+    git config --global user.email "${freeServerUserEmail}"
+    cd ${letsencryptInstallationFolder}
+    git clone https://github.com/letsencrypt/letsencrypt ./
+    ./letsencrypt-auto --help
 }
 
-copyDefaultConfig(){
-
+getCert() {
+    eval "${letsencryptAutoPath} certonly --standalone --email ${freeServerUserEmail} -d ${freeServerName} --non-interactive"
 }
 
-enableStartUpAndHealthChecking() {
-
-}
-
-enableIptableToConnectInternet(){
-
-}
-
-linkBinUtilAsShortcut() {
-	ln -s ${utilDir}/restart-dead-ocserv.sh ${freeServerRoot}/restart-dead-ocserv
-	ln -s ${utilDir}/createuser-ocserv.sh ${freeServerRoot}/createuser-ocserv
-	ln -s ${utilDir}/restart-ocserv.sh ${freeServerRoot}/restart-ocserv
-	ln -s ${utilDir}/deleteuser-ocserv.sh ${freeServerRoot}/deleteuser-ocserv
-	ln -s ${utilDir}/cron-ocserv-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ocserv-forever-process-running-generate-cron.d
+enableAutoRenew() {
+    echo "6 50 *  * 1 root ~/renew_letsencrypt.sh" > /etc/cron.d/renew_letsencrypt
+    # run for first time
 }
 
 main "$@"

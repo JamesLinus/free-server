@@ -18,10 +18,7 @@ installHaproxy() {
 }
 
 linkConfig() {
-  if [[ -f ${SPDYSSLKeyFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY/HTTP2 SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating." "stderr"
-    return 0
-  fi
+
 	removeLineInFile /etc/default/haproxy CONFIG
 	echo CONFIG=\"${configDir}/haproxy.conf\" >> /etc/default/haproxy
 }

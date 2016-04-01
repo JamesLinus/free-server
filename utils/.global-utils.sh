@@ -9,6 +9,8 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
+export freeServerGlobalEnv=${configDir}/envrc
+
 source ${freeServerGlobalEnv}
 
 export currentDate=$(date +"%m_%d_%Y")
@@ -34,7 +36,11 @@ export configDir=${freeServerRoot}/config
 export configDirBackup=/opt/free-server-config-bak
 export configDirBackupDate=/opt/free-server-config-bak-$currentDate
 
-export freeServerGlobalEnv=${configDir}/envrc
+# let's encrypt
+export letsEncryptCertPath=/etc/letsencrypt/live/$freeServerName/fullchain.pem
+export letsEncryptKeyPath=/etc/letsencrypt/live/$freeServerName/privkey.pem
+export letsencryptInstallationFolder=${freeServerRoot}/letsencrypt
+export letsencryptAutoPath=${letsencryptInstallationFolder}/letsencrypt-auto
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
@@ -65,10 +71,9 @@ export SPDYSquidAuthSubProcessAmount=4
 
 #export SPDYSSLCaPemFile="${configDir}/SPDY.ca-multiple.pem"
 #export SPDYSSLCaPemFileInConfigDirBackup="${configDirBackup}/SPDY.ca-multiple.pem"
-export SPDYSSLKeyFile="${configDir}/SPDY.domain.key"
-export SPDYSSLKeyFileInConfigDirBackup="${configDirBackup}/SPDY.domain.key"
-export SPDYSSLCertFile="${configDir}/SPDY.domain.crt"
-export SPDYSSLCertFileInConfigDirBackup="${configDirBackup}/SPDY.domain.crt"
+export SPDYSSLKeyFile="${letsEncryptKeyPath}"
+export SPDYSSLCertFile="${letsEncryptCertPath}"
+
 export SPDYForwardBackendSquidHost="127.0.0.1"
 export SPDYForwardBackendSquidPort=3128
 export SPDYFrontendListenHost="0.0.0.0"
@@ -616,3 +621,20 @@ setEmail() {
 }
 export -f setEmail
 
+# get current user email
+prepareLetEncryptEnv() {
+
+    forever stop /opt/free-server/misc/testing-web.js
+    service nginx stop
+
+}
+export -f prepareLetEncryptEnv
+
+# get current user email
+afterLetEncryptEnv() {
+
+    forever start /opt/free-server/misc/testing-web.js
+    service nginx restart
+
+}
+export -f afterLetEncryptEnv

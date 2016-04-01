@@ -3,8 +3,7 @@
 source /opt/.global-utils.sh
 
 main() {
-  getSpdySslKeyFile
-  getSpdySslCertFile
+
 #  getSpdySslCaPemFile
   installSpdyLay
   installNgHttpX
@@ -20,82 +19,6 @@ main() {
   sleep 2
 
 }
-
-getSpdySslKeyFile() {
-  if [[ -f ${SPDYSSLKeyFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY/HTTP2 SSL Key file detected in ${SPDYSSLKeyFileInConfigDirBackup}. Skip generating." "stderr"
-    return 0
-  fi
-  echoS "Input the file (with path) of your HTTPS/SSL PRIVATE KEY file : \n\n\
-  (You could generate your own from https://letsencrypt.org/)"
-
-
-  key=$(getUserInput "Input \x1b[46m HTTPS SSL PRIVATE KEY \x1b[0m absolute path (e.g. /etc/letsencrypt/live/DOMAIN/privkey.pem): " file 3)
-
-  if [[ ! -f ${key} ]]; then
-
-    echoErr "HTTPS/SSL PRIVATE KEY file is required for installation of SPDY/HTTP2 server."
-
-  else
-
-    echoS "Selected key file is ${key}"
-    echoS "Copy Key ${key} to ${configDir}"
-    cp ${key} ${SPDYSSLKeyFile}
-
-  fi
-
-
-}
-
-getSpdySslCertFile() {
-  if [[ -f ${SPDYSSLCertFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY/HTTP2 SSL Cert file detected in ${SPDYSSLCertFileInConfigDirBackup}. Skip generating." "stderr"
-    return 0
-  fi
-
-  cert=$(getUserInput "Input \x1b[46m HTTPS SSL CERTIFICATE \x1b[0m absolute path (e.g. /etc/letsencrypt/live/DOMAIN/fullchain.pem): " file 3)
-
-
-  if [[ ! -f ${cert} ]]; then
-
-    echoErr "HTTPS/SSL Cert file is required for installation of SPDY/HTTP2 server."
-
-  else
-
-    echoS "Selected cert file is ${cert}"
-    echoS "Copy Cert ${cert} to ${configDir}"
-
-    cp ${cert} ${SPDYSSLCertFile}
-
-  fi
-
-}
-
-
-getSpdySslCaPemFile() {
-  if [[ -f ${SPDYSSLCaPemFileInConfigDirBackup} ]]; then
-    echoS "Previous SPDY/HTTP2 SSL CA Pem file detected in ${SPDYSSLCaPemFileInConfigDirBackup}. Skip generating." "stderr"
-    return 0
-  fi
-  echoS "Input the file (with path) of your SSL Ca pem file"
-
-  caPem=$(getUserInput "Input \x1b[46m ca.pem \x1b[0m file absolute path (e.g. /root/ssl/sub.class1.server.ca.pem): " file 3)
-
-  if [[ ! -f ${caPem} ]]; then
-
-    echoErr "SSL CA Pem file  (ca.pem) is required for installation of SPDY/HTTP2 server."
-
-  else
-
-    echoS "Selected ca.pem file is ${caPem}"
-    echoS "Copy Key ${caPem} to ${configDir}"
-
-    cp ${caPem} ${SPDYSSLCaPemFile}
-
-  fi
-
-}
-
 
 installSpdyLay() {
 

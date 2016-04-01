@@ -131,6 +131,9 @@ warnNoEnterReturnKey
 
 ${freeServerRootTmp}/install-node.sh || exit 1
 
+echoS "Installing Let's Encrypt"
+${freeServerRootTmp}/install-letsencrypt.sh || exit 1
+
 echoS "Installing and initing Shadowsocks"
 warnNoEnterReturnKey
 

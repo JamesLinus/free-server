@@ -4,6 +4,9 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2016-04-02 [Milestone] Add OpenConnect Cisco AnyConnect VPN support for iOS
+* 2016-04-02 [Milestone] Add Let's Encrypt SSL Cert auto generation for SPDY and Open Connect
+* 2016-04-02 [Enhancement] Update nghttpx to 1.9.1
 * 2016-03-05 [Bug] Fix locale issue of perl
 * 2015-12-30 [Enhancement] Update nghttpx to 1.6.0
 * 2015-12-15 [Bug] Important Fix: Now iPSec/nghttpx+Squid (HTTP2/SPDY)/Shadowsocks supports Amazon EC2 Ubuntu again.
