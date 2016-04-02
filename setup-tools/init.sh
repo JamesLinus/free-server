@@ -6,6 +6,9 @@ ln -s ${utilDir}/createuser.sh ${freeServerRoot}/createuser
 
 echoS "Write to crontab for auto restart"
 
+catchError=$(${freeServerRoot}/cron-renew-letsencrypt  2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
 # smart service watcher for every 2 minutes
 catchError=$(${freeServerRoot}/cron-shadowsocks-forever-process-running-generate-cron.d  2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"

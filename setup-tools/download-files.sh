@@ -9,7 +9,10 @@ downloadFileToFolder ${baseUrlSetup}/init.sh ${freeServerRootTmp}
 downloadFileToFolder ${baseUrlSetup}/migrate.sh ${freeServerRootTmp}
 
 downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
+
 downloadFileToFolder ${baseUrlSetup}/install-letsencrypt.sh ${freeServerRootTmp}
+downloadFileToFolder ${baseUrlBin}/renew-letsencrypt.sh ${utilDir}
+
 
 # runtime bin
 downloadFileToFolder ${baseUrlBin}/createuser.sh ${utilDir}

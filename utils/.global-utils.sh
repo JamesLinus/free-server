@@ -638,3 +638,23 @@ afterLetEncryptEnv() {
 
 }
 export -f afterLetEncryptEnv
+
+
+enableIptableToConnectInternet(){
+
+    ipt=/sbin/iptables
+
+    sysctl --quiet -w net.ipv4.ip_forward=1
+
+    $ipt -F FORWARD
+    $ipt -P FORWARD DROP
+    $ipt -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+    $ipt -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+    $ipt -A FORWARD -i vpns+ -o eth0 -j ACCEPT
+    $ipt -A FORWARD -i vpns+ -o vpns+ -j ACCEPT
+
+    $ipt -t nat -F POSTROUTING
+    $ipt -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+}
+export -f enableIptableToConnectInternet

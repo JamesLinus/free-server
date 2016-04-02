@@ -4,24 +4,21 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
-* 2016-04-02 [Milestone] Add OpenConnect Cisco AnyConnect VPN support for iOS
+* 2016-04-02 [Milestone] Add OpenConnect Cisco AnyConnect VPN support for iOS, as substitution of IPSec.
 * 2016-04-02 [Milestone] Add Let's Encrypt SSL Cert auto generation for SPDY and Open Connect
 * 2016-04-02 [Enhancement] Update nghttpx to 1.9.1
+
+-------
+
 * 2016-03-05 [Bug] Fix locale issue of perl
 * 2015-12-30 [Enhancement] Update nghttpx to 1.6.0
 * 2015-12-15 [Bug] Important Fix: Now iPSec/nghttpx+Squid (HTTP2/SPDY)/Shadowsocks supports Amazon EC2 Ubuntu again.
 * 2015-12-15 [Enhancement] Add Stderr Logging / Stdout Logging control to log files, and "Stop on Critical Error".
-
--------
-
 * 2015-11-06 [Enhancement] Replace spdyproxy (NPM module) to nghttpx(C)+Squid.
 * 2015-11-03 [Platform] Add support to Amazon EC2 Ubuntu 14.04.2 LTS. Tested pass with EC2 Singapore Data Center 
 * 2015-11-02 Milestone: [Feature] Add IPSec for IOS devices
 * 2015-10-30 Important fix: [Bug] fix restart dead processes bug 
   (for SPDY and Shadowsocks process healthy monitoring, tested passed on Ubuntu 15, Digital Ocean)
-
--------
-
 * 2015-08-12 Testing passed on Digital Ocean Ubuntu Server 15
 * 2015-08-10 Many datacenters of Linode are getting unstable due to China GFW policies. Digital Ocean or Amazon EC2 may be better candidates.
 * 2015-08-10 Shadowsocks and SPDY installation is well tested on Linode Ubuntu 15 now.
