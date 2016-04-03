@@ -88,6 +88,12 @@ if [[ -d ${freeServerRoot} ]]; then
     rm -f ${loggerStdoutFile}
     rm -f ${loggerStderrFile}
 
+    rm -f ${configDir}/haproxy.conf
+    rm -f ${configDir}/haproxy-user.conf
+    rm -f ${configDir}/squid.conf
+    rm -f ${configDir}/ocserv.conf
+    rm -f ${configDir}/ocserv.xml
+
     # move current config files to a save place if has
 
     mv ${configDir} ${configDirBackup}
@@ -130,6 +136,7 @@ fi
 rm -f /etc/cron.d/forever-process-running-*
 rm -f /etc/cron.d/renew_letsencrypt
 service cron restart 2>&1 > /dev/null
+
 
 echoS "Getting and processing utility package"
 warnNoEnterReturnKey
