@@ -79,7 +79,7 @@ export SPDYFrontendListenHost="0.0.0.0"
 # make SPDYNgHttpXCPUWorkerAmount bigger, make nghttpx faster, but may be unstable if your VPS is not high-end enough
 export SPDYNgHttpXCPUWorkerAmount=2
 
-export SPDYNgHttpXConcurrentStreamAmount=200
+export SPDYNgHttpXConcurrentStreamAmount=600
 
 export ipsecSecFile=${configDir}/ipsec.secrets
 export ipsecSecFileInConfigDirBackup=${configDirBackup}/ipsec.secrets

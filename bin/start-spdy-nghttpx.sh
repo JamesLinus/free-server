@@ -56,7 +56,7 @@ startNgHttpX() {
   --http2-proxy \
   --no-via \
   --fastopen=3 \
-  --http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
+  --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
   --workers=${SPDYNgHttpXCPUWorkerAmount} \
   --frontend="${SPDYFrontendListenHost},${port}" \
   --backend="${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}" \
