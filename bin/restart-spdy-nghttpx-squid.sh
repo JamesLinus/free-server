@@ -25,7 +25,7 @@ if [[ ! -f ${letsEncryptCertPath} ]]; then
   exit 0
 fi
 
-pkill nghttpx
+pkill ^nghttpx
 
 ${freeServerRoot}/restart-spdy-squid
 

@@ -34,5 +34,12 @@ fi
 enableIptableToConnectInternet
 
 # kill and start
-pkill ocserv
+pkill -ef ^ocserv
+sleep 2
+
 ocserv -c ${ocservConfig}
+
+echoS "Restarted ocserv"
+sleep 1
+
+ps aux |  grep ocserv
