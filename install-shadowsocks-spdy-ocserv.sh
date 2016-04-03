@@ -22,6 +22,7 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
+echoS "apt-get update and install required tools"
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -30,7 +31,7 @@ echo LC_CTYPE=\"en_US.UTF-8\" > /etc/default/locale
 echo LC_ALL=\"en_US.UTF-8\" >> /etc/default/locale
 echo LANG=\"en_US.UTF-8\" >> /etc/default/locale
 
-apt-get install language-pack-en-base -y && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales
+apt-get install language-pack-en-base -y && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales 2>&1 > /dev/null
 
 
 # fix hostname -f
@@ -43,7 +44,6 @@ if [[ -z $hostNameF && ! -z $hostName ]]; then
 
 fi
 
-echoS "apt-get update and install required tools"
 warnNoEnterReturnKey
 apt-get update -y > /dev/null
 

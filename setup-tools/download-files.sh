@@ -12,6 +12,7 @@ downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
 
 downloadFileToFolder ${baseUrlSetup}/install-letsencrypt.sh ${freeServerRootTmp}
 downloadFileToFolder ${baseUrlBin}/renew-letsencrypt.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-renew-letsencrypt.sh ${utilDir}
 
 
 # runtime bin

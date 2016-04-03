@@ -3,7 +3,10 @@
 source /opt/.global-utils.sh
 
 main() {
-    installOcserv
+    catchError=$(installOcserv)
+    exitOnError "${catchError}"
+
+    linkBinUtilAsShortcut
 
 }
 
@@ -20,8 +23,7 @@ linkBinUtilAsShortcut() {
 	ln -s ${utilDir}/restart-dead-ocserv.sh ${freeServerRoot}/restart-dead-ocserv
 	ln -s ${utilDir}/createuser-ocserv.sh ${freeServerRoot}/createuser-ocserv
 	ln -s ${utilDir}/restart-ocserv.sh ${freeServerRoot}/restart-ocserv
-	ln -s ${utilDir}/renew-letsencrypt.sh ${freeServerRoot}/renew-letsencrypt
-	ln -s ${utilDir}/deleteuser-ocserv.sh ${freeServerRoot}/deleteuser-ocserv
+#	ln -s ${utilDir}/deleteuser-ocserv.sh ${freeServerRoot}/deleteuser-ocserv
 	ln -s ${utilDir}/cron-ocserv-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ocserv-forever-process-running-generate-cron.d
 }
 

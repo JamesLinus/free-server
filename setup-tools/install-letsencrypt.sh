@@ -4,6 +4,7 @@ source /opt/.global-utils.sh
 
 main() {
     installLetsencrypt
+    linkBinUtilAsShortcut
     prepareLetEncryptEnv
     getCert
     afterLetEncryptEnv
@@ -18,8 +19,12 @@ installLetsencrypt() {
     git config --global user.name "Free Server"
     git config --global user.email "${freeServerUserEmail}"
     cd ${letsencryptInstallationFolder}
-    git clone https://github.com/letsencrypt/letsencrypt ./
-    ./letsencrypt-auto --help
+
+    echoS "Installing Let's Encrypt"
+    git clone https://github.com/letsencrypt/letsencrypt ./ 2>&1 >> ${loggerStdoutFile}
+    ./letsencrypt-auto --help 2>&1 >> ${loggerStdoutFile}
+
+
 }
 
 getCert() {
@@ -29,6 +34,13 @@ getCert() {
 enableAutoRenew() {
     echo "6 50 *  * 1 root ~/renew_letsencrypt.sh" > /etc/cron.d/renew_letsencrypt
     # run for first time
+}
+
+linkBinUtilAsShortcut() {
+
+    ln -s ${utilDir}/renew-letsencrypt.sh ${freeServerRoot}/renew-letsencrypt
+    ln -s ${utilDir}/cron-renew-letsencrypt.sh ${freeServerRoot}/cron-renew-letsencrypt
+
 }
 
 main "$@"
