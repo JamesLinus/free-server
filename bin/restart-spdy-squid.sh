@@ -10,8 +10,12 @@ then
 fi
 echoS "Restart SPDY Squid3"
 
+squid3 -z
+
 squid3 -f ${SPDYSquidConfig} -k kill
 sleep 2
 
 squid3 -f ${SPDYSquidConfig}
 squid3 -f ${SPDYSquidConfig} -k reconfigure
+
+cat /var/log/squid3/cache.log*
