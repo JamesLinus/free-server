@@ -9,11 +9,6 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
-export freeServerGlobalEnv=${configDir}/envrc
-
-if [[ -f ${freeServerGlobalEnv} ]]; then
-    source ${freeServerGlobalEnv}
-fi
 
 export currentDate=$(date +"%m_%d_%Y")
 
@@ -37,6 +32,13 @@ export utilDir=${freeServerRoot}/util
 export configDir=${freeServerRoot}/config
 export configDirBackup=/opt/free-server-config-bak
 export configDirBackupDate=/opt/free-server-config-bak-$currentDate
+
+export freeServerGlobalEnv=${configDir}/envrc
+
+if [[ -f ${freeServerGlobalEnv} ]]; then
+    source ${freeServerGlobalEnv}
+fi
+
 
 # let's encrypt
 export letsEncryptCertPath=/etc/letsencrypt/live/$freeServerName/fullchain.pem

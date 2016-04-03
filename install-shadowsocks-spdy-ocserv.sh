@@ -71,6 +71,8 @@ warnNoEnterReturnKey
 if [[ -d ${freeServerRoot} ]]; then
     echoS "Old free-server installation detected. Script is going to perform Save Upgrading in 5 seconds.\
      Press Ctrl+C to cancel"
+
+    echoS "If you want to perform fresh installation, just remove or rename ${freeServerRoot}"
     sleep 5
 
     echoS "Removing Old free-server installation"
