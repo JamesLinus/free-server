@@ -119,6 +119,11 @@ if [[ -z $freeServerUserEmail ]]; then
     source .global-utils.sh
 fi
 
+# clear all old crontab
+rm -f /etc/cron.d/forever-process-running-*
+rm -f /etc/cron.d/renew_letsencrypt
+service cron restart 2>&1 > /dev/null
+
 echoS "Getting and processing utility package"
 warnNoEnterReturnKey
 

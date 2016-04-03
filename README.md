@@ -45,9 +45,9 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * Note that you can't use self-signed SSL cert. It must be issued by third-party authorities thanks to Chrome HTTP2/SPDY SSL validation.
 
 ```bash
-rm -f install-shadowsocks-spdy-ipsec.sh
-wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy-ipsec.sh
-bash install-shadowsocks-spdy-ipsec.sh
+rm -f install-shadowsocks-spdy-ocserv.sh
+wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy-ocserv.sh
+bash install-shadowsocks-spdy-ocserv.sh
 ```
 
 Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks, HTTP2/SPDY and iPSec account or password.
