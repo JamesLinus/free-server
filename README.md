@@ -33,10 +33,10 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * node / npm / node-legacy
 * Shadowsocks: shadowsocks-libev 
 (deb http://shadowsocks.org/debian wheezy main)
-* HTTP2/SPDY: nghttp2-1.6.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
-(https://github.com/tatsuhiro-t/nghttp2/releases/download/v1.6.0/nghttp2-1.6.0.tar.gz)
+* HTTP2/SPDY: nghttp2-1.9.1 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
+(https://github.com/nghttp2/nghttp2/releases/download/v1.9.1/nghttp2-1.9.1.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
-* IPSec (ikev2) 
+* ocserv (OpenConnect Server, conf from[CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route/blob/master/ocserv.conf) )
 * node forever (npm module)
 
 ## Installation
@@ -56,13 +56,13 @@ It backs them up if found any before execute re-installation.
 ## Create User
 
 ```bash
-Shadowsocks+HTTP2/SPDY+IPSec: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort
+Shadowsocks+HTTP2/SPDY+Cisco AnyConnect VPN: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort
 
 Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass 
 
 HTTP2/SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port
 
-IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
+Cisco AnyConnect VPN (Ocserv) Only: ${freeServerRoot}/createuser-ocserv User Pass
 ```
 
 ## How to setup clients
@@ -71,7 +71,7 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 * [HTTP2/SPDY (Chinese only)](http://www.xiaofang.me/2014/12/20/windowsmaclinux-%E4%BD%BF%E7%94%A8%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E7%9A%84-spdy-%E9%AB%98%E9%80%9F%E7%BF%BB%E5%A2%99%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks--Windows/Mac/Android (Chinese only)](http://www.xiaofang.me/2013/05/17/%E5%B0%8F%E6%96%B9%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%9F%BA%E4%BA%8Eshadowsocks%E7%9A%84%E7%BF%BB%E5%A2%99%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks--OpenWRT Router (Chinese only)](http://www.xiaofang.me/2015/05/05/%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E5%AE%B6%E5%BA%AD%E4%BC%81%E4%B8%9Abeta1%E7%89%88-%E6%99%BA%E8%83%BD%E8%B7%AF%E7%94%B1%E5%99%A8%E6%9E%84%E5%BB%BA%E6%96%B9/ "Chinese only")
-* [IPSec for iOS (Chinese only)](http://www.xiaofang.me/2015/11/06/%E3%80%90%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E3%80%91-iphone-ipad-%E4%B9%8B-ipsec-vpn-%E8%AE%BE%E7%BD%AE%EF%BC%88%E5%82%BB%E7%93%9C%E5%8C%96%E6%95%99%E7%A8%8B%EF%BC%89/ "Chinese only")
+* Cisco AnyConnect VPN for iOS (Chinese only): To be documented.
 
 
 ## Donation
@@ -80,5 +80,5 @@ IPSec Only: ${freeServerRoot}/createuser-ipsec User Pass
 
 ## More
 
-* This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks / HTTP2 (nghttpx, squid) / iPSec / demo web server service status.
+* This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks / HTTP2 (nghttpx, squid) / Cisco AnyConnect VPN / demo web server service status.
 * For more stability, both Shadowsocks and HTTP2/SPDY are running in multiple instances, one per user, not single process.

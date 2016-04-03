@@ -14,13 +14,13 @@ if [[ ! -f ${SPDYConfig} ]]; then
   exit 0
 fi
 
-if [[ ! -f ${SPDYSSLKeyFile} ]]; then
+if [[ ! -f ${letsEncryptKeyPath} ]]; then
   echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
   exit 0
 fi
 
 
-if [[ ! -f ${SPDYSSLCertFile} ]]; then
+if [[ ! -f ${letsEncryptCertPath} ]]; then
   echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
   exit 0
 fi

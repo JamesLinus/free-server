@@ -39,7 +39,6 @@ if [[ -f ${freeServerGlobalEnv} ]]; then
     source ${freeServerGlobalEnv}
 fi
 
-
 # let's encrypt
 export letsEncryptCertPath=/etc/letsencrypt/live/$freeServerName/fullchain.pem
 export letsEncryptKeyPath=/etc/letsencrypt/live/$freeServerName/privkey.pem
@@ -72,11 +71,6 @@ export SPDYSquidPassWdFile="${configDir}/squid-auth-passwd"
 
 # make SPDYSquidAuthSubProcessAmount bigger, make squid basic auth faster, but may be more unstable indeed
 export SPDYSquidAuthSubProcessAmount=4
-
-#export SPDYSSLCaPemFile="${configDir}/SPDY.ca-multiple.pem"
-#export SPDYSSLCaPemFileInConfigDirBackup="${configDirBackup}/SPDY.ca-multiple.pem"
-export SPDYSSLKeyFile="${letsEncryptKeyPath}"
-export SPDYSSLCertFile="${letsEncryptCertPath}"
 
 export SPDYForwardBackendSquidHost="127.0.0.1"
 export SPDYForwardBackendSquidPort=3128

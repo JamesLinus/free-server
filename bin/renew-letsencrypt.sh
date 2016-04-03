@@ -39,10 +39,6 @@ if [ $? -ne 0 ]
         echo -e "The Lets Encrypt Cert has not been renewed! \n \n" $ERRORLOG | mail -s "Lets Encrypt Cert Alert" lanshunfang.oracle@gmail.com
 elif [[ -z $certSkip ]]
  then
-        rm $SPDYSSLCertFile
-        cp $letsEncryptCertPath $SPDYSSLCertFile
-        rm $SPDYSSLKeyFile
-        cp $letsEncryptKeyPath $SPDYSSLKeyFile
         killall nghttpx
         /opt/free-server/restart-spdy-nghttpx-squid
 fi

@@ -17,14 +17,14 @@ if [[ ! -f ${SPDYSquidPassWdFile} ]]; then
 fi
 
 
-if [[ ! -f ${SPDYSSLKeyFile} ]]; then
+if [[ ! -f ${letsEncryptKeyPath} ]]; then
   echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
   sleep 2
   exit 0
 fi
 
 
-if [[ ! -f ${SPDYSSLCertFile} ]]; then
+if [[ ! -f ${letsEncryptCertPath} ]]; then
   echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
   sleep 2
   exit 0
@@ -56,7 +56,7 @@ newline=${username},${password},${port}
 
 echo ${newline} >> ${SPDYConfig}
 
-#spdyproxy -k ${SPDYSSLKeyFile} -c ${SPDYSSLCertFile} -p $port -U $username -P $password >/dev/null 2>&1  &
+#spdyproxy -k ${letsEncryptKeyPath} -c ${letsEncryptCertPath} -p $port -U $username -P $password >/dev/null 2>&1  &
 ${freeServerRoot}/start-spdy-nghttpx ${port}
 
 echo ${password} | htpasswd -i ${SPDYSquidPassWdFile} ${username}

@@ -9,15 +9,25 @@ then
   exit 0
 fi
 
-if [[ ! -f ${SPDYSSLKeyFile} ]]; then
+if [[ ! -f ${letsEncryptKeyPath} ]]; then
   echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
-  exit 0
+  exit 1
 fi
 
 
-if [[ ! -f ${SPDYSSLCertFile} ]]; then
+if [[ ! -f ${letsEncryptCertPath} ]]; then
   echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
-  exit 0
+  exit 1
+fi
+
+if [[ ! -f ${ocservConfig} ]]; then
+    echoS "Ocserv config file (${ocservConfig}) is not detected. This you may not install it correctly. Exit." "stderr"
+    exit 1
+fi
+
+if [[ ! -f ${ocservPasswd} ]]; then
+    echoS "Ocserv Password file (${ocservPasswd}) is not detected. This you may not install it correctly. Exit." "stderr"
+    exit 1
 fi
 
 # set iptable to connecto Internet

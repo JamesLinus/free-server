@@ -10,7 +10,7 @@ fi
 
 
 if [[ ! -f ${ocservPasswd} ]]; then
-  echoS "Ocserv config file (${ocservPasswd}) is not detected. This you may not install it correctly. Exit." "stderr"
+  echoS "Ocserv Password file (${ocservPasswd}) is not detected. This you may not install it correctly. Exit." "stderr"
   sleep 2
   exit 1
 fi
