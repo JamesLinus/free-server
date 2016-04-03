@@ -102,6 +102,7 @@ echoS "Restore Config"
 
 # restore backed up config files
 if [ -d ${configDirBackup} ]; then
+    rm -rf ${configDir}
     mv ${configDirBackup} ${configDir}
     source .global-utils.sh
 fi

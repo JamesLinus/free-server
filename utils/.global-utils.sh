@@ -11,7 +11,9 @@ fi
 
 export freeServerGlobalEnv=${configDir}/envrc
 
-source ${freeServerGlobalEnv}
+if [[ -f ${freeServerGlobalEnv} ]]; then
+    source ${freeServerGlobalEnv}
+fi
 
 export currentDate=$(date +"%m_%d_%Y")
 
