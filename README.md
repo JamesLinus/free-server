@@ -36,7 +36,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * HTTP2/SPDY: nghttp2-1.9.1 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
 (https://github.com/nghttp2/nghttp2/releases/download/v1.9.1/nghttp2-1.9.1.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
-* ocserv (OpenConnect Server, conf from[CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route/blob/master/ocserv.conf) )
+* ocserv ([OpenConnect Server 0.9.2](ftp://ftp.infradead.org/pub/ocserv/ocserv-0.9.2.tar.xz), conf from[CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route/blob/master/ocserv.conf) )
 * node forever (npm module)
 
 ## Installation

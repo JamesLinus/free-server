@@ -116,7 +116,6 @@ uninstallSquid() {
   echoS "Uninstall Squid"
 
   apt-get remove squid -y 2>&1 >> /dev/null
-  rm -rf /var/spool/squid3
 }
 
 installSquid() {
