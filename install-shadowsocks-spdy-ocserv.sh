@@ -82,6 +82,10 @@ if [[ -d ${freeServerRoot} ]]; then
         exit 0
     fi
 
+    # clear up previous stdout/stderr file
+    rm -f ${loggerStdoutFile}
+    rm -f ${loggerStderrFile}
+
     # move current config files to a save place if has
 
     mv ${configDir} ${configDirBackup}

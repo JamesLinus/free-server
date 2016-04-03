@@ -10,7 +10,9 @@ main() {
   createFolderByPath ${freeServerRootMisc}
   createFolderByPath ${loggerStdoutFolder}
   createFolderByPath ${letsencryptInstallationFolder}
+
   touch ${loggerStdoutFile}
+
   touch ${loggerStderrFile}
   touch ${loggerRuntimeInfoFile}
   touch ${loggerRuntimeErrFile}

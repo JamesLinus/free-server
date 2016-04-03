@@ -3,9 +3,7 @@
 source /opt/.global-utils.sh
 
 main() {
-    catchError=$(installOcserv)
-    exitOnError "${catchError}"
-
+    installOcserv 2>&1  > /dev/null
     linkBinUtilAsShortcut
 
 }
