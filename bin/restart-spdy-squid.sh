@@ -9,6 +9,7 @@ then
   exit 0
 fi
 echoS "Restart SPDY Squid3"
+killall squid3
 
 squid3 -z
 

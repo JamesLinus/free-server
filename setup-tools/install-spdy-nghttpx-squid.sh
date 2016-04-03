@@ -114,6 +114,7 @@ generateSquidConf() {
 uninstallSquid() {
 
   echoS "Uninstall Squid"
+  killall squid3
 
   apt-get remove squid -y 2>&1 >> /dev/null
 }
@@ -126,8 +127,7 @@ installSquid() {
 
   echoS "Install Squid, may need 5 minutes."
 
-  catchError=$(apt-get install squid -y 2>&1 >> ${loggerStdoutFile})
-  exitOnError "${catchError}"
+  apt-get install squid -y 2>&1 >> ${loggerStdoutFile}
 
 }
 
