@@ -12,6 +12,7 @@ main() {
   createFolderByPath ${letsencryptInstallationFolder}
 
   touch ${loggerStdoutFile}
+  touch ${ocservPasswd}
 
   touch ${loggerStderrFile}
   touch ${loggerRuntimeInfoFile}
