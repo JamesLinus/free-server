@@ -197,6 +197,7 @@ Cisco AnyConnect VPN Only: ${freeServerRoot}/createuser-ocserv User Pass \n\n\
 echoS "\x1b[46m Next step: \x1b[0m\n\n\
 1. Create a user: ${freeServerRoot}/createuser USERNAME PASSWORD ShadowsocksPort SPDYPort
 2. Config Chrome or other client. Tutorial is here: https://github.com/lanshunfang/free-server#how-to-setup-clients
+3. Cisco AnyConnect VPN Server is running on port 443 and range from $ocservPortMin to $ocservPortMax
 "
 
 #echoS "Note that, the IpSec PSK(Secret) is located: \x1b[46m ${ipsecSecFile} \x1b[0m. You may want to reedit the PSK field."

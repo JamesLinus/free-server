@@ -18,18 +18,7 @@ installOcserv() {
     apt-get install -y build-essential pkg-config libgnutls28-dev libwrap0-dev libpam0g-dev libseccomp-dev libreadline-dev libnl-route-3-dev
     ./configure && make && make install
 }
-updateOcservConf() {
 
-    if [[ ! -f ${ocservConfig} ]]; then
-        echoS "Ocserv config file (${ocservConfig}) is not detected. This you may not install it correctly. Exit." "stderr"
-        exit 1
-    fi
-
-    replaceStringInFile "${ocservConfig}" __SSL_KEY_FREE_SERVER__ "${letsEncryptKeyPath}"
-    replaceStringInFile "${ocservConfig}" __SSL_CERT_FREE_SERVER__ "${letsEncryptCertPath}"
-
-
-}
 
 linkBinUtilAsShortcut() {
 	ln -s ${utilDir}/restart-dead-ocserv.sh ${freeServerRoot}/restart-dead-ocserv

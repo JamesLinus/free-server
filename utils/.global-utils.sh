@@ -97,6 +97,9 @@ export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 export ocservPasswd=${configDir}/ocserv.passwd
 export ocservConfig="${configDir}/ocserv.conf"
 
+export ocservPortMin=3000
+export ocservPortMax=3010
+
 
 export clusterDefFilePath="${configDir}/cluster-def.txt"
 export clusterDeploySSHMutualAuthAccept="${freeServerRoot}/cluster-deploy-ssh-mutual-auth-accept"
@@ -656,3 +659,39 @@ enableIptableToConnectInternet(){
 
 }
 export -f enableIptableToConnectInternet
+
+updateOcservConf() {
+
+    if [[ ! -f ${ocservConfig} ]]; then
+        echoS "Ocserv config file (${ocservConfig}) is not detected. This you may not install it correctly. Exit." "stderr"
+        exit 1
+    fi
+
+    echoS "Create multiple instance for better connect"
+    for (( port=$ocservPortMin; port<=$ocservPortMax; port++ ));do
+        duplicateConfByPort ${port}
+    done
+
+    duplicateConfByPort 443
+
+}
+export -f updateOcservConf
+
+
+duplicateConfByPort(){
+    port=$1
+
+    newConfName=${ocservConfig}.${port}
+    rm ${newConfName}
+
+    cp ${ocservConfig} ${newConfName}
+
+    replaceStringInFile "${newConfName}" __SSL_KEY_FREE_SERVER__ "${letsEncryptKeyPath}"
+    replaceStringInFile "${newConfName}" __SSL_CERT_FREE_SERVER__ "${letsEncryptCertPath}"
+    replaceStringInFile "${newConfName}" __TCP_PORT__ "${port}"
+    replaceStringInFile "${newConfName}" __UDP_PORT__ "${port}"
+}
+
+export -f duplicateConfByPort
+
+
