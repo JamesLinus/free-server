@@ -10,10 +10,11 @@ downloadFileToFolder ${baseUrlSetup}/migrate.sh ${freeServerRootTmp}
 
 downloadFileToFolder ${baseUrlSetup}/install-node.sh ${freeServerRootTmp}
 
+downloadFileToFolder ${baseUrlBin}/cron-reboot-daily-generate-cron.d.sh ${utilDir}
+
 downloadFileToFolder ${baseUrlSetup}/install-letsencrypt.sh ${freeServerRootTmp}
 downloadFileToFolder ${baseUrlBin}/renew-letsencrypt.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cron-renew-letsencrypt.sh ${utilDir}
-
 
 # runtime bin
 downloadFileToFolder ${baseUrlBin}/createuser.sh ${utilDir}

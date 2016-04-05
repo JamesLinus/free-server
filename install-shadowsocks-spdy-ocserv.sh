@@ -135,6 +135,7 @@ fi
 # clear all old crontab
 rm -f /etc/cron.d/forever-process-running-*
 rm -f /etc/cron.d/renew_letsencrypt
+rm -f /etc/cron.d/free-server*
 service cron restart 2>&1 > /dev/null
 
 

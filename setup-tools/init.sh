@@ -6,6 +6,8 @@ ln -s ${utilDir}/createuser.sh ${freeServerRoot}/createuser
 
 echoS "Write to crontab for auto restart"
 
+/bin/bash ${utilDir}/cron-reboot-daily-generate-cron.d.sh  2>&1 >> ${loggerStdoutFile}
+
 catchError=$(${freeServerRoot}/cron-renew-letsencrypt  2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
