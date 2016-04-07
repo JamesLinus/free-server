@@ -678,12 +678,14 @@ updateOcservConf() {
 export -f updateOcservConf
 
 updateRouteForOcservConf() {
-    rm ${configDir}/ocserv.conf
+    mv ${configDir}/ocserv.conf ${configDir}/ocserv.conf.bak
     downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
     if [[ $? == 1 ]]; then
         echoS "Download failed: ${baseUrlConfigSample}/ocserv.conf"
+        mv ${configDir}/ocserv.conf.bak ${configDir}/ocserv.conf
         return 1
     fi
+    rm ${configDir}/ocserv.conf.bak
     updateOcservConf
     ${freeServerRoot}/restart-ocserv
 
