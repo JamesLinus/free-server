@@ -137,8 +137,6 @@ linkBinUtilAsShortcut() {
   ln -s ${utilDir}/start-spdy-nghttpx.sh ${freeServerRoot}/start-spdy-nghttpx
   ln -s ${utilDir}/restart-spdy-squid.sh ${freeServerRoot}/restart-spdy-squid
   ln -s ${utilDir}/restart-dead-spdy-nghttpx-squid.sh ${freeServerRoot}/restart-dead-spdy-nghttpx-squid
-  ln -s ${utilDir}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d.sh \
-    ${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d
 }
 
 linkSquid3DefaultConf() {

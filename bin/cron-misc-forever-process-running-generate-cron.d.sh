@@ -3,7 +3,7 @@
 source /opt/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-misc"
+file="/etc/cron.d/free-server-forever-process-running-misc"
 
 ## process restart daily command
 restartCommand="/bin/bash ${utilDir}/restart-misc.sh"

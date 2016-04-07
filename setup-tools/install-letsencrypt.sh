@@ -39,7 +39,6 @@ enableAutoRenew() {
 linkBinUtilAsShortcut() {
 
     ln -s ${utilDir}/renew-letsencrypt.sh ${freeServerRoot}/renew-letsencrypt
-    ln -s ${utilDir}/cron-renew-letsencrypt.sh ${freeServerRoot}/cron-renew-letsencrypt
 
 }
 

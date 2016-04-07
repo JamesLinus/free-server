@@ -8,22 +8,25 @@ echoS "Write to crontab for auto restart"
 
 /bin/bash ${utilDir}/cron-reboot-daily-generate-cron.d.sh  2>&1 >> ${loggerStdoutFile}
 
-catchError=$(${freeServerRoot}/cron-renew-letsencrypt  2>&1 >> ${loggerStdoutFile})
+catchError=$(/bin/bash ${utilDir}/cron-renew-letsencrypt.sh  2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
 # smart service watcher for every 2 minutes
-catchError=$(${freeServerRoot}/cron-shadowsocks-forever-process-running-generate-cron.d  2>&1 >> ${loggerStdoutFile})
+catchError=$(/bin/bash ${utilDir}/cron-shadowsocks-forever-process-running-generate-cron.d.sh  2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
 #catchError=$(${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
-catchError=$(${freeServerRoot}/cron-ocserv-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
+catchError=$(/bin/bash ${utilDir}/cron-ocserv-forever-process-running-generate-cron.d.sh 2>&1 >> ${loggerStdoutFile})
+exitOnError "${catchError}"
+
+catchError=$(/bin/bash ${utilDir}/cron-ocserv-renew-route-generate-cron.d.sh 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
 #${freeServerRoot}/cron-spdy-forever-process-running-generate-cron.d
-catchError=$(${freeServerRoot}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
+catchError=$(/bin/bash ${utilDir}/cron-spdy-nghttpx-squid-forever-process-running-generate-cron.d.sh 2>&1 >> ${loggerStdoutFile})
 exitOnError "${catchError}"
 
-${utilDir}/cron-misc-forever-process-running-generate-cron.d.sh
+/bin/bash ${utilDir}/cron-misc-forever-process-running-generate-cron.d.sh
 
 # restart cron service
 catchError=$(service cron restart 2>&1 >> ${loggerStdoutFile})

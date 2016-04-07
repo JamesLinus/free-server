@@ -25,7 +25,8 @@ linkBinUtilAsShortcut() {
 	ln -s ${utilDir}/createuser-ocserv.sh ${freeServerRoot}/createuser-ocserv
 	ln -s ${utilDir}/restart-ocserv.sh ${freeServerRoot}/restart-ocserv
 #	ln -s ${utilDir}/deleteuser-ocserv.sh ${freeServerRoot}/deleteuser-ocserv
-	ln -s ${utilDir}/cron-ocserv-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ocserv-forever-process-running-generate-cron.d
+	ln -s ${utilDir}/renew-route-ocserv.sh ${freeServerRoot}/renew-route-ocserv
+
 }
 
 main "$@"

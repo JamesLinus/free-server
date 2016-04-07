@@ -473,7 +473,6 @@ linkBinUtilAsShortcut() {
 	ln -s ${utilDir}/createuser-ipsec.sh ${freeServerRoot}/createuser-ipsec
 	ln -s ${utilDir}/restart-ipsec.sh ${freeServerRoot}/restart-ipsec
 	ln -s ${utilDir}/deleteuser-ipsec.sh ${freeServerRoot}/deleteuser-ipsec
-	ln -s ${utilDir}/cron-ipsec-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d
 
 }
 

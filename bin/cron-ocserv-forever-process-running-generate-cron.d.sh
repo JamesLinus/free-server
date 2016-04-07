@@ -3,7 +3,7 @@
 source /opt/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-ocserv"
+file="/etc/cron.d/free-server-forever-process-running-ocserv"
 
 ## process restart daily command
 restartCommand="/bin/bash ${freeServerRoot}/restart-ocserv"

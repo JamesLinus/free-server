@@ -3,17 +3,13 @@
 source /opt/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-ocserv"
+file="/etc/cron.d/free-server-renew-route-ocserv"
 
 ## process restart daily command
-restartCommand="/bin/bash ${freeServerRoot}/restart-ocserv"
+restartCommand="/bin/bash ${freeServerRoot}/renew-route-ocserv"
 
-## write watching process every 5 minutes
-echo "*/2 * * * * root ${freeServerRoot}/restart-dead-ocserv" > ${file}
-
-## restart process every day at 5am
-echo "5 5 * * * root ${restartCommand}" >> ${file}
-echo "@reboot root ${restartCommand}" >> ${file}
+## renew route every day
+echo "17 21 * * * root ${restartCommand}" >> ${file}
 
 echo "Done, cat ${file}"
 cat ${file}

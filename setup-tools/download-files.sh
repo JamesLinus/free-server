@@ -46,6 +46,8 @@ downloadFileToFolder ${baseUrlBin}/createuser-ocserv.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-ocserv.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/restart-dead-ocserv.sh ${utilDir}
 downloadFileToFolder ${baseUrlBin}/cron-ocserv-forever-process-running-generate-cron.d.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/cron-ocserv-renew-route-generate-cron.d.sh ${utilDir}
+downloadFileToFolder ${baseUrlBin}/renew-route-ocserv.sh ${utilDir}
 
 #downloadFileToFolder ${baseUrlSetup}/install-ipsec-ikev2.sh ${freeServerRootTmp}
 #downloadFileToFolder ${baseUrlBin}/createuser-ipsec.sh ${utilDir}

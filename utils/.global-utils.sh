@@ -301,11 +301,11 @@ downloadFileToFolder(){
 
   if [ ! -d "$2" ]; then
     echoS "[$FUNCNAME] Folder $2 is not existed. Exit" "stderr"
-    exit 0
+    exit 1
   fi
   if [ -z $1 ]; then
     echoS "[$FUNCNAME] Url must be provided. Exit" "stderr"
-    exit 0
+    exit 1
   fi
   wget --no-cache -q --directory-prefix="$2" "$1"
 }
@@ -676,6 +676,18 @@ updateOcservConf() {
 
 }
 export -f updateOcservConf
+
+updateRouteForOcservConf() {
+    downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
+    if [[ $? == 1 ]]; then
+        echoS "Download failed: ${baseUrlConfigSample}/ocserv.conf"
+        return 1
+    fi
+    updateOcservConf
+    ${freeServerRoot}/restart-ocserv
+
+}
+export -f updateRouteForOcservConf
 
 
 duplicateConfByPort(){

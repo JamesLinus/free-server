@@ -3,7 +3,7 @@
 source /opt/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-ipsec"
+file="/etc/cron.d/free-server-forever-process-running-ipsec"
 
 ## process restart daily command
 restartCommand="/bin/bash ${freeServerRoot}/restart-ipsec"

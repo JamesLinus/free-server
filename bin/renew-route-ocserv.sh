@@ -30,16 +30,7 @@ if [[ ! -f ${ocservPasswd} ]]; then
     exit 1
 fi
 
-# set iptable to connecto Internet
-enableIptableToConnectInternet
+updateRouteForOcservConf
 
-# kill and start
-pkill -ef ^ocserv
-sleep 2
+echoS "Renewed Route For Ocserv -- Cisco AnyConnect"
 
-${freeServerRoot}/restart-dead-ocserv
-
-echoS "Restarted ocserv"
-sleep 1
-
-ps aux |  grep ocserv

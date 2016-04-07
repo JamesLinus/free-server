@@ -3,7 +3,7 @@
 source /opt/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-PROCESS_NAME"
+file="/etc/cron.d/free-server-forever-process-running-PROCESS_NAME"
 
 ## process checking pattern, for gawk
 processPatt="lib\/PROCESS_NAME"

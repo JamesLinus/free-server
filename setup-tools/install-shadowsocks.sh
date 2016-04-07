@@ -35,7 +35,6 @@ ln -s ${utilDir}/createuser-shadowsocks.sh ${freeServerRoot}/createuser-shadowso
 ln -s ${utilDir}/deleteuser-shadowsocks.sh ${freeServerRoot}/deleteuser-shadowsocks
 ln -s ${utilDir}/restart-shadowsocks.sh ${freeServerRoot}/restart-shadowsocks
 ln -s ${utilDir}/restart-dead-shadowsocks.sh ${freeServerRoot}/restart-dead-shadowsocks
-ln -s ${utilDir}/cron-shadowsocks-forever-process-running-generate-cron.d.sh ${freeServerRoot}/cron-shadowsocks-forever-process-running-generate-cron.d
 
 ## create first shadowsocks account
 #tmpPort=40000

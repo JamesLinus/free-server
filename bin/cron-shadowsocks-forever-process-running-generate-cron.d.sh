@@ -3,7 +3,7 @@
 source /opt/.global-utils.sh
 
 ## file to write to cron.d
-file="/etc/cron.d/forever-process-running-shadowsocks"
+file="/etc/cron.d/free-server-forever-process-running-shadowsocks"
 
 ## process restart daily command
 restartCommand="/bin/bash ${freeServerRoot}/restart-shadowsocks"
