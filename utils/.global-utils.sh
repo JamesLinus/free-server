@@ -678,6 +678,7 @@ updateOcservConf() {
 export -f updateOcservConf
 
 updateRouteForOcservConf() {
+    rm ${configDir}/ocserv.conf
     downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
     if [[ $? == 1 ]]; then
         echoS "Download failed: ${baseUrlConfigSample}/ocserv.conf"
