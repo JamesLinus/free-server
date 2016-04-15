@@ -4,6 +4,9 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2016-04-15 [Warning] Paul has received some information that may be relevant to free-server from Chinese policeman.
+I may delete this Github source code if I get pressure from government executive force.
+Please consider fork to keep the free-server long living till the day of death of G,FW.
 * 2016-04-02 [Milestone] Add OpenConnect Cisco AnyConnect VPN support for iOS, as substitution of IPSec.
 * 2016-04-02 [Milestone] Add Let's Encrypt SSL Cert auto generation for SPDY and Open Connect
 * 2016-04-02 [Enhancement] Update nghttpx to 1.9.1
@@ -40,9 +43,6 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 * node forever (npm module)
 
 ## Installation
-
-* You need to obtain a HTTPS SSL Certificate before you install HTTP2/SPDY server. Generate one with [Let’s Encrypt](https://letsencrypt.org/) or get one for free from [StartSSL](https://www.startssl.com/?app=12).
-* Note that you can't use self-signed SSL cert. It must be issued by third-party authorities thanks to Chrome HTTP2/SPDY SSL validation.
 
 ```bash
 rm -f install-shadowsocks-spdy-ocserv.sh

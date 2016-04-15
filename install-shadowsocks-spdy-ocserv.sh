@@ -22,6 +22,11 @@ if [[ $UID -ne 0 ]]; then
     exit 1
 fi
 
+# stop accepting client locale setting for Ubuntu
+replaceStringInFile "/etc/ssh/sshd_config" AcceptEnv "\#AcceptEnv"
+service sshd restart
+
+
 echoS "apt-get update and install required tools"
 
 export LC_CTYPE=en_US.UTF-8
