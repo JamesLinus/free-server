@@ -22,13 +22,13 @@ installLetsencrypt() {
 
     echoS "Installing Let's Encrypt"
     git clone https://github.com/letsencrypt/letsencrypt ./ 2>&1 >> ${loggerStdoutFile}
-    ./letsencrypt-auto --help 2>&1 >> ${loggerStdoutFile}
+    ./letsencrypt-auto --help --agree-tos 2>&1 >> ${loggerStdoutFile}
 
 
 }
 
 getCert() {
-    eval "${letsencryptAutoPath} certonly --standalone --email ${freeServerUserEmail} -d ${freeServerName} --non-interactive"
+    eval "${letsencryptAutoPath} certonly --standalone --agree-tos yes --email ${freeServerUserEmail} -d ${freeServerName} --non-interactive --agree-tos"
 }
 
 enableAutoRenew() {

@@ -29,7 +29,7 @@ echoS "Start to Renew Let's Encrypt Cert."
 
 prepareLetEncryptEnv
 
-certLog=$(eval "$letsencryptAutoPath renew")
+certLog=$(eval "$letsencryptAutoPath renew --agree-tos")
 echo $certLog
 certSkip=$(echo $certLog | grep "/fullchain.pem (skipped)")
 
