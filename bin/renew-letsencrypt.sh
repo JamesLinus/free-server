@@ -31,14 +31,10 @@ prepareLetEncryptEnv
 
 certLog=$(eval "$letsencryptAutoPath renew --agree-tos")
 echo $certLog
-certSkip=$(echo $certLog | grep "/fullchain.pem (skipped)")
+certDone=$(echo $certLog | grep "The following certs have been renewed")
 
-if [ $? -ne 0 ]
- then
-        ERRORLOG=`tail /var/log/letsencrypt/renew.log`
-        echo -e "The Lets Encrypt Cert has not been renewed! \n \n" $ERRORLOG | mail -s "Lets Encrypt Cert Alert" lanshunfang.oracle@gmail.com
-elif [[ -z $certSkip ]]
- then
+if [[ ! -z $certDone ]]
+then
         killall nghttpx
         /opt/free-server/restart-spdy-nghttpx-squid
 fi
