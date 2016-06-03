@@ -9,7 +9,7 @@ file="/etc/cron.d/free-server-renew-route-ocserv"
 restartCommand="/bin/bash ${freeServerRoot}/renew-route-ocserv"
 
 ## renew route every day
-echo "17 21 * * * root ${restartCommand}" >> ${file}
+echo "30 21 * * * root ${restartCommand}" >> ${file}
 
 echo "Done, cat ${file}"
 cat ${file}
