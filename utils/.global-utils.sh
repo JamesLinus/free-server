@@ -622,21 +622,54 @@ setEmail() {
 }
 export -f setEmail
 
+ensure80443PortIsAvailable(){
+
+    secondsStep5ToEnsure=$1
+
+    if [[ -z $secondsStep5ToEnsure ]]; then
+        secondsStep5ToEnsure=60
+    fi
+
+    while [[ $secondsStep5ToEnsure -gt 0 ]]; do
+        forever stop /opt/free-server/misc/testing-web.js
+        service nginx stop
+        killall nodejs
+        pkill -ef ^ocserv
+        ((secondsStep5ToEnsure--))
+        sleep 5
+    done
+
+}
+
+restore80443Process(){
+    echo "restore all processes to take 80 and 443"
+    forever start /opt/free-server/misc/testing-web.js
+    ${freeServerRoot}/restart-ocserv
+    service nginx restart
+}
+
+killEnsure80443PortIsAvailablePid() {
+    if [[ ! -z $ensure80443PortIsAvailablePid ]]; then
+        kill -9 $ensure80443PortIsAvailablePid
+        export ensure80443PortIsAvailablePid=""
+        sleep 1
+    fi
+}
+
 # get current user email
 prepareLetEncryptEnv() {
-
-    forever stop /opt/free-server/misc/testing-web.js
-    service nginx stop
-
+    killEnsure80443PortIsAvailablePid
+    echo "kill all processes that take 80 and 443"
+    ensure80443PortIsAvailable 20 >> /dev/null 2>&1 &
+    sleep 10
+    export ensure80443PortIsAvailablePid=$!
 }
 export -f prepareLetEncryptEnv
 
 # get current user email
 afterLetEncryptEnv() {
-
-    forever start /opt/free-server/misc/testing-web.js
-    service nginx restart
-
+    killEnsure80443PortIsAvailablePid
+    restore80443Process
 }
 export -f afterLetEncryptEnv
 
