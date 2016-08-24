@@ -51,13 +51,15 @@ startNgHttpX() {
   # --errorlog-file="${loggerRuntimeErrFile}" \
   # --log-level="ERROR" \
 
+  #  --workers=${SPDYNgHttpXCPUWorkerAmount} \
+
+
   nghttpx \
   --daemon \
   --http2-proxy \
   --no-via \
   --fastopen=3 \
   --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
-  --workers=${SPDYNgHttpXCPUWorkerAmount} \
   --frontend="${SPDYFrontendListenHost},${port}" \
   --backend="${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}" \
   "${letsEncryptKeyPath}" "${letsEncryptCertPath}"

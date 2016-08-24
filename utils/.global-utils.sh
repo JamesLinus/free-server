@@ -215,6 +215,28 @@ exitOnError(){
 }
 export -f exitOnError
 
+
+exitOnPreviousProcessQuitNonZero(){
+      previousExit=$?
+
+      if [[ ${previousExit} != 0 ]];then
+
+        echo "Redirect error message to ${loggerStderrFile}:"
+        echo "$1" >> ${loggerStderrFile}
+        sleep 1
+        echo ">>>>>>>>>>>>>>>>>>"
+        echo ">>>>>>>>>>>>>>>>>>"
+        echo "Cat ${loggerStderrFile}:"
+        cat ${loggerStderrFile}
+        echo "<<<<<<<<<<<<<<<<<<"
+        echo "<<<<<<<<<<<<<<<<<<"
+        exit ${previousExit}
+
+      fi
+
+}
+export -f exitOnPreviousProcessQuitNonZero
+
 checkPortClosed(){
     sleep 1
     port=$1

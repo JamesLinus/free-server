@@ -94,8 +94,7 @@ installNgHttpX() {
 
   autoreconf -i >> /dev/null && automake >> /dev/null && autoconf >> /dev/null && ./configure >> /dev/null && make >> /dev/null
 
-  catchError=$(make install 2>&1 >> ${loggerStdoutFile})
-  exitOnError "${catchError}"
+  make install >> /dev/null
 
   catchError=$(ldconfig 2>&1 >> ${loggerStdoutFile})
   exitOnError "${catchError}"
