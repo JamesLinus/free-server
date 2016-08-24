@@ -159,7 +159,7 @@ ${freeServerRootTmp}/install-node.sh || exit 1
 echoS "Installing Let's Encrypt"
 ${freeServerRootTmp}/install-letsencrypt.sh || exit 1
 
-echoS "Installing and initing Shadowsocks-R"
+echoS "Installing and initialing Shadowsocks-R"
 warnNoEnterReturnKey
 
 ${freeServerRootTmp}/install-shadowsocks-r.sh || exit 1

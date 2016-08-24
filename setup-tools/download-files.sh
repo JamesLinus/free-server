@@ -19,21 +19,6 @@ downloadFileToFolder ${baseUrlBin}/cron-renew-letsencrypt.sh ${utilDir}
 # runtime bin
 downloadFileToFolder ${baseUrlBin}/createuser.sh ${utilDir}
 
-#downloadFileToFolder ${baseUrlSetup}/install-shadowsocks.sh ${freeServerRootTmp}
-downloadFileToFolder ${baseUrlSetup}/install-shadowsocks-r.sh ${freeServerRootTmp}
-#downloadFileToFolder ${baseUrlBin}/deleteuser-shadowsocks.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/deleteuser-shadowsocks-r.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/createuser-shadowsocks.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/createuser-shadowsocks-r.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/restart-shadowsocks.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/restart-shadowsocks-r.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/restart-dead-shadowsocks.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/restart-dead-shadowsocks-r.sh ${utilDir}
-#downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-forever-process-running-generate-cron.d.sh ${utilDir}
-downloadFileToFolder ${baseUrlBin}/cron-shadowsocks-r-forever-process-running-generate-cron.d.sh ${utilDir}
-
-downloadFileToFolder ${baseUrlBin}/updateuser-shadowsocks-r-qrcode.sh ${utilDir}
-
 downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
 downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
 downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
