@@ -16,10 +16,10 @@ createConfigFile() {
 }
 
 linkToShortCut() {
-  ln -s ${utilDir}/cluster-rsync.sh ${freeServerRoot}/cluster-rsync
-  ln -s ${utilDir}/cluster-restart.sh ${freeServerRoot}/cluster-restart
-  ln -s ${utilDir}/cluster-deploy-ssh-mutual-auth.sh ${freeServerRoot}/cluster-deploy-ssh-mutual-auth
-  ln -s ${utilDir}/cluster-deploy-ssh-mutual-auth-accept.sh ${freeServerRoot}/cluster-deploy-ssh-mutual-auth-accept
+  ln -s ${binDir}/cluster-rsync.sh ${freeServerRoot}/cluster-rsync
+  ln -s ${binDir}/cluster-restart.sh ${freeServerRoot}/cluster-restart
+  ln -s ${binDir}/cluster-deploy-ssh-mutual-auth.sh ${freeServerRoot}/cluster-deploy-ssh-mutual-auth
+  ln -s ${binDir}/cluster-deploy-ssh-mutual-auth-accept.sh ${freeServerRoot}/cluster-deploy-ssh-mutual-auth-accept
 }
 
 init "$@"

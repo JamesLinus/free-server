@@ -57,11 +57,11 @@ newline=${username},${password},${port}
 echo ${newline} >> ${SPDYConfig}
 
 #spdyproxy -k ${letsEncryptKeyPath} -c ${letsEncryptCertPath} -p $port -U $username -P $password >/dev/null 2>&1  &
-${freeServerRoot}/start-spdy-nghttpx ${port}
+${binDir}/start-spdy-nghttpx.sh ${port}
 
 echo ${password} | htpasswd -i ${SPDYSquidPassWdFile} ${username}
 
-${freeServerRoot}/restart-spdy-squid
+${binDir}/restart-spdy-squid.sh
 
 echoS "SPDY account created with \n\
 Username: $username \n\

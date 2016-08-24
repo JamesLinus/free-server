@@ -4,12 +4,14 @@ source /opt/.global-utils.sh
 
 main() {
   createFolderByPath ${freeServerRoot}
-  createFolderByPath ${utilDir}
+  createFolderByPath ${binDir}
   createFolderByPath ${configDir}
   createFolderByPath ${freeServerRootTmp}
   createFolderByPath ${freeServerRootMisc}
   createFolderByPath ${loggerStdoutFolder}
   createFolderByPath ${letsencryptInstallationFolder}
+  createFolderByPath ${gitRepoPath}
+
 
   touch ${loggerStdoutFile}
   touch ${ocservPasswd}

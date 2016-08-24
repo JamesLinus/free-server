@@ -25,8 +25,15 @@ export freeServerInstallationFolderName=free-server
 # the top install folder
 export freeServerRoot=/opt/${freeServerInstallationFolderName}/
 
+export gitRepoPath=${freeServerRoot}/git-repo
+export gitRepoFreeServerPath=${gitRepoPath}/free-server
+export gitRepoShadowsocksRPath=${gitRepoPath}/shadowsocks
+
+
 # utility folder
-export utilDir=${freeServerRoot}/util
+export binDir=${gitRepoFreeServerPath}/bin
+export setupToolsDir=${gitRepoFreeServerPath}/setup-tools
+export miscDir=${gitRepoFreeServerPath}/misc
 
 # for configration samples
 export configDir=${freeServerRoot}/config
@@ -51,14 +58,14 @@ export freeServerRootMisc=${freeServerRoot}misc
 
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
-export baseUrlSetup=${baseUrl}/setup-tools
+export baseUrlSetupTools=${baseUrl}/setup-tools
 export baseUrlConfigSample=${baseUrl}/config-sample
 export baseUrlMisc=${baseUrl}/misc
 
 #export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 #export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 
-export shadowsocksRFolder="${freeServerRootTmp}/shadowsocks/shadowsocks"
+export shadowsocksRFolder="${gitRepoShadowsocksRPath}/shadowsocks"
 
 export SPDYNgHttp2DownloadLink="https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz"
 export SPDYNgHttp2FolderName="nghttp2-1.13.0"
@@ -96,6 +103,9 @@ export ipsecStrongManVersionTarGz=${ipsecStrongManVersion}.tar.gz
 export ipsecStrongManOldVersion=strongswan-5.2.1
 export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 
+export ocservDownloadLink="ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.xz"
+export ocservFolderName="ocserv-0.11.4"
+export ocservTarGzName="${SPDYNgHttp2FolderName}.tar.gz"
 export ocservPasswd=${configDir}/ocserv.passwd
 export ocservConfig="${configDir}/ocserv.conf"
 
@@ -633,7 +643,7 @@ ensure80443PortIsAvailable(){
     fi
 
     while [[ $secondsStep5ToEnsure -gt 0 ]]; do
-        forever stop /opt/free-server/misc/testing-web.js
+        forever stop ${miscDir}/testing-web.js
         service nginx stop
         killall nodejs
         pkill -ef ^ocserv
@@ -645,8 +655,8 @@ ensure80443PortIsAvailable(){
 
 restore80443Process(){
     echo "restore all processes to take 80 and 443"
-    forever start /opt/free-server/misc/testing-web.js
-    ${freeServerRoot}/restart-ocserv
+    forever start ${miscDir}/testing-web.js
+    ${binDir}/restart-ocserv.sh
     service nginx restart
 }
 
@@ -722,7 +732,7 @@ updateRouteForOcservConf() {
     fi
     rm ${configDir}/ocserv.conf.bak
     updateOcservConf
-    ${freeServerRoot}/restart-ocserv
+    ${binDir}/restart-ocserv.sh
 
 }
 export -f updateRouteForOcservConf

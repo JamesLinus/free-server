@@ -159,7 +159,7 @@ function pre_install(){
     echo "Press any key to start...or Press Ctrl+C to cancel"
 	char=`get_char`
 	#Current folder
-    cur_dir=${utilDir}
+    cur_dir=${binDir}
     cd $cur_dir
 }
 
@@ -469,10 +469,10 @@ includeFreeServerIpsecSecretFile(){
 includeFreeServerIpsecSecretFile
 
 linkBinUtilAsShortcut() {
-	ln -s ${utilDir}/restart-dead-ipsec.sh ${freeServerRoot}/restart-dead-ipsec
-	ln -s ${utilDir}/createuser-ipsec.sh ${freeServerRoot}/createuser-ipsec
-	ln -s ${utilDir}/restart-ipsec.sh ${freeServerRoot}/restart-ipsec
-	ln -s ${utilDir}/deleteuser-ipsec.sh ${freeServerRoot}/deleteuser-ipsec
+	ln -s ${binDir}/restart-dead-ipsec.sh ${freeServerRoot}/restart-dead-ipsec
+	ln -s ${binDir}/createuser-ipsec.sh ${freeServerRoot}/createuser-ipsec
+	ln -s ${binDir}/restart-ipsec.sh ${freeServerRoot}/restart-ipsec
+	ln -s ${binDir}/deleteuser-ipsec.sh ${freeServerRoot}/deleteuser-ipsec
 
 }
 

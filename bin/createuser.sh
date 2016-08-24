@@ -18,10 +18,10 @@ SPDYPort=$4
 ( [[ -z "${user}" ]] || [[ -z "${pass}" ]] || [[ -z "${shadowsocksRPort}" ]] || [[ -z "${SPDYPort}" ]] ) \
  && echoS "You should invoke me via \`$0 Username Pass ShadowsocksRPort SPDYPort\`. All arguments could not be omitted." "stderr" && exit 0
 
-${freeServerRoot}/createuser-shadowsocks-r "${shadowsocksRPort}" "${pass}"
+${binDir}/createuser-shadowsocks-r.sh "${shadowsocksRPort}" "${pass}"
 #${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
-${freeServerRoot}/createuser-spdy-nghttpx-squid "${user}" "${pass}" "${SPDYPort}"
+${binDir}/createuser-spdy-nghttpx-squid.sh "${user}" "${pass}" "${SPDYPort}"
 #${freeServerRoot}/createuser-ipsec "${user}" "${pass}"
-${freeServerRoot}/createuser-ocserv "${user}" "${pass}"
+${binDir}/createuser-ocserv.sh "${user}" "${pass}"
 
 echoS "All done. HTTP2/SPDY, Shadowsocks-R, Cisco AnyConnect VPN account has been created for user $user"

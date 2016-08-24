@@ -6,10 +6,10 @@ source /opt/.global-utils.sh
 file="/etc/cron.d/free-server-forever-process-running-ocserv"
 
 ## process restart daily command
-restartCommand="/bin/bash ${freeServerRoot}/restart-ocserv"
+restartCommand="/bin/bash ${binDir}/restart-ocserv.sh"
 
 ## write watching process every 5 minutes
-echo "*/2 * * * * root ${freeServerRoot}/restart-dead-ocserv" > ${file}
+echo "*/2 * * * * root ${binDir}/restart-dead-ocserv.sh" > ${file}
 
 ## restart process every day at 5am
 echo "5 5 * * * root ${restartCommand}" >> ${file}

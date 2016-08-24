@@ -36,7 +36,7 @@ certDone=$(echo $certLog | grep "The following certs have been renewed")
 if [[ ! -z $certDone ]]
 then
         killall nghttpx
-        /opt/free-server/restart-spdy-nghttpx-squid
+        ${binDir}/restart-spdy-nghttpx-squid.sh
 fi
 
 afterLetEncryptEnv

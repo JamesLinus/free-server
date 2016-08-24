@@ -2,4 +2,4 @@
 
 source /opt/.global-utils.sh
 
-${utilDir}/forever-process-running.sh "libexec\/ipsec" "ipsec restart"
+${binDir}/forever-process-running.sh "libexec\/ipsec" "ipsec restart"

@@ -31,8 +31,7 @@ protocolParam=$7
  None of the parameters could be omitted." "stderr" \
  && exit 0
 
-cd ${freeServerRoot}
 
-./deleteuser-shadowsocks-r ${port}
+${binDir}/deleteuser-shadowsocks-r.sh ${port}
 
-./createuser-shadowsocks-r ${port} ${password} ${encrypt} ${obfuscate} ${protocol} ${obfuscateParam} ${protocolParam}
+${binDir}/createuser-shadowsocks-r.sh ${port} ${password} ${encrypt} ${obfuscate} ${protocol} ${obfuscateParam} ${protocolParam}

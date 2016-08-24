@@ -7,7 +7,7 @@ main() {
 #  getSpdySslCaPemFile
   installSpdyLay
   installNgHttpX
-  linkBinUtilAsShortcut
+
   uninstallSquid
 
   generateSquidConf
@@ -35,6 +35,8 @@ installSpdyLay() {
   rm -rf ${SPDYSpdyLayFolderName}
 
   echoS "Downloading ${SPDYSpdyLayDownloadLink}"
+
+  cd ${gitRepoPath}
 
   wget ${SPDYSpdyLayDownloadLink} >> /dev/null 2>&1
   echoS "Installing, may need 5 minutes..."
@@ -75,6 +77,8 @@ installNgHttpX() {
   rm -rf ${SPDYNgHttp2TarGzName}
 
   echoS "Downloading ${SPDYNgHttp2DownloadLink}"
+
+  cd ${gitRepoPath}
 
   wget ${SPDYNgHttp2DownloadLink} >> /dev/null 2>&1
 
@@ -129,14 +133,6 @@ installSquid() {
 
   apt-get install squid -y 2>&1 >> ${loggerStdoutFile}
 
-}
-
-linkBinUtilAsShortcut() {
-  ln -s ${utilDir}/createuser-spdy-nghttpx-squid.sh ${freeServerRoot}/createuser-spdy-nghttpx-squid
-  ln -s ${utilDir}/restart-spdy-nghttpx-squid.sh ${freeServerRoot}/restart-spdy-nghttpx-squid
-  ln -s ${utilDir}/start-spdy-nghttpx.sh ${freeServerRoot}/start-spdy-nghttpx
-  ln -s ${utilDir}/restart-spdy-squid.sh ${freeServerRoot}/restart-spdy-squid
-  ln -s ${utilDir}/restart-dead-spdy-nghttpx-squid.sh ${freeServerRoot}/restart-dead-spdy-nghttpx-squid
 }
 
 linkSquid3DefaultConf() {

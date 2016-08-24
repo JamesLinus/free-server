@@ -4,7 +4,7 @@ source /opt/.global-utils.sh
 
 main() {
     installLetsencrypt
-    linkBinUtilAsShortcut
+#    linkBinUtilAsShortcut
     prepareLetEncryptEnv
     getCert
     afterLetEncryptEnv
@@ -36,11 +36,11 @@ enableAutoRenew() {
     # run for first time
 }
 
-linkBinUtilAsShortcut() {
-
-    ln -s ${utilDir}/renew-letsencrypt.sh ${freeServerRoot}/renew-letsencrypt
-
-}
+#linkBinUtilAsShortcut() {
+#
+#    ln -s ${binDir}/renew-letsencrypt.sh ${binDir}/renew-letsencrypt.sh
+#
+#}
 
 main "$@"
 

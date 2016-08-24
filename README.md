@@ -57,13 +57,13 @@ It backs them up if found any before execute re-installation.
 ## Create User
 
 ```bash
-Shadowsocks-r+HTTP2/SPDY+Cisco AnyConnect VPN: ${freeServerRoot}/createuser User Pass ShadowsocksRPort SPDYPort
+Shadowsocks-r+HTTP2/SPDY+Cisco AnyConnect VPN: ${binDir}/createuser.sh User Pass ShadowsocksRPort SPDYPort
 
-Shadowsocks-R Only: ${freeServerRoot}/createuser-shadowsocks Port Pass 
+Shadowsocks-R Only: ${binDir}/createuser-shadowsocks.sh Port Pass 
 
-HTTP2/SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port
+HTTP2/SPDY Only: ${binDir}/createuser-spdy-nghttpx-squid.sh User Pass Port
 
-Cisco AnyConnect VPN (Ocserv) Only: ${freeServerRoot}/createuser-ocserv User Pass
+Cisco AnyConnect VPN (Ocserv) Only: ${binDir}/createuser-ocserv.sh User Pass
 ```
 
 ## How to setup clients

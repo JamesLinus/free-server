@@ -38,12 +38,12 @@ for i in $(cat "${SPDYConfig}"); do
     port: ${port} \n"
   else
 
-    runCommandIfPortClosed "${port}" "${freeServerRoot}/start-spdy-nghttpx ${port};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\""
+    runCommandIfPortClosed "${port}" "${binDir}/start-spdy-nghttpx.sh ${port};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\""
 
   fi
 
 done
 
-runCommandIfPortClosed "${SPDYForwardBackendSquidPort}"  "${freeServerRoot}/restart-spdy-squid"
+runCommandIfPortClosed "${SPDYForwardBackendSquidPort}"  "${binDir}/restart-spdy-squid.sh"
 
 

@@ -27,7 +27,7 @@ fi
 
 pkill ^nghttpx
 
-${freeServerRoot}/restart-spdy-squid
+${binDir}/restart-spdy-squid.sh
 
-${freeServerRoot}/restart-dead-spdy-nghttpx-squid
+${binDir}/restart-dead-spdy-nghttpx-squid.sh
 

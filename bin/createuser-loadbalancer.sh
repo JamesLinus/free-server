@@ -31,7 +31,7 @@ generateConfig() {
 }
 
 reloadLoadBalancer() {
-    ${utilDir}/restart-dead-loadbalancer.sh
+    ${binDir}/restart-dead-loadbalancer.sh
 }
 
 notifyUser() {

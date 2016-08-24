@@ -37,7 +37,7 @@ enableIptableToConnectInternet
 pkill -ef ^ocserv
 sleep 2
 
-${freeServerRoot}/restart-dead-ocserv
+${binDir}/restart-dead-ocserv.sh
 
 echoS "Restarted ocserv"
 sleep 1

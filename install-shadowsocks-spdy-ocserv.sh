@@ -26,7 +26,6 @@ fi
 replaceStringInFile "/etc/ssh/sshd_config" AcceptEnv "\#AcceptEnv"
 service sshd restart
 
-
 echoS "apt-get update and install required tools"
 
 export LC_CTYPE=en_US.UTF-8
@@ -53,18 +52,19 @@ warnNoEnterReturnKey
 apt-get update -y > /dev/null
 
 catchError=$(apt-get install -y gawk 2>&1 > /dev/null)
-
 exitOnError "${catchError}"
 
 catchError=$(apt-get install -y curl 2>&1 > /dev/null)
+exitOnError "${catchError}"
 
+catchError=$(apt-get install git-all 2>&1 > /dev/null)
 exitOnError "${catchError}"
 
 echoS "Migrate obsolete installation"
 cd ${globalUtilStoreDir}
 rm -f migrate.sh
 
-catchError=$(downloadFileToFolder ${bashUrl}/setup-tools/migrate.sh ${globalUtilStoreDir}/ 2>&1  > /dev/null)
+catchError=$(downloadFileToFolder ${baseUrlSetupTools}/migrate.sh ${globalUtilStoreDir}/ 2>&1  > /dev/null)
 exitOnError "${catchError}"
 
 chmod 755 ./migrate.sh
@@ -112,7 +112,7 @@ fi
 
 echoS "Create Folder scaffold"
 
-wget --no-cache -qO- ${baseUrlSetup}/init-folders.sh | /bin/bash
+wget --no-cache -qO- ${baseUrlSetupTools}/init-folders.sh | /bin/bash
 
 echoS "Restore Config"
 
@@ -147,38 +147,43 @@ service cron restart 2>&1 > /dev/null
 echoS "Getting and processing utility package"
 warnNoEnterReturnKey
 
-downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
-chmod 755 ${freeServerRootTmp}/download-files.sh
-${freeServerRootTmp}/download-files.sh || exit 1
+#downloadFileToFolder ${bashUrl}/setup-tools/download-files.sh ${freeServerRootTmp}
+#chmod 755 ${freeServerRootTmp}/download-files.sh
+#${freeServerRootTmp}/download-files.sh || exit 1
+
+echoS "Git Cloning project"
+cd ${gitRepoPath}
+git clone https://github.com/lanshunfang/free-server.git
+chmod -R +x *.sh
 
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-node.sh || exit 1
+${setupToolsDir}/install-node.sh || exit 1
 
 echoS "Installing Let's Encrypt"
-${freeServerRootTmp}/install-letsencrypt.sh || exit 1
+${setupToolsDir}/install-letsencrypt.sh || exit 1
 
 echoS "Installing and initialing Shadowsocks-R"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-shadowsocks-r.sh || exit 1
+${setupToolsDir}/install-shadowsocks-r.sh || exit 1
 
 echoS "Installing SPDY Proxy"
 warnNoEnterReturnKey
 
-#${freeServerRootTmp}/install-spdy.sh
-${freeServerRootTmp}/install-spdy-nghttpx-squid.sh || exit 1
+#${setupToolsDir}/install-spdy.sh
+${setupToolsDir}/install-spdy-nghttpx-squid.sh || exit 1
 
 #echoS "Installing IPSec/IKEv2 VPN (for IOS)"
-#${freeServerRootTmp}/install-ipsec-ikev2.sh || exit 1
+#${setupToolsDir}/install-ipsec-ikev2.sh || exit 1
 
 echoS "Installing Cisco AnyConnect (Open Connect Ocserv)"
-${freeServerRootTmp}/install-ocserv.sh || exit 1
+${setupToolsDir}/install-ocserv.sh || exit 1
 
 #echoS "Installing and Initiating Free Server Cluster for multiple IPs/Domains/Servers with same Login Credentials support"
 #
-#${freeServerRootTmp}/install-cluster.sh
+#${setupToolsDir}/install-cluster.sh
 
 
 
@@ -186,22 +191,22 @@ ${freeServerRootTmp}/install-ocserv.sh || exit 1
 
 echoS "Restart and Init Everything in need"
 
-${freeServerRootTmp}/init.sh || exit 1
+${setupToolsDir}/init.sh || exit 1
 
 echoS "All done. Create user example: \n\n\
 \
-Shadowsocks-R+SPDY+Cisco AnyConnect VPN: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
+Shadowsocks-R+SPDY+Cisco AnyConnect VPN: ${binDir}/createuser.sh User Pass ShadowsocksPort SPDYPort \n\n\
 \
-Shadowsocks-R Only: ${freeServerRoot}/createuser-shadowsocks-r Port Pass \n\n\
+Shadowsocks-R Only: ${binDir}/createuser-shadowsocks-r.sh Port Pass \n\n\
 \
-SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port \n\n\
+SPDY Only: ${binDir}/createuser-spdy-nghttpx-squid.sh User Pass Port \n\n\
 \
-Cisco AnyConnect VPN Only: ${freeServerRoot}/createuser-ocserv User Pass \n\n\
+Cisco AnyConnect VPN Only: ${binDir}/createuser-ocserv.sh User Pass \n\n\
 \
 "
 
 echoS "\x1b[46m Next step: \x1b[0m\n\n\
-1. Create a user: ${freeServerRoot}/createuser USERNAME PASSWORD ShadowsocksRPort SPDYPort
+1. Create a user: ${binDir}/createuser.sh USERNAME PASSWORD ShadowsocksRPort SPDYPort
 2. Config Chrome or other client. Tutorial is here: https://github.com/lanshunfang/free-server#how-to-setup-clients
 3. Cisco AnyConnect VPN Server is running on port 443 and range from $ocservPortMin to $ocservPortMax
 "
