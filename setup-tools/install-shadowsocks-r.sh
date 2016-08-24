@@ -2,6 +2,8 @@
 
 source /opt/.global-utils.sh
 
+# disable previous ss-server
+mv /usr/bin/ss-server /usr/bin/ss-server.bak
 
 cd ${gitRepoPath}
 

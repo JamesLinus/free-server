@@ -11,7 +11,7 @@ fi
 cd ${shadowsocksRFolder}
 
 echo -e "Restarting all shadowsocks-R instances" | wall
-pkill server.py
+killProcessesByPattern server.py
 python server.py -d stop
 
 for i in $(find ${configDir} -name "ssr-*.json"); do
