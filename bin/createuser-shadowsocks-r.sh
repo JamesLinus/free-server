@@ -79,7 +79,7 @@ echo -e "{ \n\
 }\
 " > ${configFile}
 
-python server.py -c ${configFile} -d restart
+python server.py -c ${configFile} >> /dev/null 2&>1 &
 
 echoS "Shadowsocks-R account created. \n\
 Port: ${port} \n\

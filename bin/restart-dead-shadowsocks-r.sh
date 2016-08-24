@@ -12,11 +12,12 @@ cd ${shadowsocksRFolder}
 
 shadowsocksRConfigList=$(find ${configDir} -name "ssr-*.json")
 
-for i in ${shadowsocksRConfigList}; do
-  isProcessRunning=$(ps aux | awk '$0~v' v="-c\\ ${i}")
+for configFile in ${shadowsocksRConfigList}; do
+  isProcessRunning=$(ps aux | awk '$0~v' v="-c\\ ${configFile}")
   if [[ -z ${isProcessRunning} ]]; then
-    echo -e "Restart SSR with $i" | wall
-    python server.py -c ${i} -d restart
+    echo -e "Restart SSR with $configFile" | wall
+    python server.py -c ${configFile} >> /dev/null 2&>1 &
+
   else
     echo "Skipped $i since it is already stated. Process: ${isProcessRunning}"
   fi
