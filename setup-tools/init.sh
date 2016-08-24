@@ -11,7 +11,7 @@ echoS "Write to crontab for auto restart"
 catchError=$(/bin/bash ${utilDir}/cron-renew-letsencrypt.sh  2>&1 >> ${loggerStdoutFile})
 
 # smart service watcher for every 2 minutes
-catchError=$(/bin/bash ${utilDir}/cron-shadowsocks-forever-process-running-generate-cron.d.sh  2>&1 >> ${loggerStdoutFile})
+catchError=$(/bin/bash ${utilDir}/cron-shadowsocks-r-forever-process-running-generate-cron.d.sh  2>&1 >> ${loggerStdoutFile})
 
 #catchError=$(${freeServerRoot}/cron-ipsec-forever-process-running-generate-cron.d 2>&1 >> ${loggerStdoutFile})
 catchError=$(/bin/bash ${utilDir}/cron-ocserv-forever-process-running-generate-cron.d.sh 2>&1 >> ${loggerStdoutFile})
@@ -27,12 +27,12 @@ catchError=$(/bin/bash ${utilDir}/cron-spdy-nghttpx-squid-forever-process-runnin
 catchError=$(service cron restart 2>&1 >> ${loggerStdoutFile})
 
 #echoS "Restart Shadowsocks/SPDY/IPSec"
-echoS "Restart Shadowsocks/SPDY/Cisco AnyConnect"
+echoS "Restart ShadowsocksR/SPDY/Cisco AnyConnect"
 
 #${freeServerRoot}/restart-ipsec
 ${freeServerRoot}/restart-ocserv
 
-${freeServerRoot}/restart-shadowsocks
+${freeServerRoot}/restart-shadowsocks-r
 
 #${freeServerRoot}/restart-spdy
 ${freeServerRoot}/restart-spdy-nghttpx-squid

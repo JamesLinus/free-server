@@ -55,11 +55,13 @@ export baseUrlSetup=${baseUrl}/setup-tools
 export baseUrlConfigSample=${baseUrl}/config-sample
 export baseUrlMisc=${baseUrl}/misc
 
-export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
-export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
+#export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
+#export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"
 
-export SPDYNgHttp2DownloadLink="https://github.com/nghttp2/nghttp2/releases/download/v1.9.1/nghttp2-1.9.1.tar.gz"
-export SPDYNgHttp2FolderName="nghttp2-1.9.1"
+export shadowsocksRFolder="${freeServerRootTmp}/shadowsocks/shadowsocks"
+
+export SPDYNgHttp2DownloadLink="https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz"
+export SPDYNgHttp2FolderName="nghttp2-1.13.0"
 export SPDYNgHttp2TarGzName="${SPDYNgHttp2FolderName}.tar.gz"
 export SPDYSpdyLayDownloadLink="https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz"
 export SPDYSpdyLayFolderName="spdylay-1.3.2"
@@ -552,7 +554,7 @@ importSqlTarToMySQL(){
 export -f importSqlTarToMySQL
 
 
-optimizeLinuxForShadowsocks(){
+optimizeLinuxForShadowsocksR(){
 
   removeLineByRegPattAndInsert /etc/security/limits.conf "soft nofile 51200" "* soft nofile 51200"
   removeLineByRegPattAndInsert /etc/security/limits.conf "hard nofile 51200" "* hard nofile 51200"
@@ -581,7 +583,7 @@ optimizeLinuxForShadowsocks(){
   sysctl -p
 }
 
-export -f optimizeLinuxForShadowsocks
+export -f optimizeLinuxForShadowsocksR
 
 
 # get current server name

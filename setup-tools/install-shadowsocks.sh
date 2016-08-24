@@ -24,7 +24,7 @@ if [[ "${ubuntu14}" == "YES" ]]; then
   rm -rf init-system-helpers_1.18_all.deb*  > /dev/null
 fi
 
-optimizeLinuxForShadowsocks
+optimizeLinuxForShadowsocksR
 
 apt-get update -y > /dev/null
 catchError=$(apt-get install shadowsocks-libev -y 2>&1 >> ${loggerStdoutFile})

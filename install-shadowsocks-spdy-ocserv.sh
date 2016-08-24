@@ -159,10 +159,10 @@ ${freeServerRootTmp}/install-node.sh || exit 1
 echoS "Installing Let's Encrypt"
 ${freeServerRootTmp}/install-letsencrypt.sh || exit 1
 
-echoS "Installing and initing Shadowsocks"
+echoS "Installing and initing Shadowsocks-R"
 warnNoEnterReturnKey
 
-${freeServerRootTmp}/install-shadowsocks.sh || exit 1
+${freeServerRootTmp}/install-shadowsocks-r.sh || exit 1
 
 echoS "Installing SPDY Proxy"
 warnNoEnterReturnKey
@@ -190,9 +190,9 @@ ${freeServerRootTmp}/init.sh || exit 1
 
 echoS "All done. Create user example: \n\n\
 \
-Shadowsocks+SPDY+Cisco AnyConnect VPN: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
+Shadowsocks-R+SPDY+Cisco AnyConnect VPN: ${freeServerRoot}/createuser User Pass ShadowsocksPort SPDYPort \n\n\
 \
-Shadowsocks Only: ${freeServerRoot}/createuser-shadowsocks Port Pass \n\n\
+Shadowsocks-R Only: ${freeServerRoot}/createuser-shadowsocks-r Port Pass \n\n\
 \
 SPDY Only: ${freeServerRoot}/createuser-spdy-nghttpx-squid User Pass Port \n\n\
 \
@@ -201,7 +201,7 @@ Cisco AnyConnect VPN Only: ${freeServerRoot}/createuser-ocserv User Pass \n\n\
 "
 
 echoS "\x1b[46m Next step: \x1b[0m\n\n\
-1. Create a user: ${freeServerRoot}/createuser USERNAME PASSWORD ShadowsocksPort SPDYPort
+1. Create a user: ${freeServerRoot}/createuser USERNAME PASSWORD ShadowsocksRPort SPDYPort
 2. Config Chrome or other client. Tutorial is here: https://github.com/lanshunfang/free-server#how-to-setup-clients
 3. Cisco AnyConnect VPN Server is running on port 443 and range from $ocservPortMin to $ocservPortMax
 "
