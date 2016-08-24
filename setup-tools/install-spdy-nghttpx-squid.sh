@@ -6,6 +6,9 @@ main() {
 
 #  getSpdySslCaPemFile
   installSpdyLay
+
+  cleanupMemory
+
   installNgHttpX
 
   uninstallSquid
@@ -89,17 +92,16 @@ installNgHttpX() {
   echoS "Installing, may need 5 minutes..."
   warnNoEnterReturnKey
 
-  autoreconf -i >> /dev/null \
-    && automake >> /dev/null \
-    && autoconf >> /dev/null \
-    && ./configure >> /dev/null \
-    && make >> /dev/null \
-    && make install \
-     >> /dev/null
+  autoreconf -i >> /dev/null && automake >> /dev/null && autoconf >> /dev/null && ./configure >> /dev/null && make >> /dev/null
 
-  ldconfig
+  catchError=$(make install 2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
+
+  catchError=$(ldconfig 2>&1 >> ${loggerStdoutFile})
+  exitOnError "${catchError}"
 
   cd ..
+
   rm -rf ${SPDYNgHttp2FolderName}
   rm -rf ${SPDYNgHttp2TarGzName}
 

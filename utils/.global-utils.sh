@@ -151,6 +151,11 @@ warnNoEnterReturnKey() {
   echoS "\x1b[31m Do NOT press any Enter/Return key while script is compiling / downloading \x1b[0m if haven't been asked. Or, it may fail." "stderr"
 }
 
+cleanupMemory(){
+    ${setupToolsDir}/cleanup-memory.sh
+}
+export -f cleanupMemory
+
 randomString()
 {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
