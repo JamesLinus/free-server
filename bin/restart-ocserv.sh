@@ -41,5 +41,3 @@ ${binDir}/restart-dead-ocserv.sh
 
 echoS "Restarted ocserv"
 sleep 1
-
-ps aux |  grep ocserv

@@ -103,7 +103,7 @@ export ipsecStrongManVersionTarGz=${ipsecStrongManVersion}.tar.gz
 export ipsecStrongManOldVersion=strongswan-5.2.1
 export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 
-export ocservDownloadLink="ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.xz"
+export ocservDownloadLink="ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.gz"
 export ocservFolderName="ocserv-0.11.4"
 export ocservTarGzName="${ocservFolderName}.tar.gz"
 export ocservPasswd=${configDir}/ocserv.passwd
