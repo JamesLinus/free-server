@@ -28,7 +28,7 @@ installLetsencrypt() {
 }
 
 getCert() {
-    eval "${letsencryptAutoPath} certonly --standalone --agree-tos yes --email ${freeServerUserEmail} -d ${freeServerName} --non-interactive --agree-tos"
+    eval "${letsencryptAutoPath} certonly --standalone --non-interactive --agree-tos --email=${freeServerUserEmail} -d ${freeServerName}"
 }
 
 enableAutoRenew() {
