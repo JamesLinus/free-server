@@ -17,8 +17,8 @@ installOcserv() {
     tar -xf ${ocservTarGzName}
     cd ${ocservFolderName}
 
-    apt-get install -y build-essential pkg-config libgnutls28-dev libwrap0-dev libpam0g-dev libseccomp-dev libreadline-dev libnl-route-3-dev
-    ./configure && make && make install
+    apt-get install -y build-essential pkg-config libgnutls28-dev libwrap0-dev libpam0g-dev libseccomp-dev libreadline-dev libnl-route-3-dev  >> /dev/null
+    ./configure  >> /dev/null && make  >> /dev/null && make install  >> /dev/null
 }
 
 main "$@"

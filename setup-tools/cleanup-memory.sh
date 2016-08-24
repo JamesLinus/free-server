@@ -7,6 +7,7 @@ echoS "Cleanup Memory"
 
 forever stop ${miscDir}/testing-web.js
 pkill -ef ^ocserv
+pkill ss-server
 killProcessesByPattern server.py
 pkill ^nghttpx
 
