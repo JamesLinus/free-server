@@ -57,7 +57,7 @@ exitOnError "${catchError}"
 catchError=$(apt-get install -y curl 2>&1 > /dev/null)
 exitOnError "${catchError}"
 
-catchError=$(apt-get install git-all 2>&1 > /dev/null)
+catchError=$(apt-get install -y git 2>&1 > /dev/null)
 exitOnError "${catchError}"
 
 echoS "Migrate obsolete installation"
@@ -153,13 +153,18 @@ warnNoEnterReturnKey
 
 echoS "Git Cloning project"
 cd ${gitRepoPath}
+rm -rf ${gitRepoFreeServerPath}
 git clone https://github.com/lanshunfang/free-server.git
-chmod -R +x *.sh
+
+find ./ -name "*.sh" | xargs chmod +x
+
 
 echoS "Installing NodeJS and NPM"
 warnNoEnterReturnKey
-
 ${setupToolsDir}/install-node.sh || exit 1
+
+echoS "Copy Config samples"
+${setupToolsDir}/copy-conf.sh || exit 1
 
 echoS "Installing Let's Encrypt"
 ${setupToolsDir}/install-letsencrypt.sh || exit 1

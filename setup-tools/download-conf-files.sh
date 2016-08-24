@@ -1,6 +1,12 @@
-##!/usr/bin/env bash
+#!/usr/bin/env bash
 #
-#source /opt/.global-utils.sh
+source /opt/.global-utils.sh
+
+downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
+downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
+downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
+downloadFileToFolder ${baseUrlConfigSample}/haproxy-user.conf ${configDir}
+
 #
 ## install util
 #
@@ -19,10 +25,7 @@
 ## runtime bin
 #downloadFileToFolder ${baseUrlBin}/createuser.sh ${binDir}
 #
-#downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
-#downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
-#downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
-#downloadFileToFolder ${baseUrlConfigSample}/haproxy-user.conf ${configDir}
+
 #downloadFileToFolder ${baseUrlSetupTools}/install-spdy-nghttpx-squid.sh ${freeServerRootTmp}
 #downloadFileToFolder ${baseUrlBin}/createuser-spdy-nghttpx-squid.sh ${binDir}
 #downloadFileToFolder ${baseUrlBin}/restart-spdy-nghttpx-squid.sh ${binDir}

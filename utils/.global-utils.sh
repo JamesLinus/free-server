@@ -34,6 +34,7 @@ export gitRepoShadowsocksRPath=${gitRepoPath}/shadowsocks
 export binDir=${gitRepoFreeServerPath}/bin
 export setupToolsDir=${gitRepoFreeServerPath}/setup-tools
 export miscDir=${gitRepoFreeServerPath}/misc
+export configSampleDir=${gitRepoFreeServerPath}/config-sample
 
 # for configration samples
 export configDir=${freeServerRoot}/config
