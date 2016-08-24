@@ -7,7 +7,7 @@ main() {
   createFolderByPath ${binDir}
   createFolderByPath ${configDir}
   createFolderByPath ${freeServerRootTmp}
-  createFolderByPath ${freeServerRootMisc}
+#  createFolderByPath ${freeServerRootMisc}
   createFolderByPath ${loggerStdoutFolder}
   createFolderByPath ${letsencryptInstallationFolder}
   createFolderByPath ${gitRepoPath}

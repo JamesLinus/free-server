@@ -55,7 +55,6 @@ export letsencryptAutoPath=${letsencryptInstallationFolder}/letsencrypt-auto
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
-export freeServerRootMisc=${freeServerRoot}misc
 
 export baseUrlUtils=${baseUrl}/utils
 export baseUrlBin=${baseUrl}/bin
