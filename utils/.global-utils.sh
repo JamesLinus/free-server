@@ -106,7 +106,7 @@ export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 
 export ocservDownloadLink="ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.xz"
 export ocservFolderName="ocserv-0.11.4"
-export ocservTarGzName="${SPDYNgHttp2FolderName}.tar.gz"
+export ocservTarGzName="${ocservFolderName}.tar.gz"
 export ocservPasswd=${configDir}/ocserv.passwd
 export ocservConfig="${configDir}/ocserv.conf"
 
