@@ -162,9 +162,9 @@ git add .
 git commit -m "chmod"
 
 
-echoS "Installing NodeJS and NPM"
-warnNoEnterReturnKey
-${setupToolsDir}/install-node.sh || exit 1
+#echoS "Installing NodeJS and NPM"
+#warnNoEnterReturnKey
+#${setupToolsDir}/install-node.sh || exit 1
 
 echoS "Copy Config samples"
 ${setupToolsDir}/copy-conf.sh || exit 1

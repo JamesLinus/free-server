@@ -36,13 +36,11 @@ Please consider fork to keep the free-server long living till the day of death o
 * It has been tested on Amazon EC2 Ubuntu 14. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15, as well as all latest Ubuntu Server releases.
 
 ## Package installed
-* node / npm / node-legacy
 * Shadowsocks-R: https://github.com/breakwa11/shadowsocks.git
 * HTTP2/SPDY: nghttp2-1.9.1 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
 (https://github.com/nghttp2/nghttp2/releases/download/v1.9.1/nghttp2-1.9.1.tar.gz)
 (https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
 * ocserv ([OpenConnect Server 0.9.2](ftp://ftp.infradead.org/pub/ocserv/ocserv-0.9.2.tar.gz), conf from [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route/blob/master/ocserv.conf) )
-* node forever (npm module)
 
 ## Installation
 

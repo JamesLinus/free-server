@@ -674,6 +674,7 @@ ensure80443PortIsAvailable(){
         service nginx stop
         killall nodejs
         pkill -ef ^ocserv
+        killProcessesByPattern SimpleHTTPServer
         ((secondsStep5ToEnsure--))
         sleep 5
     done
