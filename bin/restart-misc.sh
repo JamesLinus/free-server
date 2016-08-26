@@ -2,5 +2,9 @@
 
 source /opt/.global-utils.sh
 
-forever stop ${miscDir}/testing-web.js
-forever start ${miscDir}/testing-web.js
+#forever stop ${miscDir}/testing-web.js
+#forever start ${miscDir}/testing-web.js
+
+cd ${miscDir}
+
+python -m SimpleHTTPServer 80

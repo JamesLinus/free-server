@@ -37,8 +37,7 @@ ${binDir}/restart-shadowsocks-r.sh
 ${binDir}/restart-spdy-nghttpx-squid.sh
 
 echoS "Create a simple website for testing purpose."
-
-catchError=$(npm install -g forever 2>&1 >> ${loggerStdoutFile})
+#catchError=$(npm install -g forever 2>&1 >> ${loggerStdoutFile})
 
 ${binDir}/restart-misc.sh
 
