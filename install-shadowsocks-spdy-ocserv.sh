@@ -157,6 +157,9 @@ rm -rf ${gitRepoFreeServerPath}
 git clone https://github.com/lanshunfang/free-server.git
 
 find ./ -name "*.sh" | xargs chmod +x
+cd free-server
+git add .
+git commit -m "chmod"
 
 
 echoS "Installing NodeJS and NPM"

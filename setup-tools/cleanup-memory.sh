@@ -5,12 +5,17 @@ source /opt/.global-utils.sh
 
 echoS "Cleanup Memory"
 
-forever stop ${miscDir}/testing-web.js
+killall nodejs
+
 pkill -ef ^ocserv
 pkill ss-server
+
 killProcessesByPattern server.py
+killProcessesByPattern SimpleHTTPServer
+
 pkill ^nghttpx
 
 killall squid3
+
 squid3 -z
 squid3 -f ${SPDYSquidConfig} -k kill

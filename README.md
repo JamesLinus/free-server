@@ -4,6 +4,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2016-08-26 [enhancement] replace Nodejs Static server to python
 * 2016-08-24 [BreakingChange] replace Shadowsocks to Shadowsocks-R
 * 2016-08-24 [Enhancement] Update nghttp2-1.13.0.
 * 2016-04-15 [Warning] Paul has received some information that may be relevant to free-server from Chinese policeman.
