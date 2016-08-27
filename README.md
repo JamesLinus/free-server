@@ -2,6 +2,8 @@
 
 Gain more freedom with my free-server for Chinese (mainland), Iranians, North Koreans, and the kind.
 
+* 'You shall know the truth, and the truth shall make you free. 你们必晓得真理, 真理必叫你们得自由' -- [John 8:32](http://cnbible.com/john/8-32.htm) 
+
 ## News and Change logs
 
 * 2016-08-26 [enhancement] replace Nodejs Static server to python
@@ -36,11 +38,12 @@ Please consider fork to keep the free-server long living till the day of death o
 * It has been tested on Amazon EC2 Ubuntu 14. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15, as well as all latest Ubuntu Server releases.
 
 ## Package installed
-* Shadowsocks-R: https://github.com/breakwa11/shadowsocks.git
-* HTTP2/SPDY: nghttp2-1.13.0 + spdylay-1.3.2 + Squid3 (Ubuntu repo latest)
-(https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz)
-(https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
-* ocserv ([OpenConnect Server 0.11.4](ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.gz), conf from [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route/blob/master/ocserv.conf) )
+* [Let's Encrypt](https://letsencrypt.org/)
+* [Shadowsocks-R](https://github.com/breakwa11/shadowsocks.git)
+* [HTTP2/SPDY: nghttp2-1.13.0](https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz)
+* [Spdylay-1.3.2](https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
+* Squid3 (Ubuntu repo latest)
+* ocserv ([OpenConnect Server 0.11.4, Cisco AnyConnect VPN](ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.gz), conf from [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route/blob/master/ocserv.conf) )
 
 ## Installation
 
@@ -50,7 +53,7 @@ wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/mas
 bash install-shadowsocks-spdy-ocserv.sh
 ```
 
-Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks-R, HTTP2/SPDY and iPSec account or password.
+Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks-R, HTTP2/SPDY and Ocserv account or password.
 It backs them up if found any before execute re-installation.
 
 ## Create User
@@ -82,4 +85,4 @@ Cisco AnyConnect VPN (Ocserv) Only: ${binDir}/createuser-ocserv.sh User Pass
 
 * Cisco AnyConnect VPN (Ocserv) instances are running on Port 443 and Port Range from 3000 to 3010 for better stability and less average transfer rate per port.
 * This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks-R / HTTP2 (nghttpx, squid) / Cisco AnyConnect VPN / demo web server service status.
-* For more stability, both Shadowsocks-R and HTTP2/SPDY are running in multiple instances, one per user, not single process.
+* For more stability, both Shadowsocks-R, HTTP2/SPDY and Ocserv are all running in multiple instances, one per user, not as single process.
