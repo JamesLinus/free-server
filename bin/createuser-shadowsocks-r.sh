@@ -79,6 +79,8 @@ echo -e "{ \n\
 }\
 " > ${configFile}
 
+cd ${shadowsocksRFolder}
+
 python server.py -c ${configFile} >> /dev/null 2&>1 &
 
 echoS "Shadowsocks-R account created. \n\
