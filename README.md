@@ -86,3 +86,7 @@ Cisco AnyConnect VPN (Ocserv) Only: ${binDir}/createuser-ocserv.sh User Pass
 * Cisco AnyConnect VPN (Ocserv) instances are running on Port 443 and Port Range from 3000 to 3010 for better stability and less average transfer rate per port.
 * This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks-R / HTTP2 (nghttpx, squid) / Cisco AnyConnect VPN / demo web server service status.
 * For more stability, both Shadowsocks-R, HTTP2/SPDY and Ocserv are all running in multiple instances, one per user, not as single process.
+
+## License
+
+MIT
