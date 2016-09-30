@@ -38,6 +38,7 @@ Please consider fork to keep the free-server long living till the day of death o
 * It has been tested on Amazon EC2 Ubuntu 14. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15, as well as all latest Ubuntu Server releases.
 
 ## Package installed
+
 * [Let's Encrypt](https://letsencrypt.org/)
 * [Shadowsocks-R](https://github.com/breakwa11/shadowsocks.git)
 * [HTTP2/SPDY: nghttp2-1.13.0](https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz)
@@ -59,13 +60,28 @@ It backs them up if found any before execute re-installation.
 ## Create User
 
 ```bash
-Shadowsocks-r+HTTP2/SPDY+Cisco AnyConnect VPN: ${binDir}/createuser.sh User Pass ShadowsocksRPort SPDYPort
+# Assume you didn't change $freeServerRoot
 
-Shadowsocks-R Only: ${binDir}/createuser-shadowsocks.sh Port Pass 
+# Shadowsocks-r+HTTP2/SPDY+Cisco AnyConnect VPN: 
+sudo /opt/free-server/git-repo/free-server/bin/createuser.sh User Pass ShadowsocksRPort SPDYPort
+# e.g. 
+sudo /opt/free-server/git-repo/free-server/bin/createuser.sh test1 test123 10000 10401
 
-HTTP2/SPDY Only: ${binDir}/createuser-spdy-nghttpx-squid.sh User Pass Port
+# Shadowsocks-R Only: 
+sudo /opt/free-server/git-repo/free-server/bin/createuser-shadowsocks.sh Port Pass 
+# e.g. 
+sudo /opt/free-server/git-repo/free-server/bin/createuser-shadowsocks.sh 10000 test1
 
-Cisco AnyConnect VPN (Ocserv) Only: ${binDir}/createuser-ocserv.sh User Pass
+# HTTP2/SPDY Only: 
+sudo /opt/free-server/git-repo/free-server/bin/createuser-spdy-nghttpx-squid.sh User Pass Port
+# e.g. 
+sudo /opt/free-server/git-repo/free-server/bin/createuser-spdy-nghttpx-squid.sh test1 test123 10401
+
+Cisco AnyConnect VPN (Ocserv) Only: 
+sudo /opt/free-server/git-repo/free-server/bin/createuser-ocserv.sh User Pass
+# e.g. 
+sudo /opt/free-server/git-repo/free-server/bin/createuser-ocserv.sh test1 test123
+
 ```
 
 ## How to setup clients
