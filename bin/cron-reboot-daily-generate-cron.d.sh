@@ -8,8 +8,8 @@ file="/etc/cron.d/free-server-reboot-daily"
 ## restart daily
 restartCommand="/sbin/shutdown -r now"
 
-## restart process every day at 5am
-echo "5 21 * * * root ${restartCommand}" >> ${file}
+## restart process every day at 2pm GMT0
+echo "18 18 * * * root ${restartCommand}" >> ${file}
 
 echo "Done, cat ${file}"
 cat ${file}

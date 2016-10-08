@@ -20,8 +20,8 @@ if [[ ! -f $letsEncryptKeyPath ]]; then
 fi
 
 
-if [[ ! -f $letsencryptAutoPath ]]; then
-    echoS "[Let's Encrypt] $letsencryptAutoPath is not a file" "stderr"
+if [[ ! -f $letsencryptCertBotPath ]]; then
+    echoS "[Let's Encrypt] $letsencryptCertBotPath is not a file" "stderr"
     exit 1
 fi
 
@@ -29,7 +29,7 @@ echoS "Start to Renew Let's Encrypt Cert."
 
 prepareLetEncryptEnv
 
-certLog=$(eval "$letsencryptAutoPath renew --agree-tos")
+certLog=$(eval "$letsencryptCertBotPath renew --agree-tos -n")
 echo $certLog
 certDone=$(echo $certLog | grep "The following certs have been renewed")
 

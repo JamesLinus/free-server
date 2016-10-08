@@ -52,6 +52,7 @@ export letsEncryptCertPath=/etc/letsencrypt/live/$freeServerName/fullchain.pem
 export letsEncryptKeyPath=/etc/letsencrypt/live/$freeServerName/privkey.pem
 export letsencryptInstallationFolder=${freeServerRoot}/letsencrypt
 export letsencryptAutoPath=${letsencryptInstallationFolder}/letsencrypt-auto
+export letsencryptCertBotPath=${letsencryptInstallationFolder}/certbot-auto
 
 # temporary folder for installation
 export freeServerRootTmp=${freeServerRoot}/tmp
@@ -670,10 +671,9 @@ ensure80443PortIsAvailable(){
     fi
 
     while [[ $secondsStep5ToEnsure -gt 0 ]]; do
+        cleanupMemory
         forever stop ${miscDir}/testing-web.js
         service nginx stop
-        killall nodejs
-        pkill -ef ^ocserv
         killProcessesByPattern SimpleHTTPServer
         ((secondsStep5ToEnsure--))
         sleep 5
@@ -683,7 +683,6 @@ ensure80443PortIsAvailable(){
 
 restore80443Process(){
     echo "restore all processes to take 80 and 443"
-    forever start ${miscDir}/testing-web.js
     ${binDir}/restart-ocserv.sh
     service nginx restart
 }
