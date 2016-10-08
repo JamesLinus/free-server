@@ -22,6 +22,6 @@ ${binDir}/createuser-shadowsocks-r.sh "${shadowsocksRPort}" "${pass}"
 #${freeServerRoot}/createuser-spdy "${user}" "${pass}" "${SPDYPort}"
 ${binDir}/createuser-spdy-nghttpx-squid.sh "${user}" "${pass}" "${SPDYPort}"
 #${freeServerRoot}/createuser-ipsec "${user}" "${pass}"
-${binDir}/createuser-ocserv.sh "${user}" "${pass}"
+#${binDir}/createuser-ocserv.sh "${user}" "${pass}"
 
-echoS "All done. HTTP2/SPDY, Shadowsocks-R, Cisco AnyConnect VPN account has been created for user $user"
+echoS "All done. HTTP2/SPDY, Shadowsocks-R account has been created for user $user"

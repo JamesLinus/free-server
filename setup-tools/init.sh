@@ -26,10 +26,10 @@ catchError=$(/bin/bash ${binDir}/cron-spdy-nghttpx-squid-forever-process-running
 catchError=$(service cron restart 2>&1 >> ${loggerStdoutFile})
 
 #echoS "Restart Shadowsocks/SPDY/IPSec"
-echoS "Restart ShadowsocksR/SPDY/Cisco AnyConnect"
+echoS "Restart ShadowsocksR/SPDY"
 
 #${freeServerRoot}/restart-ipsec
-${binDir}/restart-ocserv.sh
+#${binDir}/restart-ocserv.sh
 
 ${binDir}/restart-shadowsocks-r.sh
 

@@ -136,6 +136,8 @@ export -f enforceInstallOnUbuntu
 
 enforceInstallOnUbuntu
 
+git config --global core.editor "vi"
+
 isUbuntu14(){
 	isUbuntu=`cat /etc/issue | grep "Ubuntu 14."`
 
@@ -683,7 +685,7 @@ ensure80443PortIsAvailable(){
 
 restore80443Process(){
     echo "restore all processes to take 80 and 443"
-    ${binDir}/restart-ocserv.sh
+    #${binDir}/restart-ocserv.sh
     service nginx restart
 }
 
