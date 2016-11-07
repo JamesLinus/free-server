@@ -27,7 +27,7 @@ for i in ${shadowsocksRConfigList}; do
 
   cd ${shadowsocksRFolder}
   python server.py -c ${i} -d stop
-  rm -y $cfg
+  rm $cfg
 
   echoS "Shadowsocks R deleted for ${port}"
 
