@@ -17,7 +17,7 @@ if [[ -z ${SPDYName} || -z ${SPDYPassword} || -z ${SPDYPort} ]]; then
   exit 1
 fi
 
-removeLineInFile ${SPDYName},${SPDYPassword},${SPDYPort} ${SPDYConfig}
+removeLineInFile  ${SPDYConfig} "${SPDYName},${SPDYPassword},${SPDYPort}"
 
 killProcessesByPort ${SPDYPort}
 
