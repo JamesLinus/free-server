@@ -25,6 +25,7 @@ for i in ${shadowsocksRConfigList}; do
       continue
   fi
 
+  cd ${shadowsocksRFolder}
   python server.py -c ${i} -d stop
   rm -y $cfg
 
