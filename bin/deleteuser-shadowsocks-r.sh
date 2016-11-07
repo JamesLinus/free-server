@@ -10,6 +10,11 @@ fi
 
 port=$1
 
+if [[ -z ${port} ]]; then
+  echoS "$0 PORT"
+  exit 1
+fi
+
 cfg=${configDir}/ssr-${port}.json
 
 shadowsocksRConfigList=$(find ${configDir} -name "ssr-*.json")
@@ -22,5 +27,7 @@ for i in ${shadowsocksRConfigList}; do
 
   python server.py -c ${i} -d stop
   rm -y $cfg
+
+  echoS "Shadowsocks R deleted for ${port}"
 
 done

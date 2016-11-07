@@ -783,4 +783,15 @@ duplicateConfByPort(){
 
 export -f duplicateConfByPort
 
+killProcessesByPort(){
+    port=$1
 
+    if [[ -z ${port} ]]; then
+	  echoS "Usage: [$FUNCNAME] PORT"
+	  return
+	fi
+
+    lsof -i tcp:${port} | awk 'NR!=1 {print $2}' | xargs kill
+}
+
+export -f killProcessesByPort
