@@ -48,19 +48,9 @@ It backs them up if found any before execute re-installation.
 
 # Shadowsocks-r+HTTP2/SPDY VPN: 
 sudo /opt/free-server/git-repo/free-server/bin/createuser.sh User Pass ShadowsocksRPort SPDYPort
+
 # e.g. 
 sudo /opt/free-server/git-repo/free-server/bin/createuser.sh test1 test123 10000 10401
-
-# Shadowsocks-R Only: 
-sudo /opt/free-server/git-repo/free-server/bin/createuser-shadowsocks.sh Port Pass 
-# e.g. 
-sudo /opt/free-server/git-repo/free-server/bin/createuser-shadowsocks.sh 10000 test1
-
-# HTTP2/SPDY Only: 
-sudo /opt/free-server/git-repo/free-server/bin/createuser-spdy-nghttpx-squid.sh User Pass Port
-# e.g. 
-sudo /opt/free-server/git-repo/free-server/bin/createuser-spdy-nghttpx-squid.sh test1 test123 10401
-
 
 ```
 
@@ -71,6 +61,20 @@ sudo /opt/free-server/git-repo/free-server/bin/createuser-spdy-nghttpx-squid.sh 
 * [HTTP2/SPDY (Chinese only)](http://www.xiaofang.me/2014/12/20/windowsmaclinux-%E4%BD%BF%E7%94%A8%E5%AE%88%E6%9C%9B%E6%97%A0%E5%A2%99%E8%AE%A1%E5%88%92%E7%9A%84-spdy-%E9%AB%98%E9%80%9F%E7%BF%BB%E5%A2%99%E8%AE%BE%E7%BD%AE/ "Chinese only")
 * [Shadowsocks-R-Android (Chinese only)](http://www.xiaofang.me/2016/08/25/shadowsocks-r-android-%E5%B0%8F%E6%96%B9%E7%95%AA%E8%8C%84%E9%85%8D%E7%BD%AE/)
 * [iPhone/iPad Potatso VPN (Shadowsocks-R) (Chinese only)](http://www.xiaofang.me/2016/08/23/iphoneipad-potatso-vpn-shadowsocks-%E7%95%AA%E8%8C%84%E9%85%8D%E7%BD%AE/)
+
+
+## Delete User
+
+```bash
+# Assume you didn't change $freeServerRoot
+
+# Shadowsocks-r+HTTP2/SPDY VPN: 
+sudo /opt/free-server/git-repo/free-server/bin/deleteuser.sh User Pass ShadowsocksRPort SPDYPort
+
+# e.g. 
+sudo /opt/free-server/git-repo/free-server/bin/deleteuser.sh test1 test123 10000 10401
+
+```
 
 ## Donation
 
