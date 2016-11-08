@@ -17,6 +17,7 @@ Please consider fork to keep the free-server long living till the day of death o
 
 -------
 * other change logs are archived to the bottom of the page
+
 ## Description
 
 * This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks-R, HTTP2/SPDY, within Ubuntu Server.
@@ -105,6 +106,7 @@ sudo /opt/free-server/git-repo/free-server/bin/deleteuser.sh test1 test123 10000
 * 2015-08-10 Will work on IPSec later
 
 ## Roadmap
+
 * Add expiration date for an account while creating an account
 
 ## License
