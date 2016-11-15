@@ -80,6 +80,7 @@ sudo /opt/free-server/git-repo/free-server/bin/deleteuser.sh test1 test123 10000
 ## Donation
 
 * Please consider donation to Paul so that he will be encouraged by your favor. Paypal: lanshunfang#gmail.com (replace # to @). Thank you :)
+* Or, use My [Vultr Promote link](http://www.vultr.com/?ref=7037187-3B) to support me
 
 ## More
 
