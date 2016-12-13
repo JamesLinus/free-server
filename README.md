@@ -21,7 +21,8 @@ Please consider fork to keep the free-server long living till the day of death o
 ## Description
 
 * This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks-R, HTTP2/SPDY, within Ubuntu Server.
-* It has been tested on Amazon EC2 Ubuntu 14. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15, as well as all latest Ubuntu Server releases.
+* It has been tested on Amazon EC2 Ubuntu 14 LTS. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15 
+/ Ubuntu Server 16 LTS, as well as all major Ubuntu Server releases.
 
 ## Package installed
 
@@ -84,6 +85,8 @@ sudo /opt/free-server/git-repo/free-server/bin/deleteuser.sh test1 test123 10000
 
 ## More
 
+* This script will take port 80 for showing the status of the server via HTML page; If you do not want port 80 be taken, 
+please contact Paul <lanshunfang#gmail.com> for support.
 * This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks-R / HTTP2 (nghttpx, squid) / demo web server service status.
 * For more stability, both Shadowsocks-R, HTTP2/SPDY are all running in multiple instances, one per user, not as single process.
 
