@@ -12,7 +12,7 @@ restartCommand="/sbin/shutdown -r now"
 ## restart process every day at 2pm GMT0
 echo "18 18 * * * root ${restartCommand}" > ${file}
 
-echo "#!/bin/sh" > ${fileDaily}
+echo '#!/bin/sh' > ${fileDaily}
 echo "shutdown -r now" >> ${fileDaily}
 chmod a+x ${fileDaily}
 
