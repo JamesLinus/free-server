@@ -169,6 +169,9 @@ git commit -m "chmod"
 echoS "Copy Config samples"
 ${setupToolsDir}/copy-conf.sh || exit 1
 
+echoS "Installing Dependencies"
+${setupToolsDir}/install-dependencies.sh || exit 1
+
 echoS "Installing Let's Encrypt"
 ${setupToolsDir}/install-letsencrypt.sh || exit 1
 

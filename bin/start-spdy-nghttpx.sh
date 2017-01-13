@@ -54,7 +54,7 @@ startNgHttpX() {
   #  --workers=${SPDYNgHttpXCPUWorkerAmount} \
 
 
-  nghttpx \
+  trickle -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
   --daemon \
   --http2-proxy \
   --no-via \

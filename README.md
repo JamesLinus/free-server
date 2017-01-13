@@ -6,6 +6,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2017-01-14 [Enhancement] Limit upload&download speed of each SPDY/Shadowsocks-r instance to 300KB/s
 * 2016-11-07 [Feature] Add deleteuser.sh to support delete user in a handy way
 * 2016-10-08 [BreakingChange] remove ocserv (Cisco AnyConnect VPN) since Potatso (ShadowsocksR) is working well in iPhone
 * 2016-08-26 [Enhancement] replace Nodejs Static server to python
@@ -85,6 +86,7 @@ sudo /opt/free-server/git-repo/free-server/bin/deleteuser.sh test1 test123 10000
 
 ## More
 
+* Each connection are limited to 300KB (configured in .global-utils.sh, trickleUploadLimit) by Trickle
 * This script will take port 80 for showing the status of the server via HTML page; If you do not want port 80 be taken, 
 please contact Paul <lanshunfang#gmail.com> for support.
 * This script will add several crontab configurations to `/etc/cron.d` to monitor Shadowsocks-R / HTTP2 (nghttpx, squid) / demo web server service status.

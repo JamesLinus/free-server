@@ -16,7 +16,7 @@ for configFile in ${shadowsocksRConfigList}; do
   isProcessRunning=$(ps aux | awk '$0~v' v="-c\\ ${configFile}")
   if [[ -z ${isProcessRunning} ]]; then
     echo -e "Restart SSR with $configFile" | wall
-    python server.py -c ${configFile} >> /dev/null 2&>1 &
+    trickle -u ${trickleUploadLimit} -d ${trickleDownloadLimit}  python server.py -c ${configFile} >> /dev/null 2&>1 &
 
   else
     echo "Skipped $i since it is already stated. Process: ${isProcessRunning}"
