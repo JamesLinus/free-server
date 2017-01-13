@@ -6,6 +6,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2017-01-14 [Enhancement] Update nghttp2 to 1.18.1 and Spdylay to 1.4.0
 * 2017-01-14 [Enhancement] Limit upload&download speed of each SPDY/Shadowsocks-r instance to 300KB/s
 * 2016-11-07 [Feature] Add deleteuser.sh to support delete user in a handy way
 * 2016-10-08 [BreakingChange] remove ocserv (Cisco AnyConnect VPN) since Potatso (ShadowsocksR) is working well in iPhone
@@ -29,9 +30,10 @@ Please consider fork to keep the free-server long living till the day of death o
 
 * [Let's Encrypt](https://letsencrypt.org/)
 * [Shadowsocks-R](https://github.com/breakwa11/shadowsocks.git)
-* [HTTP2/SPDY: nghttp2-1.13.0](https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz)
-* [Spdylay-1.3.2](https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz)
+* [HTTP2/SPDY: nghttp2-1.18.1](https://github.com/nghttp2/nghttp2/releases/download/v1.18.1/nghttp2-1.18.1.tar.gz)
+* [Spdylay-1.4.0](https://github.com/tatsuhiro-t/spdylay/releases/download/v1.4.0/spdylay-1.4.0.tar.gz)
 * Squid3 (Ubuntu repo latest)
+* Trickle
 
 ## Installation
 

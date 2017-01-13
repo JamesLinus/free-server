@@ -72,11 +72,11 @@ export trickleDownloadLimit=300
 
 export shadowsocksRFolder="${gitRepoShadowsocksRPath}/shadowsocks"
 
-export SPDYNgHttp2DownloadLink="https://github.com/nghttp2/nghttp2/releases/download/v1.13.0/nghttp2-1.13.0.tar.gz"
-export SPDYNgHttp2FolderName="nghttp2-1.13.0"
+export SPDYNgHttp2DownloadLink="https://github.com/nghttp2/nghttp2/releases/download/v1.18.1/nghttp2-1.18.1.tar.gz"
+export SPDYNgHttp2FolderName="nghttp2-1.18.1"
 export SPDYNgHttp2TarGzName="${SPDYNgHttp2FolderName}.tar.gz"
-export SPDYSpdyLayDownloadLink="https://github.com/tatsuhiro-t/spdylay/releases/download/v1.3.2/spdylay-1.3.2.tar.gz"
-export SPDYSpdyLayFolderName="spdylay-1.3.2"
+export SPDYSpdyLayDownloadLink="https://github.com/tatsuhiro-t/spdylay/releases/download/v1.4.0/spdylay-1.4.0.tar.gz"
+export SPDYSpdyLayFolderName="spdylay-1.4.0"
 export SPDYSpdyLayTarGzName="${SPDYSpdyLayFolderName}.tar.gz"
 export SPDYConfig="${configDir}/SPDY.conf"
 export SPDYSquidConfig="${configDir}/squid.conf"

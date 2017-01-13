@@ -7,7 +7,6 @@ main() {
 }
 
 installDeps() {
-   echoS "Installing Dependencies"
    apt-get install -y trickle 2>&1 >> ${loggerStdoutFile}
 }
 
