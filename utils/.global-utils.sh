@@ -217,6 +217,8 @@ exitOnError(){
     fi
 
     sleep 2
+
+    echoS "[Solution] You could retry this script again. It may solve the problem. If it still fails, you could report issue to Paul on github."
     exit 1
   fi
 }

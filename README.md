@@ -23,7 +23,7 @@ Please consider fork to keep the free-server long living till the day of death o
 ## Description
 
 * This script is to assist you setup a Linux Server hosting proxy/VPN service of Shadowsocks-R, HTTP2/SPDY, within Ubuntu Server.
-* It has been tested on Amazon EC2 Ubuntu 14 LTS. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15 
+* It has been tested on Amazon EC2 Ubuntu 16/14 LTS. Should be running well on Digital Ocean Ubuntu 15 / Linode Ubuntu Server 15 
 / Ubuntu Server 16 LTS, as well as all major Ubuntu Server releases.
 
 ## Package installed

@@ -7,4 +7,4 @@ source /opt/.global-utils.sh
 
 cd ${miscDir}
 
-python -m SimpleHTTPServer 80
+python -m SimpleHTTPServer 80 >> /dev/null 2>&1 &
