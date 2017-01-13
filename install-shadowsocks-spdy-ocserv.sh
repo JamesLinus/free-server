@@ -2,6 +2,11 @@
 
 clear
 
+if [[ $UID -ne 0 ]]; then
+    echo "$0 must be run as root"
+    exit 1
+fi
+
 export bashUrl=https://raw.githubusercontent.com/lanshunfang/free-server/master/
 export self="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/$0"
 
@@ -16,11 +21,6 @@ wget --no-cache ${bashUrl}/utils/.global-utils.sh
 source .global-utils.sh
 
 enforceInstallOnUbuntu
-
-if [[ $UID -ne 0 ]]; then
-    echo "$0 must be run as root"
-    exit 1
-fi
 
 # stop accepting client locale setting for Ubuntu
 replaceStringInFile "/etc/ssh/sshd_config" AcceptEnv "\#AcceptEnv"
