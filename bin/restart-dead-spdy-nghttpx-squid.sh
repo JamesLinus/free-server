@@ -24,6 +24,8 @@ if [[ ! -s ${letsEncryptCertPath} ]]; then
   exit 0
 fi
 
+runCommandIfPortClosed "${SPDYForwardBackendSquidPort}"  "${binDir}/restart-spdy-squid.sh"
+
 for i in $(cat "${SPDYConfig}"); do
 
   username=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $1}')
@@ -44,6 +46,5 @@ for i in $(cat "${SPDYConfig}"); do
 
 done
 
-runCommandIfPortClosed "${SPDYForwardBackendSquidPort}"  "${binDir}/restart-spdy-squid.sh"
 
 
