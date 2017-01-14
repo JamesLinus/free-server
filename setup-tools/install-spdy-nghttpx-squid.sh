@@ -21,6 +21,7 @@ main() {
   squid3 -f /etc/squid3/squid.conf  -k reconfigure
   sleep 2
   pkill squid3
+  pkill squid
   sleep 2
 
 }
@@ -120,7 +121,9 @@ uninstallSquid() {
 
   echoS "Uninstall Squid"
   killall squid3
+  killall squid
 
+  apt-get remove squid3 -y 2>&1 >> /dev/null
   apt-get remove squid -y 2>&1 >> /dev/null
 }
 
@@ -132,7 +135,7 @@ installSquid() {
 
   echoS "Install Squid, may need 5 minutes."
 
-  apt-get install squid -y 2>&1 >> ${loggerStdoutFile}
+  apt-get install squid3 -y 2>&1 >> ${loggerStdoutFile}
 
 }
 
