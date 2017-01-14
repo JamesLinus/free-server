@@ -12,13 +12,16 @@ main() {
 }
 
 installLetsencrypt() {
-    echoS "Installing git"
-    catchError=$(apt-get install -y git 2>&1 >> ${loggerStdoutFile})
-    exitOnError "${catchError}"
+#    echoS "Installing git"
+#    catchError=$(apt-get install -y git 2>&1 >> ${loggerStdoutFile})
+#    exitOnError "${catchError}"
+##
+#    git config --global user.name "Free Server"
+#    git config --global user.email "${freeServerUserEmail}"
+#    cd ${letsencryptInstallationFolder}
 
-    git config --global user.name "Free Server"
-    git config --global user.email "${freeServerUserEmail}"
-    cd ${letsencryptInstallationFolder}
+    echoS "Cleanup Let's Encrypt on /etc/letsencrypt"
+    rm -rf /etc/letsencrypt
 
     echoS "Installing Let's Encrypt"
 #    git clone https://github.com/letsencrypt/letsencrypt ./ 2>&1 >> ${loggerStdoutFile}
