@@ -17,15 +17,15 @@ if [[ ! -f ${SPDYSquidPassWdFile} ]]; then
 fi
 
 
-if [[ ! -f ${letsEncryptKeyPath} ]]; then
-  echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
+if [[ ! -s ${letsEncryptKeyPath} ]]; then
+  echoS "The SSL Key file ${letsEncryptKeyPath} is not existed. Exit" "stderr"
   sleep 2
   exit 0
 fi
 
 
 if [[ ! -f ${letsEncryptCertPath} ]]; then
-  echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
+  echoS "The SSL cert file ${letsEncryptCertPath} is not existed. Exit" "stderr"
   sleep 2
   exit 0
 fi

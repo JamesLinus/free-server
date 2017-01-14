@@ -21,14 +21,19 @@ installLetsencrypt() {
     cd ${letsencryptInstallationFolder}
 
     echoS "Installing Let's Encrypt"
-    git clone https://github.com/letsencrypt/letsencrypt ./ 2>&1 >> ${loggerStdoutFile}
-    ./letsencrypt-auto --help --agree-tos 2>&1 >> ${loggerStdoutFile}
+#    git clone https://github.com/letsencrypt/letsencrypt ./ 2>&1 >> ${loggerStdoutFile}
+#    ./letsencrypt-auto --help --agree-tos 2>&1 >> ${loggerStdoutFile}
+    apt-get install -y letsencrypt  2>&1 >> ${loggerStdoutFile}
+
+
 
 
 }
 
 getCert() {
-    eval "$letsencryptCertBotPath certonly --standalone --non-interactive --agree-tos -n --email=${freeServerUserEmail} -d ${freeServerName}"
+#    eval "$letsencryptCertBotPath certonly --standalone --non-interactive --agree-tos -n --email=${freeServerUserEmail} -d ${freeServerName}"
+    letsencrypt certonly --standalone --non-interactive --agree-tos -n --email=${freeServerUserEmail} -d ${freeServerName}
+    letsencrypt renew --dry-run --agree-tos
 }
 
 enableAutoRenew() {

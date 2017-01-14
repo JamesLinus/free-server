@@ -9,14 +9,14 @@ then
   exit 0
 fi
 
-if [[ ! -f ${letsEncryptKeyPath} ]]; then
-  echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
+if [[ ! -s ${letsEncryptKeyPath} ]]; then
+  echoS "The SSL Key file ${letsEncryptKeyPath} is not existed. Exit" "stderr"
   exit 1
 fi
 
 
-if [[ ! -f ${letsEncryptCertPath} ]]; then
-  echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
+if [[ ! -s ${letsEncryptCertPath} ]]; then
+  echoS "The SSL cert file ${cerletsEncryptCertPatht} is not existed. Exit" "stderr"
   exit 1
 fi
 

@@ -20,19 +20,19 @@ showHelp() {
 }
 
 commonCheck() {
-  if [[ ! -f ${SPDYConfig} ]]; then
+  if [[ ! -s ${SPDYConfig} ]]; then
     echoS "The SPDY config file ${SPDYConfig} is not found . Exit" "stderr"
     exit 1
   fi
 
-  if [[ ! -f ${letsEncryptKeyPath} ]]; then
-    echoS "The SSL Key file ${key} is not existed. Exit" "stderr"
+  if [[ ! -s ${letsEncryptKeyPath} ]]; then
+    echoS "The SSL Key file ${letsEncryptKeyPath} is not existed. Exit" "stderr"
     exit 1
   fi
 
 
-  if [[ ! -f ${letsEncryptCertPath} ]]; then
-    echoS "The SSL cert file ${cert} is not existed. Exit" "stderr"
+  if [[ ! -s ${letsEncryptCertPath} ]]; then
+    echoS "The SSL cert file ${letsEncryptCertPath} is not existed. Exit" "stderr"
     exit 1
   fi
 
@@ -54,13 +54,24 @@ startNgHttpX() {
   #   --fastopen=3 \
   #   --no-via \
 
-  trickle -v -s -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
+  startCommand="trickle -v -s -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
   --daemon \
   --http2-proxy \
-  --frontend="${SPDYFrontendListenHost},${port}" \
+  --frontend=\"${SPDYFrontendListenHost},${port}\" \
   --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
-  --backend="${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}" \
-  "${letsEncryptKeyPath}" "${letsEncryptCertPath}"
+  --backend=\"${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}\" \
+  \"${letsEncryptKeyPath}\" \"${letsEncryptCertPath}\""
+
+#  startCommond="nghttpx \
+#  --daemon \
+#  --http2-proxy \
+#  --frontend=\"${SPDYFrontendListenHost},${port}\" \
+#  --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
+#  --backend=\"${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}\" \
+#  \"${letsEncryptKeyPath}\" \"${letsEncryptCertPath}\""
+
+  echo ${startCommand}
+  eval ${startCommand}
 
 }
 
