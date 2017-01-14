@@ -65,9 +65,10 @@ export baseUrlMisc=${baseUrl}/misc
 
 # KB/s
 export trickleUploadLimit=300
-export nghttpxUploadLimit=300
 export trickleDownloadLimit=300
-export nghttpxDownloadLimit=300
+
+export nghttpxUploadLimit=300000
+export nghttpxDownloadLimit=300000
 
 #export oriConfigShadowsocksDir="/etc/shadowsocks-libev/"
 #export oriConfigShadowsocks="${oriConfigShadowsocksDir}/config.json"

@@ -36,8 +36,8 @@ commonCheck() {
     exit 1
   fi
 
-  if [[ -z $port ]]; then
-    echo "Usage: $0 FRONTEND_LISTEN_PORT"
+  if [[ -z $frontConfigList ]]; then
+    echo "Usage: $0 FRONTEND_LISTEN_CONFIG"
     exit 1
   fi
 
@@ -54,10 +54,12 @@ startNgHttpX() {
   #   --fastopen=3 \
   #   --no-via \
 
+  pkill nghttpx
+
   startCommand="nghttpx \
   --workers=20 \
-  --read-rate=${nghttpxUploadLimit} \
-  --write-rate=${nghttpxDownloadLimit} \
+  --worker-read-rate=${nghttpxUploadLimit} \
+  --worker-write-rate=${nghttpxDownloadLimit} \
   ${frontConfigList} \
   --daemon \
   --http2-proxy \
