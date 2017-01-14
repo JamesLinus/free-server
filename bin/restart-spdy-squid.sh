@@ -12,7 +12,10 @@ echoS "Restart SPDY Squid3"
 killall squid3
 killall squid
 
+squid3 -k  kill
+
 squid3 -z
+squid3 -z -f ${SPDYSquidConfig}
 
 squid3 -f ${SPDYSquidConfig} -k kill
 sleep 2

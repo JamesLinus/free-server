@@ -50,17 +50,15 @@ startNgHttpX() {
   # --cacert=${SPDYSSLCaPemFile} \
   # --errorlog-file="${loggerRuntimeErrFile}" \
   # --log-level="ERROR" \
-
   #  --workers=${SPDYNgHttpXCPUWorkerAmount} \
-
+  #   --fastopen=3 \
+  #   --no-via \
 
   trickle -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
   --daemon \
   --http2-proxy \
-  --no-via \
-  --fastopen=3 \
-  --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
   --frontend="${SPDYFrontendListenHost},${port}" \
+  --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
   --backend="${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}" \
   "${letsEncryptKeyPath}" "${letsEncryptCertPath}"
 

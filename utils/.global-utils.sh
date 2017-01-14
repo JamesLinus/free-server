@@ -80,7 +80,7 @@ export SPDYSpdyLayFolderName="spdylay-1.4.0"
 export SPDYSpdyLayTarGzName="${SPDYSpdyLayFolderName}.tar.gz"
 export SPDYConfig="${configDir}/SPDY.conf"
 export SPDYSquidConfig="${configDir}/squid.conf"
-export SPDYSquidCacheDir="/var/spool/squid3"
+export SPDYSquidCacheDir="/var/spool/squid"
 export SPDYSquidPassWdFile="${configDir}/squid-auth-passwd"
 
 # make SPDYSquidAuthSubProcessAmount bigger, make squid basic auth faster, but may be more unstable indeed
@@ -93,7 +93,7 @@ export SPDYFrontendListenHost="0.0.0.0"
 # make SPDYNgHttpXCPUWorkerAmount bigger, make nghttpx faster, but may be unstable if your VPS is not high-end enough
 export SPDYNgHttpXCPUWorkerAmount=2
 
-export SPDYNgHttpXConcurrentStreamAmount=600
+export SPDYNgHttpXConcurrentStreamAmount=20
 
 export ipsecSecFile=${configDir}/ipsec.secrets
 export ipsecSecFileInConfigDirBackup=${configDirBackup}/ipsec.secrets
