@@ -20,5 +20,13 @@ sleep 2
 squid3 -f ${SPDYSquidConfig}
 squid3 -f ${SPDYSquidConfig} -k reconfigure
 
-cat /var/log/squid/cache.log
-cat /var/log/squid3/cache.log
+squidCacheLog=/var/log/squid/cache.log
+squid3CacheLog=/var/log/squid3/cache.log
+
+if [[ -f ${squidCacheLog} ]];then
+    cat ${squidCacheLog}
+fi
+
+if [[ -f ${squid3CacheLog} ]];then
+    cat ${squid3CacheLog}
+fi
