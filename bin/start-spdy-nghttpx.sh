@@ -54,7 +54,7 @@ startNgHttpX() {
   #   --fastopen=3 \
   #   --no-via \
 
-  trickle -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
+  trickle -v -s -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
   --daemon \
   --http2-proxy \
   --frontend="${SPDYFrontendListenHost},${port}" \
