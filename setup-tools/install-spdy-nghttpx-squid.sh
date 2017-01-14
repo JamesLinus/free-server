@@ -72,7 +72,7 @@ installNgHttpX() {
   #npm install -g spdyproxy > /dev/null 2>&1
   catchError=$(apt-get install -y g++ make binutils autoconf automake autotools-dev libtool pkg-config   \
   zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libev-dev libevent-dev libjansson-dev   \
-  libjemalloc-dev cython python3-dev python-setuptools apache2-utils -y 2>&1 >> ${loggerStdoutFile})
+  libc-ares-dev libjemalloc-dev cython python3-dev python-setuptools apache2-utils 2>&1 >> ${loggerStdoutFile})
   exitOnError "${catchError}"
 
   warnNoEnterReturnKey
