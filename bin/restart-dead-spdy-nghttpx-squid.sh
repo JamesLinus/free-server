@@ -26,6 +26,13 @@ fi
 
 runCommandIfPortClosed "${SPDYForwardBackendSquidPort}"  "${binDir}/restart-spdy-squid.sh"
 
+
+for i in $(cat "${SPDYConfig}"); do
+    port=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $3}')
+    frontConfigList=" ${frontConfigList} --frontend='${SPDYFrontendListenHost},${port}' "
+done
+
+
 for i in $(cat "${SPDYConfig}"); do
 
   username=$(echo "$i" | gawk 'BEGIN { FS = "," } ; {print $1}')
@@ -40,7 +47,7 @@ for i in $(cat "${SPDYConfig}"); do
     port: ${port} \n"
   else
 
-    runCommandIfPortClosed "${port}" "${binDir}/start-spdy-nghttpx.sh ${port};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\""
+    runCommandIfPortClosed "${port}" "${binDir}/start-spdy-nghttpx.sh ${frontConfigList};  echo \"Restart HTTP2/SPDY with ${username}, ${port}\""
 
   fi
 

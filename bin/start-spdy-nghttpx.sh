@@ -2,7 +2,7 @@
 
 source /opt/.global-utils.sh
 
-port=$1
+frontConfigList=$1
 
 main() {
   showHelp
@@ -54,10 +54,13 @@ startNgHttpX() {
   #   --fastopen=3 \
   #   --no-via \
 
-  startCommand="trickle -v -s -u ${trickleUploadLimit} -d ${trickleDownloadLimit} nghttpx \
+  startCommand="nghttpx \
+  --workers=20 \
+  --read-rate=${nghttpxUploadLimit} \
+  --write-rate=${nghttpxDownloadLimit} \
+  ${frontConfigList} \
   --daemon \
   --http2-proxy \
-  --frontend=\"${SPDYFrontendListenHost},${port}\" \
   --frontend-http2-max-concurrent-streams=${SPDYNgHttpXConcurrentStreamAmount} \
   --backend=\"${SPDYForwardBackendSquidHost},${SPDYForwardBackendSquidPort}\" \
   \"${letsEncryptKeyPath}\" \"${letsEncryptCertPath}\""

@@ -133,7 +133,7 @@ installSquid() {
 
   chmod -R 777 $SPDYSquidCacheDir
 
-  echoS "Install Squid, may need 5 minutes."
+  echoS "Install Squid"
 
   apt-get install squid3 -y 2>&1 >> ${loggerStdoutFile}
 
