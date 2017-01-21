@@ -27,7 +27,7 @@ export freeServerRoot=/opt/${freeServerInstallationFolderName}/
 
 export gitRepoPath=${freeServerRoot}/git-repo
 export gitRepoFreeServerPath=${gitRepoPath}/free-server
-export gitRepoShadowsocksRPath=${gitRepoPath}/shadowsocks
+export gitRepoShadowsocksRPath=${gitRepoPath}/shadowsocksr
 
 
 # utility folder
