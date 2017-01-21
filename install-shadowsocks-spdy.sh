@@ -35,7 +35,9 @@ echo LC_CTYPE=\"en_US.UTF-8\" > /etc/default/locale
 echo LC_ALL=\"en_US.UTF-8\" >> /etc/default/locale
 echo LANG=\"en_US.UTF-8\" >> /etc/default/locale
 
-apt-get install language-pack-en-base -y && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales 2>&1 > /dev/null
+apt-get install language-pack-en-base language-pack-UTF-8  -y
+locale-gen en_US en_US.UTF-8 UTF-8
+dpkg-reconfigure locales 2>&1 > /dev/null
 
 
 # fix hostname -f
