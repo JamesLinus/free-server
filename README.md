@@ -6,13 +6,10 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2017-01-14 [Enhancement] Update ShadowsocksR to latest github repo
 * 2017-01-14 [Enhancement] Update nghttp2 to 1.18.1 and Spdylay to 1.4.0
 * 2017-01-14 [Enhancement] Limit upload&download speed of each SPDY/Shadowsocks-r instance to 300KB/s
 * 2016-11-07 [Feature] Add deleteuser.sh to support delete user in a handy way
-* 2016-10-08 [BreakingChange] remove ocserv (Cisco AnyConnect VPN) since Potatso (ShadowsocksR) is working well in iPhone
-* 2016-08-26 [Enhancement] replace Nodejs Static server to python
-* 2016-08-24 [BreakingChange] replace Shadowsocks to Shadowsocks-R
-* 2016-08-24 [Enhancement] Update nghttp2-1.13.0.
 * 2016-04-15 [Warning] Paul has received some information that may be relevant to free-server from Chinese policeman.
 I may delete this Github source code if I get pressure from government executive force.
 Please consider fork to keep the free-server long living till the day of death of G,FW.
@@ -29,7 +26,7 @@ Please consider fork to keep the free-server long living till the day of death o
 ## Package installed
 
 * [Let's Encrypt](https://letsencrypt.org/)
-* [Shadowsocks-R](https://github.com/breakwa11/shadowsocks.git)
+* [Shadowsocks-R](https://github.com/shadowsocksr/shadowsocksr)
 * [HTTP2/SPDY: nghttp2-1.18.1](https://github.com/nghttp2/nghttp2/releases/download/v1.18.1/nghttp2-1.18.1.tar.gz)
 * [Spdylay-1.4.0](https://github.com/tatsuhiro-t/spdylay/releases/download/v1.4.0/spdylay-1.4.0.tar.gz)
 * Squid3 (Ubuntu repo latest)
@@ -96,6 +93,10 @@ please contact Paul <lanshunfang#gmail.com> for support.
 
 ## Archived Change Logs
 
+* 2016-10-08 [BreakingChange] remove ocserv (Cisco AnyConnect VPN) since Potatso (ShadowsocksR) is working well in iPhone
+* 2016-08-26 [Enhancement] replace Nodejs Static server to python
+* 2016-08-24 [BreakingChange] replace Shadowsocks to Shadowsocks-R
+* 2016-08-24 [Enhancement] Update nghttp2-1.13.0.
 * 2016-04-02 [Milestone] Add OpenConnect Cisco AnyConnect VPN support for iOS, as substitution of IPSec.
 * 2016-04-02 [Milestone] Add Let's Encrypt SSL Cert auto generation for SPDY and Open Connect
 * 2016-04-02 [Enhancement] Update nghttpx to 1.9.1
