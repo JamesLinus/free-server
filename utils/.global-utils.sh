@@ -111,14 +111,14 @@ export ipsecStrongManVersionTarGz=${ipsecStrongManVersion}.tar.gz
 export ipsecStrongManOldVersion=strongswan-5.2.1
 export ipsecStrongManOldVersionTarGz=${ipsecStrongManOldVersion}.tar.gz
 
-export ocservDownloadLink="ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.xz"
-export ocservFolderName="ocserv-0.11.4"
-export ocservTarGzName="${ocservFolderName}.tar.xz"
-export ocservPasswd=${configDir}/ocserv.passwd
-export ocservConfig="${configDir}/ocserv.conf"
+#export ocservDownloadLink="ftp://ftp.infradead.org/pub/ocserv/ocserv-0.11.4.tar.xz"
+#export ocservFolderName="ocserv-0.11.4"
+#export ocservTarGzName="${ocservFolderName}.tar.xz"
+#export ocservPasswd=${configDir}/ocserv.passwd
+#export ocservConfig="${configDir}/ocserv.conf"
 
-export ocservPortMin=3000
-export ocservPortMax=3010
+#export ocservPortMin=3000
+#export ocservPortMax=3010
 
 
 export clusterDefFilePath="${configDir}/cluster-def.txt"
@@ -743,54 +743,54 @@ enableIptableToConnectInternet(){
 }
 export -f enableIptableToConnectInternet
 
-updateOcservConf() {
+#updateOcservConf() {
+#
+#    if [[ ! -f ${ocservConfig} ]]; then
+#        echoS "Ocserv config file (${ocservConfig}) is not detected. This you may not install it correctly. Exit." "stderr"
+#        exit 1
+#    fi
+#
+#    echoS "Create multiple instance for better connect"
+#    for (( port=$ocservPortMin; port<=$ocservPortMax; port++ ));do
+#        duplicateConfByPort ${port}
+#    done
+#
+#    duplicateConfByPort 443
+#
+#}
+#export -f updateOcservConf
 
-    if [[ ! -f ${ocservConfig} ]]; then
-        echoS "Ocserv config file (${ocservConfig}) is not detected. This you may not install it correctly. Exit." "stderr"
-        exit 1
-    fi
-
-    echoS "Create multiple instance for better connect"
-    for (( port=$ocservPortMin; port<=$ocservPortMax; port++ ));do
-        duplicateConfByPort ${port}
-    done
-
-    duplicateConfByPort 443
-
-}
-export -f updateOcservConf
-
-updateRouteForOcservConf() {
-    mv ${configDir}/ocserv.conf ${configDir}/ocserv.conf.bak
-    downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
-    if [[ $? == 1 ]]; then
-        echoS "Download failed: ${baseUrlConfigSample}/ocserv.conf"
-        mv ${configDir}/ocserv.conf.bak ${configDir}/ocserv.conf
-        return 1
-    fi
-    rm ${configDir}/ocserv.conf.bak
-    updateOcservConf
-    ${binDir}/restart-ocserv.sh
-
-}
-export -f updateRouteForOcservConf
+#updateRouteForOcservConf() {
+#    mv ${configDir}/ocserv.conf ${configDir}/ocserv.conf.bak
+#    downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
+#    if [[ $? == 1 ]]; then
+#        echoS "Download failed: ${baseUrlConfigSample}/ocserv.conf"
+#        mv ${configDir}/ocserv.conf.bak ${configDir}/ocserv.conf
+#        return 1
+#    fi
+#    rm ${configDir}/ocserv.conf.bak
+#    updateOcservConf
+#    ${binDir}/restart-ocserv.sh
+#
+#}
+#export -f updateRouteForOcservConf
 
 
-duplicateConfByPort(){
-    port=$1
+#duplicateConfByPort(){
+#    port=$1
+#
+#    newConfName=${ocservConfig}.${port}
+#    rm ${newConfName}
+#
+#    cp ${ocservConfig} ${newConfName}
+#
+#    replaceStringInFile "${newConfName}" __SSL_KEY_FREE_SERVER__ "${letsEncryptKeyPath}"
+#    replaceStringInFile "${newConfName}" __SSL_CERT_FREE_SERVER__ "${letsEncryptCertPath}"
+#    replaceStringInFile "${newConfName}" __TCP_PORT__ "${port}"
+#    replaceStringInFile "${newConfName}" __UDP_PORT__ "${port}"
+#}
 
-    newConfName=${ocservConfig}.${port}
-    rm ${newConfName}
-
-    cp ${ocservConfig} ${newConfName}
-
-    replaceStringInFile "${newConfName}" __SSL_KEY_FREE_SERVER__ "${letsEncryptKeyPath}"
-    replaceStringInFile "${newConfName}" __SSL_CERT_FREE_SERVER__ "${letsEncryptCertPath}"
-    replaceStringInFile "${newConfName}" __TCP_PORT__ "${port}"
-    replaceStringInFile "${newConfName}" __UDP_PORT__ "${port}"
-}
-
-export -f duplicateConfByPort
+#export -f duplicateConfByPort
 
 killProcessesByPort(){
     port=$1

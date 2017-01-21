@@ -8,7 +8,7 @@ pkill ss-server
 
 cd ${gitRepoPath}
 
-git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
+git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
 
 # prepare all Shadowsocks Utils
 

@@ -3,9 +3,9 @@
 source /opt/.global-utils.sh
 
 downloadFileToFolder ${baseUrlConfigSample}/squid.conf ${configDir}
-downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
-downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
-downloadFileToFolder ${baseUrlConfigSample}/haproxy-user.conf ${configDir}
+#downloadFileToFolder ${baseUrlConfigSample}/ocserv.conf ${configDir}
+#downloadFileToFolder ${baseUrlConfigSample}/haproxy.conf ${configDir}
+#downloadFileToFolder ${baseUrlConfigSample}/haproxy-user.conf ${configDir}
 
 #
 ## install util

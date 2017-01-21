@@ -38,9 +38,9 @@ Please consider fork to keep the free-server long living till the day of death o
 ## Installation
 
 ```bash
-rm -f install-shadowsocks-spdy-ocserv.sh
-wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy-ocserv.sh
-bash install-shadowsocks-spdy-ocserv.sh
+rm -f install-shadowsocks-spdy.sh
+wget --no-cache -q https://raw.githubusercontent.com/lanshunfang/free-server/master/install-shadowsocks-spdy.sh
+bash install-shadowsocks-spdy.sh
 ```
 
 Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks-R and HTTP2/SPDY account or password.

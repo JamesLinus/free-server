@@ -14,7 +14,7 @@ main() {
 
 
   touch ${loggerStdoutFile}
-  touch ${ocservPasswd}
+#  touch ${ocservPasswd}
 
   touch ${loggerStderrFile}
   touch ${loggerRuntimeInfoFile}
