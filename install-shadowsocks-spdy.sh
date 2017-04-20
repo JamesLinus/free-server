@@ -223,6 +223,9 @@ echoS "\x1b[46m Next step: \x1b[0m\n\n\
 
 #echoS "Note that, the IpSec PSK(Secret) is located: \x1b[46m ${ipsecSecFile} \x1b[0m. You may want to reedit the PSK field."
 # remove self
+
+echoS "I highly recommend you to install Google TCP BBR: https://doub.io/wlzy-16/ manually"
+
 rm -f "$self"
 
 

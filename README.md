@@ -6,6 +6,7 @@ Gain more freedom with my free-server for Chinese (mainland), Iranians, North Ko
 
 ## News and Change logs
 
+* 2017-01-14 [Enhancement] Update TCP BBR suggestion
 * 2017-01-14 [Enhancement] Update ShadowsocksR to latest github repo
 * 2017-01-14 [Enhancement] Update nghttp2 to 1.18.1 and Spdylay to 1.4.0
 * 2017-01-14 [Enhancement] Limit upload&download speed of each SPDY/Shadowsocks-r instance to 300KB/s
@@ -42,6 +43,9 @@ bash install-shadowsocks-spdy.sh
 
 Note that, the script could be redeployed/reinstalled on your Ubuntu without worries on losing any old Shadowsocks-R and HTTP2/SPDY account or password.
 It backs them up if found any before execute re-installation.
+
+## Alternative TCP Optimized Installation (Chinese)
+Google: [TCP BBR](https://doub.io/wlzy-16/)
 
 ## Create User
 
